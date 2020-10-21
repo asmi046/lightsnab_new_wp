@@ -1,2 +1,2 @@
-# lightsnab_new_wp
+# Lightsnab WordPress шаблог
 Новый сайт Лайтснаба
