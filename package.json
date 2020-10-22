@@ -1,0 +1,54 @@
+{
+  "name": "almi",
+  "version": "1.0.0",
+  "description": "Almi Product",
+  "main": "index.php",
+  "scripts": {
+    "test": "editorconfig-checker",
+    
+    "clear_r": "ssh asmi046@asmi046.myjino.ru \"rm  domains/almi.asmi-studio.ru/wp-content/themes/Almi/*.*\"",
+    "send_r": "scp -C *.php *.png *.css asmi046@asmi046.myjino.ru:domains/almi.asmi-studio.ru/wp-content/themes/Almi",
+  
+    "mk_part_carbon": "ssh asmi046@asmi046.myjino.ru \"mkdir -p domains/almi.asmi-studio.ru/wp-content/themes/Almi/template-parts\"",  
+    "send_carbon": "scp -C -r carbon-fields asmi046@asmi046.myjino.ru:domains/almi.asmi-studio.ru/wp-content/themes/Almi/",
+    
+    "mk_part_dir": "ssh asmi046@asmi046.myjino.ru \"mkdir -p domains/almi.asmi-studio.ru/wp-content/themes/Almi/template-parts\"",
+    "send_part": "scp -C -r template-parts asmi046@asmi046.myjino.ru:domains/almi.asmi-studio.ru/wp-content/themes/Almi/",
+    
+    "mk_part_img": "ssh asmi046@asmi046.myjino.ru \"mkdir -p domains/almi.asmi-studio.ru/wp-content/themes/Almi/img\"",
+    "send_img": "scp -r img asmi046@asmi046.myjino.ru:domains/almi.asmi-studio.ru/wp-content/themes/Almi/",
+    "send_image": "scp -r image asmi046@asmi046.myjino.ru:domains/almi.asmi-studio.ru/wp-content/themes/Almi/",
+    
+    "mk_part_js": "ssh asmi046@asmi046.myjino.ru \"mkdir -p domains/almi.asmi-studio.ru/wp-content/themes/Almi/js\"",
+    "send_js": "scp -r js asmi046@asmi046.myjino.ru:domains/almi.asmi-studio.ru/wp-content/themes/Almi/",
+    
+    "mk_part_css": "ssh asmi046@asmi046.myjino.ru \"mkdir -p domains/almi.asmi-studio.ru/wp-content/themes/Almi/css\"",
+    "send_css": "scp -C -r css asmi046@asmi046.myjino.ru:domains/almi.asmi-studio.ru/wp-content/themes/Almi/",
+    
+    "mk_part_fonts": "ssh asmi046@asmi046.myjino.ru \"mkdir -p domains/almi.asmi-studio.ru/wp-content/themes/Almi/fonts\"",
+    "send_fonts": "scp -C -r fonts asmi046@asmi046.myjino.ru:domains/almi.asmi-studio.ru/wp-content/themes/Almi/",
+    
+    "send_all": "npm run send_r & npm run send_css & npm run send_part & npm run send_img & npm run send_image & npm run send_js & npm run send_fonts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asmi046/almi_wp.git"
+  },
+  "keywords": [
+    "wp",
+    "WordPress"
+  ],
+  "author": "Asmi-Studio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asmi046/almi_wp/issues"
+  },
+  "homepage": "https://github.com/asmi046/almi_wp#readme",
+  "dependencies": {
+    "editorconfig-checker": "^3.1.0",
+    "group-css-media-queries": "^1.4.1",
+    "postcss-cli": "^7.1.2",
+    "postcss-csso": "^4.0.0",
+    "postcss-import": "^12.0.1"
+  }
+}

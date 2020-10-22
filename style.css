@@ -1,0 +1,101 @@
+﻿/*
+Theme Name: Almi-Product
+Theme URI: 
+Author: Asmi-Studio
+Author URI: 
+Description: Almi-Product
+Version: 1.0.1
+Tags: pet,almi
+*/
+
+
+
+html ,body{
+	margin:0px;
+	padding:0px;
+}
+
+a {
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration:underline;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;
+    margin:0;}
+	
+
+label {
+	float:left;
+	width:100%;
+
+}
+
+
+input[type=password], input[type=tel], input[type=email], input[type=text] {
+}
+
+
+textarea{
+
+}
+
+table {
+}
+
+th,td{
+}
+
+th{
+	
+}
+
+td{
+	
+}
+
+.main {
+	margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.line {
+    float: left;
+    min-height: 40px;
+    width: 100%;
+}
+
+.centerInLine {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* Арктик модал */
+
+.box-modal {
+	position: relative;
+	width: 500px;
+	padding: 16px;
+	background: #fff;
+	color: #3c3c3c;
+	font: 14px/18px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+	box-shadow: 0 0 0 6px rgba(153, 153, 153, .3);
+	border-radius: 6px;
+}
+.box-modal_close { position: absolute; right: 10px; top: 6px; font-size: 11px; line-height: 15px; color: #999; cursor: pointer; }
+.box-modal_close:hover { color: #666; }
+
+@media screen and (max-width:1024px), handheld{ }
+@media screen and (max-width:980px), handheld{ }
+@media screen and (max-width:800px), handheld{ }
+@media screen and (max-width:768px), handheld{ }
+@media screen and (max-width:667px), handheld{ }
+@media screen and (max-width:568px), handheld{ }
+@media screen and (max-width:480px), handheld{ }
+@media screen and (max-width:375px), handheld{ }
+@media screen and (max-width:320px), handheld{ }
