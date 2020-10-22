@@ -1,11 +1,11 @@
 ﻿/*
-Theme Name: Almi-Product
+Theme Name: Lightsnab Shop
 Theme URI: 
 Author: Asmi-Studio
 Author URI: 
-Description: Almi-Product
+Description: Магазин света
 Version: 1.0.1
-Tags: pet,almi
+Tags: light,lamp
 */
 
 
@@ -41,7 +41,7 @@ input[type=password], input[type=tel], input[type=email], input[type=text] {
 
 
 textarea{
-
+	
 }
 
 table {
