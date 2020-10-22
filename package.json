@@ -4,8 +4,7 @@
   "description": "Магазин дизайнерского света",
   "main": "index.php",
   "scripts": {
-    "test": "editorconfig-checker",
-
+    "test": "editorconfig-checker", 
     "clear_r": "ssh u0743099@ftp.light-snab.ru \"rm  lshop/wp-content/themes/light-shop/*.*\"",
     "send_r": "scp -C *.php *.png *.css u0743099@ftp.light-snab.ru:lshop/wp-content/themes/light-shop/",
     "send_ms": "scp -C *.css u0743099@ftp.light-snab.ru:lshop/wp-content/themes/light-shop/",

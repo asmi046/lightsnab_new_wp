@@ -1,9 +1,17 @@
 <?php get_header(); ?>
-	<div class="test">testnpm</div>
-	<div class="test"></div>
-	<a href="#" class="link">Link</a>
-	<ul>
-	<li>List1</li><li>List 2</li>
-	</ul> 
+
+	<?php get_template_part('template-parts/block-menu');?>
+
+	<?php get_template_part('template-parts/header-section');?>
+
+	<?php get_template_part('template-parts/about-section');?>
+
+	<?php get_template_part('template-parts/collection');?>
+
+	<?php get_template_part('template-parts/products-section');?>
+
+	<?php get_template_part('template-parts/collection-classic-section');?>
+
+	<?php get_template_part('template-parts/products-two-section');?>
 
 <?php get_footer(); ?>
