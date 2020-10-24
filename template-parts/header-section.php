@@ -1,4 +1,4 @@
-<header class="header" style="background-image: url(img/Light_snab_ban_1.jpg)">
+<header class="header" style="background-image: url(<?php echo get_template_directory_uri();?>/img/Light_snab_ban_1.jpg);">
 	<div class="header-top">
 		<div class="container">
 			<div class="hamburger"></div>
@@ -13,7 +13,7 @@
 	</div>
 	<div class="header-bottom">
 		<div class="container">
-			<div class="logo" style="background-image: url(img/logo.svg)"></div>
+			<div class="logo" style="background-image: url(<?php echo get_template_directory_uri();?>/img/logo.svg);"></div>
 			<div class="header-descr">ДИЗАЙНЕРСКОЕ ОСВЕЩЕНИЕ НА ЛЮБОЙ ВКУС</div>
 		</div>
 	</div>

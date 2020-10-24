@@ -26,8 +26,8 @@
         <div class="">Телефон: +7 (495) 740-80-33</div>
         <div class="">E-mail: info@lightsnab.ru</div>
         <div class="soc-block">
-          <a href="#" style="background-image: url(img/insta.svg)"></a>
-          <a href="#" style="background-image: url(img/face.svg)"></a>
+          <a href="#" style="background-image: url(<?php echo get_template_directory_uri();?>/img/insta.svg);"></a>
+          <a href="#" style="background-image: url(<?php echo get_template_directory_uri();?>/img/face.svg);"></a>
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
 <!-- </div> -->
 
   <script src="js/scripts.min.js"></script>
-  <!-- <div class="top-btn"></div> -->
+  <div class="top-btn"></div>
 
   <?php wp_footer(); ?>
 

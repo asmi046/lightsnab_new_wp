@@ -1,39 +1,60 @@
-// Функция верификации e-mail
-function isEmail(email) {
-	var regex = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-	return regex.test(email);
-}
+jQuery(document).ready(function ($) {
+  function top_btn() {
+    var button = $('.top-btn');
+    var height_page = $(document).outerHeight(true);
+    var delay = 1000;
+    $(window).scroll(function () {
+      if ($(this).scrollTop() > (height_page / 2)) {
+        button.fadeIn();
+      } else {
+        button.fadeOut();
+      }
+    });
+    button.click(function () {
+      $('body, html').animate({
+        scrollTop: 0
+      }, delay);
+    });
+  }   
+  top_btn();
+  $('.hamburger').click(function (e) {
+    $('.block-menu').css('bottom', '0');
+  });
+  $('.close-menu').click(function () {
+    $('.block-menu').css('bottom', '140%');
 
-jQuery(document).ready(function() {
-	
-	// Сразу маскируем все поля телефонов
-	var inputmask_phone = {"mask": "+7(999)999-99-99"};
-	jQuery("input[type=tel]").inputmask(inputmask_phone);
-
-	// Типовой скрипт для отправки сообщений на почту
-
-	jQuery("#clsubmit").click(function(){ 
-
-		e.preventDefault();
-
-		var  jqXHR = jQuery.post(
-					allAjax.ajaxurl,
-					{
-						action: 'send_mail',		
-						nonce: allAjax.nonce,
-						formsubject: jQuery("#formsubject").val(),
-					}
-					
-		);
-				
-				
-		jqXHR.done(function (responce) {  //Всегда при удачной отправке переход для страницу благодарности
-					document.location.href = 'https://osagoprofi.su/stranica-blagodarnosti';	
-		});
-				
-		jqXHR.fail(function (responce) {
-					jQuery('#messgeModal #lineMsg').html("Произошла ошибка. Попробуйте позднее.");
-					jQuery('#messgeModal').arcticmodal();
-		});
-	});
+  });
+  $('.slider-for').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    fade: true,
+    prevArrow: '<div class="slider-arrow slider-arrow-prev"></div>',
+    nextArrow: '<div class="slider-arrow slider-arrow-next"></div>',
+    asNavFor: '.slider-nav'
+  });
+  $('.slider-nav').slick({
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    asNavFor: '.slider-for',
+    centerPadding: '10px',
+    dots: true,
+    centerMode: true,
+    focusOnSelect: true,
+    responsive: [
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+        }
+    },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1
+        }
+    }
+  ]
+  });
 });

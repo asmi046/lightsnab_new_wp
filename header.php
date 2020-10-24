@@ -19,11 +19,10 @@
 
   <?php wp_head();?> 
 
-  <!-- Меню -->
-  <?php wp_nav_menu( array('menu' => 'Главное меню', 'container' => false )); ?>
+  
 
 </head> 
-<body>
+<body class="home">
   <!-- Подключение  модальных окон-->
   <? include "modal-win.php";?>
 

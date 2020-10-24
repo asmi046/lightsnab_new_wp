@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="block-menu__header">
 			<div class="close-menu"></div>
-			<div class="logo" style="background-image: url(img/logo-menu.svg)"></div>
+			<div class="logo" style="background-image: url(<?php echo get_template_directory_uri();?>/img/logo-menu.svg);"></div>
 			<div class="header-icons__wrap">
 				<a href="#" class="header-icons header-icons__cart">
 					<!--          <span>0</span>-->
@@ -16,14 +16,14 @@
 		<div class="block-menu__full-search">
 			<a href="#">Расширенный поиск</a>
 		</div>
-		<div class="block-menu__menu">
-			<ul class="ul-clean">
-				<li><a href="#">Новинки</a></li>
-				<li><a href="#">Люстры</a></li>
-				<li><a href="#">Светильники и подвесной свет </a></li>
-				<li><a href="#">Люстры для низких потолков </a></li>
-				<li><a href="#">Потолочные светильники </a></li>
-				<li><a href="#">Реечные и рядные светильники и люстры </a></li>
+		<div class="block-menu__menu">  
+			<!-- <ul class="ul-clean"> -->
+				<!-- <li><a href="#">Новинки</a></li>
+				<li><a href="<?php echo get_category_link(3);?>">Люстры</a></li>
+				<li><a href="<?php echo get_category_link(4);?>">Светильники и подвесной свет</a></li>
+				<li><a href="#">Люстры для низких потолков</a></li>
+				<li><a href="#">Потолочные светильники</a></li>
+				<li><a href="#">Реечные и рядные светильники и люстры</a></li>
 				<li><a href="#">Бра и настенное освещение </a></li>
 				<li><a href="#">Торшеры </a></li>
 				<li><a href="#">Настольные лампы </a></li>
@@ -33,8 +33,13 @@
 				<li><a href="#">Конструктор освещения </a></li>
 				<li><a href="#">Патроны </a></li>
 				<li><a href="#">Лампы Эдисона </a></li>
-				<li><a href="#">Лампы Эдисона LED</a></li>
-			</ul>
+				<li><a href="#">Лампы Эдисона LED</a></li> -->
+
+				<!-- Меню -->
+ 				<?php wp_nav_menu( array('menu' => 'Главное меню', 'container' => false )); ?>
+
+			<!-- </ul> -->
+
 			<ul class="ul-clean">
 				<li><a href="#">Сотрудничество</a></li>
 				<li><a href="#">Оптовым покупателям</a></li>
@@ -50,8 +55,8 @@
 					<a href="mailto:info@lampatron.ru">info@lampatron.ru</a>
 				</div>
 				<div class="soc-block">
-					<a href="#" style="background-image: url(img/insta.svg)"></a>
-					<a href="#" style="background-image: url(img/face.svg)"></a>
+					<a href="#" style="background-image: url(<?php echo get_template_directory_uri();?>/img/insta.svg);"></a>
+					<a href="#" style="background-image: url(<?php echo get_template_directory_uri();?>/img/face.svg);"></a>
 				</div>
 			</div>
 		</div>

@@ -1404,15 +1404,15 @@ img.mfp-img {
     display: none;
 }
 .slick-loading .slick-list {
-    background: #fff url(../libs/slick/ajax-loader.gif) center center no-repeat;
+    background: #fff url(libs/slick/ajax-loader.gif) center center no-repeat;
 }
 @font-face {
     font-family: slick;
     font-weight: 400;
     font-style: normal;
-    src: url(../libs/slick/fonts/slick.eot);
-    src: url(../libs/slick/fonts/slick.eot?#iefix) format("embedded-opentype"), url(../libs/slick/fonts/slick.woff) format("woff"), url(../libs/slick/fonts/slick.ttf) format("truetype"),
-        url(../libs/slick/fonts/slick.svg#slick) format("svg");
+    src: url(libs/slick/fonts/slick.eot);
+    src: url(libs/slick/fonts/slick.eot?#iefix) format("embedded-opentype"), url(libs/slick/fonts/slick.woff) format("woff"), url(libs/slick/fonts/slick.ttf) format("truetype"),
+        url(libs/slick/fonts/slick.svg#slick) format("svg");
 }
 .slick-next,
 .slick-prev {
@@ -1554,46 +1554,46 @@ img.mfp-img {
     font-family: Roboto;
     font-style: normal;
     font-weight: 400;
-    src: url(../fonts/roboto-regular-webfont.woff2) format("woff2");
+    src: url(fonts/roboto-regular-webfont.woff2) format("woff2");
 }
 @font-face {
     font-family: Roboto;
     font-style: italic;
     font-weight: 400;
-    src: url(../fonts/roboto-italic-webfont.woff2) format("woff2");
+    src: url(fonts/roboto-italic-webfont.woff2) format("woff2");
 }
 @font-face {
     font-family: Roboto;
     font-style: normal;
     font-weight: 700;
-    src: url(../fonts/roboto-bold-webfont.woff2) format("woff2");
+    src: url(fonts/roboto-bold-webfont.woff2) format("woff2");
 }
 @font-face {
     font-family: Roboto;
     font-style: italic;
     font-weight: 700;
-    src: url(../fonts/roboto-bolditalic-webfont.woff2) format("woff2");
+    src: url(fonts/roboto-bolditalic-webfont.woff2) format("woff2");
 }
 @font-face {
     font-family: LatoRegular;
     font-weight: 400;
     font-style: normal;
-    src: url(../fonts/LatoRegular/Lato-Regular.eot);
-    src: url(../fonts/LatoRegular/Lato-Regular.eot?#iefix) format("embedded-opentype"), url(../fonts/LatoRegular/Lato-Regular.woff) format("woff"), url(../fonts/LatoRegular/Lato-Regular.ttf) format("truetype");
+    src: url(fonts/LatoRegular/Lato-Regular.eot);
+    src: url(fonts/LatoRegular/Lato-Regular.eot?#iefix) format("embedded-opentype"), url(fonts/LatoRegular/Lato-Regular.woff) format("woff"), url(fonts/LatoRegular/Lato-Regular.ttf) format("truetype");
 }
 @font-face {
     font-family: LatoBold;
     font-weight: 400;
     font-style: normal;
-    src: url(../fonts/LatoBold/Lato-Bold.eot);
-    src: url(../fonts/LatoBold/Lato-Bold.eot?#iefix) format("embedded-opentype"), url(../fonts/LatoBold/Lato-Bold.woff) format("woff"), url(../fonts/LatoBold/Lato-Bold.ttf) format("truetype");
+    src: url(fonts/LatoBold/Lato-Bold.eot);
+    src: url(fonts/LatoBold/Lato-Bold.eot?#iefix) format("embedded-opentype"), url(fonts/LatoBold/Lato-Bold.woff) format("woff"), url(fonts/LatoBold/Lato-Bold.ttf) format("truetype");
 }
 @font-face {
     font-family: Lato-Light;
     font-weight: 400;
     font-style: normal;
-    src: url(../fonts/Lato-Light/Lato-Light.eot);
-    src: url(../fonts/Lato-Light/Lato-Light.eot?#iefix) format("embedded-opentype"), url(../fonts/Lato-Light/Lato-Light.woff) format("woff"), url(../fonts/Lato-Light/Lato-Light.ttf) format("truetype");
+    src: url(fonts/Lato-Light/Lato-Light.eot);
+    src: url(fonts/Lato-Light/Lato-Light.eot?#iefix) format("embedded-opentype"), url(fonts/Lato-Light/Lato-Light.woff) format("woff"), url(fonts/Lato-Light/Lato-Light.ttf) format("truetype");
 }
 ::-webkit-input-placeholder {
     color: #666;
@@ -1727,11 +1727,11 @@ a {
     display: flex;
 }
 .header-icons__search {
-    background-image: url(../img/search-2.svg);
+    background-image: url(img/search-2.svg);
 }
 .header-icons__cart {
     position: relative;
-    background-image: url(../img/cart-yellow.svg);
+    background-image: url(img/cart-yellow.svg);
     margin-left: 66px;
 }
 .header-icons__cart span {
@@ -1779,20 +1779,20 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-image: url(../img/menu-yellow.svg);
+    background-image: url(img/menu-yellow.svg);
     cursor: pointer;
 }
 .home .logo {
     margin-bottom: 100px;
 }
 .home .hamburger {
-    background-image: url(../img/menu.svg);
+    background-image: url(img/menu.svg);
 }
 .home .header-icons__cart {
-    background-image: url(../img/cart.svg);
+    background-image: url(img/cart.svg);
 }
 .home .header-icons__search {
-    background-image: url(../img/cart.svg);
+    background-image: url(img/cart.svg);
 }
 .logo {
     width: 318px;
@@ -1834,10 +1834,10 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url(../img/collection.png);
+    background-image: url(img/collection.png);
 }
 .collection-classic {
-    background-image: url(../img/collection-2.png);
+    background-image: url(img/collection-2.png);
 }
 .collection-classic .container {
     display: -webkit-flex;
@@ -1880,7 +1880,7 @@ a {
     background-size: contain;
     top: 0;
     left: 14px;
-    background-image: url(../img/new.svg);
+    background-image: url(img/new.svg);
 }
 .products-loop__title {
     font-family: Lato-Light, sans-serif;
@@ -1998,7 +1998,7 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 30%;
-    background-image: url(../img/top.svg);
+    background-image: url(img/top.svg);
 }
 .block-menu {
     position: fixed;
@@ -2016,7 +2016,7 @@ a {
     overflow-y: auto;
 }
 .block-menu .header-icons__cart {
-    background-image: url(../img/cart-yellow.svg);
+    background-image: url(img/cart-yellow.svg);
 }
 .block-menu__contacts {
     text-align: center;
@@ -2082,7 +2082,7 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-image: url(../img/close-btn.svg);
+    background-image: url(img/close-btn.svg);
     cursor: pointer;
 }
 #searchform {
@@ -2111,7 +2111,7 @@ a {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    background-image: url(../img/search-2.svg);
+    background-image: url(img/search-2.svg);
 }
 .category-title {
     font-family: LatoBold, sans-serif;
@@ -2220,7 +2220,7 @@ a {
     top: 50%;
     margin-top: -25px;
     z-index: 2;
-    background-image: url(../img/arrow.svg);
+    background-image: url(img/arrow.svg);
     cursor: pointer;
 }
 .slider-arrow-prev {

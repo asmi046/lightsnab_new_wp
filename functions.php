@@ -70,6 +70,8 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 		wp_enqueue_script( 'mask', get_template_directory_uri().'/js/jquery.inputmask.bundle.js', array(), $scrypt_version , true); //маска для инпутов
 		wp_enqueue_script( 'lightbox', get_template_directory_uri().'/js/lightbox.min.js', array(), $scrypt_version , true); //Лайтбокс
 		wp_enqueue_script( 'slick', get_template_directory_uri().'/js/slick.min.js', array(), $scrypt_version , true); //Слайдер
+		wp_enqueue_script( 'libs', get_template_directory_uri().'/js/libs.js', array(), $scrypt_version , true); //
+		wp_enqueue_script( 'scripts', get_template_directory_uri().'/js/scripts.min.js', array(), $scrypt_version , true); //
 
 		wp_enqueue_script( 'main', get_template_directory_uri().'/js/main.js', array(), $scrypt_version , true); // Подключение основного скрипта в самом конце
 		
