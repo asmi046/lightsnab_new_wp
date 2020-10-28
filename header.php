@@ -22,7 +22,7 @@
   
 
 </head> 
-<body class="home">
+<body>
   <!-- Подключение  модальных окон-->
   <? include "modal-win.php";?>
 

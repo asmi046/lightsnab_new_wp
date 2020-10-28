@@ -34,21 +34,27 @@
 				<li><a href="#">Патроны </a></li>
 				<li><a href="#">Лампы Эдисона </a></li>
 				<li><a href="#">Лампы Эдисона LED</a></li> -->
-
+ 
 				<!-- Меню -->
- 				<?php wp_nav_menu( array('menu' => 'Главное меню', 'container' => false )); ?>
+ 				<?php wp_nav_menu( array('theme_location' => 'menu-1','menu_class' => 'ul-clean',
+					'container_class' => 'ul-clean','container' => false )); ?>
 
 			<!-- </ul> -->
+				<?php wp_nav_menu( array('theme_location' => 'menu-2','menu_class' => 'ul-clean',
+					'container_class' => 'ul-clean','container' => false )); ?>
 
-			<ul class="ul-clean">
+				<?php wp_nav_menu( array('theme_location' => 'menu-3','menu_class' => 'ul-clean',
+					'container_class' => 'ul-clean','container' => false )); ?>
+
+			<!-- <ul class="ul-clean">
 				<li><a href="#">Сотрудничество</a></li>
 				<li><a href="#">Оптовым покупателям</a></li>
-			</ul>
-			<ul class="ul-clean">
+			</ul> -->
+			<!-- <ul class="ul-clean">
 				<li><a href="#">Доставка и оплата </a></li>
 				<li><a href="#">Возврат и обмен товара </a></li>
 				<li><a href="#">Пользовательское соглашение</a></li>
-			</ul>
+			</ul> -->
 			<div class="block-menu__contacts">
 				<div class="">
 					<a href="tel:42342">+7 (495) 740-80-33</a>

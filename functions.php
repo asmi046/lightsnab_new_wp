@@ -20,7 +20,7 @@ add_action( 'after_setup_theme', 'crb_load' );
 function crb_load() {
 	require_once( 'carbon-fields/vendor/autoload.php' );
 	\Carbon_Fields\Carbon_Fields::boot();
-}
+} 
 
 //-----Блок описания вывода меню
 // 1. Осмысленные названия для алиаса и для описания на русском.
@@ -28,9 +28,17 @@ function crb_load() {
 // если в шапке то пишем - Меню в шапке 
 // если 2 меню в шапке пишем  - Меню в шапке (верхняя часть)
 
-register_nav_menus( array(
-	'header_menu' => 'Главное меню'
-) );
+add_action( 'after_setup_theme', function(){
+	register_nav_menus( [
+		'menu-1' => 'Меню Товары',
+		'menu-2' => 'Меню Сотрудничество',
+		'menu-3' => 'Меню Доставка',
+	] );
+} ); 
+
+// register_nav_menus( array(
+// 	'header_menu' => 'Главное меню'
+// ) );
 
 add_theme_support( 'post-thumbnails' );
 set_post_thumbnail_size( 185, 185 ); 
