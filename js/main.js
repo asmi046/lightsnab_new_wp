@@ -18,10 +18,10 @@ jQuery(document).ready(function ($) {
   }   
   top_btn();
   $('.hamburger').click(function (e) {
-    $('.block-menu').css('bottom', '0');
+    $('.block-menu').show();
   });
   $('.close-menu').click(function () {
-    $('.block-menu').css('bottom', '140%');
+    $('.block-menu').hide();
 
   });
   $('.slider-for').slick({

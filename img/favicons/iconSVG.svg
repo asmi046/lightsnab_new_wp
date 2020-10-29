@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="268" height="268" viewBox="0 0 268 268">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="0.913" x2="0.5" y2="0.22" gradientUnits="objectBoundingBox">
+      <stop offset="0.091" stop-color="#d3820f"/>
+      <stop offset="0.189" stop-color="#d3820f" stop-opacity="0.757"/>
+      <stop offset="0.295" stop-color="#d3820f" stop-opacity="0.529"/>
+      <stop offset="0.401" stop-color="#d3820f" stop-opacity="0.337"/>
+      <stop offset="0.504" stop-color="#d3820f" stop-opacity="0.192"/>
+      <stop offset="0.604" stop-color="#d3820f" stop-opacity="0.086"/>
+      <stop offset="0.699" stop-color="#d3820f" stop-opacity="0.024"/>
+      <stop offset="0.785" stop-color="#d3820f" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" y1="-0.09" x2="0.5" y2="1.004" gradientUnits="objectBoundingBox">
+      <stop offset="0.183" stop-color="#d3820f"/>
+      <stop offset="0.333" stop-color="#d3820f" stop-opacity="0.824"/>
+      <stop offset="0.665" stop-color="#d3820f" stop-opacity="0.384"/>
+      <stop offset="0.941" stop-color="#d3820f" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(-1100 -94)">
+    <rect width="268" height="268" transform="translate(1100 94)" fill="#edeeef"/>
+    <rect width="29.714" height="67.101" transform="translate(1218.229 98.461)" fill="url(#linear-gradient)"/>
+    <path d="M-1218.981,3672l-193.333.434,44.7-65.022h103.926Z" transform="translate(2548.314 -3316.903)" fill="url(#linear-gradient-2)"/>
+    <path d="M-1249.956,3741.568h.035l-15.349-39.075h-.031l-46.549-118.509h-30.222l-46.18,117.362h-.025l-15.375,39.073h.026l-1.179,2.988h23.157a9.532,9.532,0,0,0,6.286-2.1,10.489,10.489,0,0,0,3.417-4.631l.974-2.653c.046-.113.139-.216.179-.333l10.857-29.668h65.878l11.276,30.815.026.026.661,1.813a11.947,11.947,0,0,0,3.648,4.8,9.752,9.752,0,0,0,6.275,1.931h22.937Zm-102.479-58.362,19.412-52.807q1.421-3.642,2.915-8.489c1-3.233,2.009-6.726,3.044-10.477q1.529,5.626,3.083,10.426,1.53,4.786,2.972,8.319l19.407,53.027Z" transform="translate(2560.14 -3413.513)"/>
+  </g>
+</svg>

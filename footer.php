@@ -22,12 +22,12 @@
         </ul>
       </div>
       <div class="footer-block">
-        <div class="">© Lightsnab.ru, 2014—2020 </div>
-        <div class="">Телефон: +7 (495) 740-80-33</div>
-        <div class="">E-mail: info@lightsnab.ru</div>
+        <div class="">© Lightsnab.ru, 2014—<?echo date("Y")?> </div>
+        <div class="">Телефон: <?echo SITE_PHONE;?></div>
+        <div class="">E-mail: <?echo SITE_MAIL;?></div>
         <div class="soc-block">
-          <a href="#" style="background-image: url(<?php echo get_template_directory_uri();?>/img/insta.svg);"></a>
-          <a href="#" style="background-image: url(<?php echo get_template_directory_uri();?>/img/face.svg);"></a>
+          <a class = "soc_btn_insta" href="#"></a>
+          <a class = "soc_btn_fb" href="#" ></a>
         </div>
       </div>
     </div>

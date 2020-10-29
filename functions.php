@@ -1,7 +1,13 @@
 <?php
 
-define("COMPANY_NAME", "<Вписываем имя компании>");
-define("MAIL_RESEND", "<Вписываем почтовый ящик который подставляется в шапку письма>");
+define("SITE_PHONE", "+7 (495) 208 83 66");
+define("SITE_MAIL", "info@light-snab.ru");
+
+define("INSTA_LNK", "#");
+define("FB_LNK", "#");
+
+define("COMPANY_NAME", "Магазин LightSnab");
+define("MAIL_RESEND", "noreply@light-snab.ru");
 
 
 //----Подключене carbon fields
@@ -109,38 +115,72 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 		}
 	}
 	
-	
-	/* Отправка почты
-		
-			$headers = array(
-				'From: Сайт '.COMPANY_NAME.' <MAIL_RESEND>',
-				'content-type: text/html',
-			);
-		
-			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-			
-			$adr_to_send = <Присваиваем поле карбона c адресами для отправки>;
-			$mail_content = "<Тело письма>";
-			$mail_them = "<Тема письма>";
+	// Регистрация кастомного поста
 
-			if (wp_mail($adr_to_send, $mail_them, $mail_content, $headers)) {
-				wp_die(json_encode(array("send" => true )));
-			}
-			else {
-				wp_die( 'Ошибка отправки!', '', 403 );
-			}
-	*/
-	
-	
-	/*	Заготовка шорткода
-		function true_url_external( $atts ) {
-			$params = shortcode_atts( array( // в массиве укажите значения параметров по умолчанию
-				'anchor' => 'Миша Рудрастых', // параметр 1
-				'url' => 'https://misha.blog', // параметр 2
-			), $atts );
-			return "<a href='{$params['url']}' target='_blank'>{$params['anchor']}</a>";
-		}
-		add_shortcode( 'trueurl', 'true_url_external' );
-	*/
+add_action( 'init', 'create_light_taxonomies' );
+
+function create_light_taxonomies(){
+
+	// Добавляем древовидную таксономию 'genre' (как категории)
+	register_taxonomy('lightcat', array('light'), array(
+		'hierarchical'  => true,
+		'labels'        => array(
+			'name'              => "Категория товара",
+			'singular_name'     => "Категория товара",
+			'search_items'      => "Найти категорию товара",
+			'all_items'         => __( 'Все категории' ),
+			'parent_item'       => __( 'Дочерние категории' ),
+			'parent_item_colon' => __( 'Дочерние категории:' ),
+			'edit_item'         => __( 'Редактировать категорию' ),
+			'update_item'       => __( 'Обновить категорию' ),
+			'add_new_item'      => __( 'Добавить новую категорию товара' ),
+			'new_item_name'     => __( 'Имя новой категории товара' ),
+			'menu_name'         => __( 'Категории товара' ),
+		),
+		'description' => "Категория товаров для магазина",
+		'public' => true,
+		'show_ui'       => true,
+		'query_var'     => true,
+		'show_in_rest'  => true,
+		'show_admin_column'     => true,
+	));
+}
+
+
+add_action('init', 'light_custom_init');
+
+function light_custom_init(){
+	register_post_type('light', array(
+		'labels'             => array(
+			'name'               => 'Продукты', // Основное название типа записи
+			'singular_name'      => 'Продукты', // отдельное название записи типа Book
+			'add_new'            => 'Добавить новый',
+			'add_new_item'       => 'Добавить новый товар',
+			'edit_item'          => 'Редактировать товар',
+			'new_item'           => 'Новый товар',
+			'view_item'          => 'Посмотреть товар',
+			'search_items'       => 'Найти товар',
+			'not_found'          =>  'Товаров не найдено',
+			'not_found_in_trash' => 'В корзине товаров не найдено',
+			'parent_item_colon'  => '',
+			'menu_name'          => 'Товары'
+
+		  ),
+		'taxonomies' => array('lightcat'), 
+		'public'             => true,
+		'publicly_queryable' => true,
+		'show_ui'            => true,
+		'show_in_menu'       => true,
+		'query_var'          => true,
+		'rewrite'            => true,
+		'capability_type'    => 'post',
+		'has_archive'        => true,
+		'show_admin_column'        => true,
+		'show_in_quick_edit'        => true,
+		'hierarchical'       => false,
+		'menu_position'      => 5,
+		'supports'           => array('title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats')
+	) );
+}
 	
 ?>
