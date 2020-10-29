@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", ()=>{
+  let elements = document.querySelectorAll('.price_formator');
+  for (let elem of elements) {
+    elem.dataset.realPrice = elem.innerHTML; 
+    elem.innerHTML = Number(elem.innerHTML).toLocaleString('ru-RU');
+  }
+});
+
 jQuery(document).ready(function ($) {
   function top_btn() {
     var button = $('.top-btn');

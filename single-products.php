@@ -1,8 +1,8 @@
 <?php 
 
 /*
-Template Name: Шаблон страницы ТОВАРЫ
-Template Post Type: post, page
+Template Name: Шаблон карточки товара
+Template Post Type: post, page, light
 */
 
 get_header(); ?>

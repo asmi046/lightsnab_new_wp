@@ -1,6 +1,6 @@
 <section class="single-product">
   <div class="container">
-    <h1 class="category-title">FINNAR</h1>
+    <h1 class="category-title"><?the_title();?></h1>
     <div class="product-wrapper">
       <div class="product-slider">
         <div class="slider-for">
@@ -52,52 +52,25 @@
         </div>
       </div>
       <div class="product-info">
-        <div class="product-descr">Минималистичный подвесной светильник из прозрачного цветного стекла</div>
-        <div class="product-sku">Артикул: <span>FINNAR01</span></div>
-        <div class="product-stock">Наличие: <span>в наличии</span></div>
+        <div class="product-descr"><?echo carbon_get_post_meta(get_the_ID(),"offer_smile_descr"); ?></div>
+        <div class="product-sku">Артикул: <span><?echo carbon_get_post_meta(get_the_ID(),"offer_sku"); ?></span></div>
+        <div class="product-stock">Наличие: <span><?echo carbon_get_post_meta(get_the_ID(),"offer_nal"); ?></span></div>
         <div class="product-attrs">
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Материал</div>
-            <div class="product-attrs__item-val">Стекло, Металл</div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Цвета</div>
-            <div class="product-attrs__item-val">Прозрачный, Розовый, Голубой, Желтый, Коньячный</div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Размеры</div>
-            <div class="product-attrs__item-val">(Диаметр × Высота)</div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name"></div>
-            <div class="product-attrs__item-val">Ø 19 × 30 см</div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Плафон</div>
-            <div class="product-attrs__item-val">Ø 19 см</div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Потолочное крепление</div>
-            <div class="product-attrs__item-val"></div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Одиночный подвес</div>
-            <div class="product-attrs__item-val">Ø 12 см</div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Тройной подвес (диск)</div>
-            <div class="product-attrs__item-val">Ø 28 см</div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Тройной подвес (планка)</div>
-            <div class="product-attrs__item-val">80 см</div>
-          </div>
-          <div class="product-attrs__item">
-            <div class="product-attrs__item-name">Длина провода</div>
-            <div class="product-attrs__item-val">100 см</div>
-          </div>
+          <?
+            $cerecter = carbon_get_the_post_meta('offer_cherecter');
+            if($cerecter) {
+              foreach($cerecter as $item) {
+          ?>
+                <div class="product-attrs__item">
+                  <div class="product-attrs__item-name"><? echo $item["c_name"];?></div>
+                  <div class="product-attrs__item-val"><? echo $item["c_val"];?></div>
+                </div>
+          <?
+              }
+            }
+          ?>
         </div>
-        <div class="product-single__price">14 600 P</div>
+        <div class="product-single__price"><span class = "price_formator">14600</span> P</div>
         <a href="#" class="product-single__opt">Узнать оптовую цену</a>
         <div class="product-single__choice-wrap">
           <div class="product-single__choice-title">Выберите комлектацию:</div>

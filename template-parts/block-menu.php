@@ -5,7 +5,7 @@
 			<div class="logo logo-black" ></div>
 			<div class="header-icons__wrap">
 				<a href="#" class="header-icons header-icons__cart">
-					<!--          <span>0</span>-->
+					<span>0</span>
 				</a>
 			</div>
 		</div>
