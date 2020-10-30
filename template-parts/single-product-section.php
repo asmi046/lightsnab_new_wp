@@ -4,18 +4,42 @@
     <div class="product-wrapper">
       <div class="product-slider">
         <div class="slider-for">
-          <div class="slider-for__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-1.png)"></div>
-          <div class="slider-for__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-2.png)"></div>
-          <div class="slider-for__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-3.png)"></div>
-          <div class="slider-for__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-4.png)"></div>
-          <div class="slider-for__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-1.png)"></div>
+        <?
+            $pict = carbon_get_the_post_meta('offer_picture');
+            if($pict) {
+              foreach($pict as $item) {
+          ?>
+              <picture>
+                <img 
+                  class="slider-for__item"
+                  id = "pict-<? echo $item['gal_img_sku']; ?>" 
+                  alt = "<? echo $item['gal_img_alt']; ?>"
+                  title = "<? echo $item['gal_img_alt']; ?>"
+                  src = "<?php echo wp_get_attachment_image_src($item['gal_img'], 'full')[0];?>" />
+              </picture>
+          <?
+              }
+            }
+          ?>
         </div>
         <div class="slider-nav">
-          <div class="slider-nav__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-1.png)"></div>
-          <div class="slider-nav__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-2.png)"></div>
-          <div class="slider-nav__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-3.png)"></div>
-          <div class="slider-nav__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-4.png)"></div>
-          <div class="slider-nav__item" style="background-image: url(<?php echo get_template_directory_uri()?>/img/product-1.png)"></div>
+        <?
+            $pict = carbon_get_the_post_meta('offer_picture');
+            if($pict) {
+              foreach($pict as $item) {
+          ?>
+              <picture>
+                <img 
+                  class="slider-nav__item"
+                  id = "pict-<? echo $item['gal_img_sku']; ?>" 
+                  alt = "<? echo $item['gal_img_alt']; ?>"
+                  title = "<? echo $item['gal_img_alt']; ?>"
+                  src = "<?php echo wp_get_attachment_image_src($item['gal_img'], 'thumbnail')[0];?>" />
+              </picture>
+          <?
+              }
+            }
+          ?>  
         </div>
         <div class="uppsells">
           <h2 class="uppsells-title">С этим товаром покупают</h2>
@@ -53,7 +77,7 @@
       </div>
       <div class="product-info">
         <div class="product-descr"><?echo carbon_get_post_meta(get_the_ID(),"offer_smile_descr"); ?></div>
-        <div class="product-sku">Артикул: <span><?echo carbon_get_post_meta(get_the_ID(),"offer_sku"); ?></span></div>
+        <div class="product-sku">Артикул: <span id = "product_current_sku"><?echo carbon_get_post_meta(get_the_ID(),"offer_sku"); ?></span></div>
         <div class="product-stock">Наличие: <span><?echo carbon_get_post_meta(get_the_ID(),"offer_nal"); ?></span></div>
         <div class="product-attrs">
           <?
@@ -70,14 +94,26 @@
             }
           ?>
         </div>
-        <div class="product-single__price"><span class = "price_formator">14600</span> P</div>
+        <div class="product-single__price"><span class = "price_formator" id = "product_current_price">14600</span> P</div>
         <a href="#" class="product-single__opt">Узнать оптовую цену</a>
         <div class="product-single__choice-wrap">
           <div class="product-single__choice-title">Выберите комлектацию:</div>
-          <select class="product-single__choice">
-            <option value="розовый">1 плафон. Цвет розовый</option>
-            <option value="розовый">2 плафона. Цвет розовый</option>
-            <option value="розовый">3 плафона. Цвет розовый</option>
+          <select class="product-single__choice" id = "mod_product_selector">
+          <?
+            $modif = carbon_get_the_post_meta('offer_modification');
+            if($modif) {
+              foreach($modif as $item) {
+          ?>  
+                <option 
+                  data-sku = "<?echo $item["mod_sku"];?>" 
+                  data-price = "<?echo $item["mod_price"];?>" 
+                  data-oldprice = "<?echo $item["mod_old_price"];?>" 
+                  data-pictureid = "<?echo $item["mod_picture_id"];?>" 
+                  value="<?echo $item["mod_name"];?>"><?echo $item["mod_name"];?></option>
+            <?
+              }
+            }
+          ?>
           </select>
         </div>
         <button class="product-single__add-to-cart">Добавить в корзину</button>

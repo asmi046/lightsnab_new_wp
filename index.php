@@ -8,7 +8,7 @@
 
 	<?php get_template_part('template-parts/collection');?>
 
-	<?php get_template_part('template-parts/products-section');?>
+	<?php get_template_part('template-parts/products-section-novinki');?>
 
 	<?php get_template_part('template-parts/collection-classic-section');?>
 

@@ -9,6 +9,9 @@ define("FB_LNK", "#");
 define("COMPANY_NAME", "Магазин LightSnab");
 define("MAIL_RESEND", "noreply@light-snab.ru");
 
+add_image_size( "togalery", 900, 900, true );
+add_image_size( "tominiatyre", 300, 300, true );
+
 
 //----Подключене carbon fields
 //----Инструкции по подключению полей см. в комментариях themes-fields.php
@@ -61,33 +64,32 @@ function my_assets_admin(){
 		) );
 }
 
+
+define("ALL_VERSION", "1.0.10");
+
 // Подключение стилей и nonce для Ajax и скриптов во фронтенд 
 add_action( 'wp_enqueue_scripts', 'my_assets' );
 	function my_assets() {
 
 		// Подключение стилей 
 
-		$style_version = "1.0.1";
-		$scrypt_version = "1.0.1";
-		
-		wp_enqueue_style("style-modal", get_template_directory_uri()."/css/jquery.arcticmodal-0.3.css", array(), $style_version, 'all'); //Модальные окна (стили)
-		wp_enqueue_style("style-lightbox", get_template_directory_uri()."/css/lightbox.min.js", array(), $style_version, 'all'); //Лайтбокс (стили)
-		wp_enqueue_style("style-slik", get_template_directory_uri()."/css/slick.css", array(), $style_version, 'all'); //Слайдер (стили)
-
-		wp_enqueue_style("main-style", get_stylesheet_uri(), array(), $style_version, 'all' ); // Подключение основных стилей в самом конце
+		//wp_enqueue_style("style-modal", get_template_directory_uri()."/css/jquery.arcticmodal-0.3.css", array(), $style_version, 'all'); //Модальные окна (стили)
+		//wp_enqueue_style("style-lightbox", get_template_directory_uri()."/css/lightbox.min.js", array(), $style_version, 'all'); //Лайтбокс (стили)
+		//wp_enqueue_style("style-slik", get_template_directory_uri()."/css/slick.css", array(), ALL_VERSION, 'all'); //Слайдер (стили)
+		wp_enqueue_style("main-style", get_stylesheet_uri(), array(), ALL_VERSION, 'all' ); // Подключение основных стилей в самом конце
 
 		// Подключение скриптов
 		
 		wp_enqueue_script( 'jquery');
 
-		wp_enqueue_script( 'amodal', get_template_directory_uri().'/js/jquery.arcticmodal-0.3.min.js', array(), $scrypt_version , true); //Модальные окна
-		wp_enqueue_script( 'mask', get_template_directory_uri().'/js/jquery.inputmask.bundle.js', array(), $scrypt_version , true); //маска для инпутов
-		wp_enqueue_script( 'lightbox', get_template_directory_uri().'/js/lightbox.min.js', array(), $scrypt_version , true); //Лайтбокс
-		wp_enqueue_script( 'slick', get_template_directory_uri().'/js/slick.min.js', array(), $scrypt_version , true); //Слайдер
-		wp_enqueue_script( 'libs', get_template_directory_uri().'/js/libs.js', array(), $scrypt_version , true); //
-		wp_enqueue_script( 'scripts', get_template_directory_uri().'/js/scripts.min.js', array(), $scrypt_version , true); //
+		//wp_enqueue_script( 'amodal', get_template_directory_uri().'/js/jquery.arcticmodal-0.3.min.js', array(), ALL_VERSION , true); //Модальные окна
+		wp_enqueue_script( 'mask', get_template_directory_uri().'/js/jquery.inputmask.bundle.js', array(), ALL_VERSION , true); //маска для инпутов
+		// wp_enqueue_script( 'lightbox', get_template_directory_uri().'/js/lightbox.min.js', array(), ALL_VERSION , true); //Лайтбокс
+		wp_enqueue_script( 'slick', get_template_directory_uri().'/js/slick.min.js', array(), ALL_VERSION , true); //Слайдер
+		//wp_enqueue_script( 'libs', get_template_directory_uri().'/js/libs.js', array(), ALL_VERSION , true); //
+		//wp_enqueue_script( 'scripts', get_template_directory_uri().'/js/scripts.min.js', array(), ALL_VERSION , true); //
 
-		wp_enqueue_script( 'main', get_template_directory_uri().'/js/main.js', array(), $scrypt_version , true); // Подключение основного скрипта в самом конце
+		wp_enqueue_script( 'main', get_template_directory_uri().'/js/main.js', array(), ALL_VERSION , true); // Подключение основного скрипта в самом конце
 		
 		
 		wp_localize_script( 'main', 'allAjax', array(
@@ -121,7 +123,6 @@ add_action( 'init', 'create_light_taxonomies' );
 
 function create_light_taxonomies(){
 
-	// Добавляем древовидную таксономию 'genre' (как категории)
 	register_taxonomy('lightcat', array('light'), array(
 		'hierarchical'  => true,
 		'labels'        => array(
@@ -138,6 +139,29 @@ function create_light_taxonomies(){
 			'menu_name'         => __( 'Категории товара' ),
 		),
 		'description' => "Категория товаров для магазина",
+		'public' => true,
+		'show_ui'       => true,
+		'query_var'     => true,
+		'show_in_rest'  => true,
+		'show_admin_column'     => true,
+	));
+
+	register_taxonomy('lightstyle', array('light'), array(
+		'hierarchical'  => false,
+		'labels'        => array(
+			'name'              => "Стиль дизайна",
+			'singular_name'     => "Стиль дизайна",
+			'search_items'      => "Найти стиль",
+			'all_items'         => __( 'Все стили' ),
+			'parent_item'       => __( 'Дочерние стили' ),
+			'parent_item_colon' => __( 'Дочерние стили:' ),
+			'edit_item'         => __( 'Редактировать стиль' ),
+			'update_item'       => __( 'Обновить стиль' ),
+			'add_new_item'      => __( 'Добавить новый стиль' ),
+			'new_item_name'     => __( 'Имя новго стиля товара' ),
+			'menu_name'         => __( 'Стили товара' ),
+		),
+		'description' => "Стиль дизайна товаров",
 		'public' => true,
 		'show_ui'       => true,
 		'query_var'     => true,

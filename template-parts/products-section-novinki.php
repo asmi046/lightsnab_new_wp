@@ -60,7 +60,7 @@
         </a>
       </div>
       <div class="btn-wrapper">
-        <a href="#" class="all-link">ПОСМОТРЕТЬ ВСЕ НОВИНКИ</a>
+        <a href="<?echo get_category_link(10); ?>" class="all-link">ПОСМОТРЕТЬ ВСЕ НОВИНКИ</a>
       </div>
     </div>
   </section>

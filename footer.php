@@ -21,7 +21,7 @@
           <li><a href="#">Условия использования Сайта</a></li>
         </ul>
       </div>
-      <div class="footer-block">
+      <div class="footer-block footer-block-last">
         <div class="">© Lightsnab.ru, 2014—<?echo date("Y")?> </div>
         <div class="">Телефон: <?echo SITE_PHONE;?></div>
         <div class="">E-mail: <?echo SITE_MAIL;?></div>
@@ -34,7 +34,6 @@
 	</footer>
 <!-- </div> -->
 
-  <script src="js/scripts.min.js"></script>
   <div class="top-btn"></div>
 
   <?php wp_footer(); ?>

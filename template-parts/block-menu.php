@@ -1,6 +1,6 @@
 <div class="block-menu">
 	<div class="container">
-		<div class="block-menu__header">
+		<div class="block-menu__header header-white header-transparent">
 			<div class="close-menu"></div>
 			<div class="logo logo-black" ></div>
 			<div class="header-icons__wrap">
