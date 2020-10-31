@@ -1,6 +1,6 @@
 <section class="single-product">
   <div class="container">
-    <h1 class="category-title"><?the_title();?></h1>
+    <h1 class="category-title" id = "tovar_title"><?the_title();?></h1>
     <div class="product-wrapper">
       <div class="product-slider">
         <div class="slider-for">
@@ -26,17 +26,20 @@
         <?
             $pict = carbon_get_the_post_meta('offer_picture');
             if($pict) {
+              $i = 0;
               foreach($pict as $item) {
           ?>
               <picture>
                 <img 
                   class="slider-nav__item"
-                  id = "pict-<? echo $item['gal_img_sku']; ?>" 
+                  data-indexelem = "<?echo $i;?>"
+                  id = "<? echo $item['gal_img_sku']; ?>" 
                   alt = "<? echo $item['gal_img_alt']; ?>"
                   title = "<? echo $item['gal_img_alt']; ?>"
                   src = "<?php echo wp_get_attachment_image_src($item['gal_img'], 'thumbnail')[0];?>" />
               </picture>
           <?
+          $i++;
               }
             }
           ?>  
@@ -116,7 +119,11 @@
           ?>
           </select>
         </div>
-        <button class="product-single__add-to-cart">Добавить в корзину</button>
+        <button id = "add_to_cart" class="product-single__add-to-cart">Добавить в корзину</button>
+        <div class = "to_bascet_msg" id = "to_bascet_msg">
+          Товар добавлен в корзину. В принципе, можно <a href = "#">оформить заказ</a>.
+        </div>    
+
       </div>
     </div>
   </div>

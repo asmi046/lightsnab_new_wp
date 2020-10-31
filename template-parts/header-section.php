@@ -7,8 +7,8 @@
 			<a href="tel:<?echo preg_replace('![^0-9]+!', '', SITE_PHONE)?>" class="header-phone"><?echo SITE_PHONE;?></a>
 			<div class="header-icons__wrap">
 				<a href="#" class="header-icons header-icons__search"></a>
-				<a href="#" class="header-icons header-icons__cart">
-					<!--          <span>0</span>-->
+				<a href="<?echo get_the_permalink(79);?>" class="header-icons header-icons__cart">
+					<span class = "cart_count_input">0</span>
 				</a>
 			</div>
 		</div>

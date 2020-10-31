@@ -13,7 +13,7 @@ use Carbon_Fields\Field;
 
 Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
 		->add_fields( array(
-			Field::make( 'text', 'crb_text', 'Text Field' ),
+			Field::make( 'text', 'mail_to_send', 'E-mail для отправки' ),
 		) );
 		
 Container::make('post_meta', 'light_product_cr', 'Характеристики товара')

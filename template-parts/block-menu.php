@@ -4,8 +4,8 @@
 			<div class="close-menu"></div>
 			<div class="logo logo-black" ></div>
 			<div class="header-icons__wrap">
-				<a href="#" class="header-icons header-icons__cart">
-					<span>0</span>
+				<a href="<?echo get_the_permalink(79);?>" class="header-icons header-icons__cart">
+					<span class = "cart_count_input">0</span>
 				</a>
 			</div>
 		</div>
