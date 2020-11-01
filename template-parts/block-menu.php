@@ -1,7 +1,7 @@
-<div class="block-menu">
+<div class="block-menu" id = "block_menu">
 	<div class="container">
 		<div class="block-menu__header header-white header-transparent">
-			<div class="close-menu"></div>
+			<div class="close-menu" id = "close_menu"></div>
 			<div class="logo logo-black" ></div>
 			<div class="header-icons__wrap">
 				<a href="<?echo get_the_permalink(79);?>" class="header-icons header-icons__cart">

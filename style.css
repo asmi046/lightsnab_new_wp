@@ -2209,14 +2209,17 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease;
     left: 0;
-    top: 0;
+    top: -2000px;
     z-index: 100;
     background-color: #edeeef;
-    
     padding-bottom: 40px;
-    overflow-y: auto;
-    display: none;
+    overflow-y: auto;    
 }
+
+.block-menu-open {
+    top:0;
+}
+
 .block-menu__contacts {
     text-align: center;
 }
@@ -2811,6 +2814,10 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
     .header {
         height: 525px;
+    }
+
+    .header-white {
+        height: auto;
     }
 }
 

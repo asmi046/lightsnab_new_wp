@@ -21,15 +21,6 @@ jQuery(document).ready(function ($) {
   } 
 
   top_btn();
-  
-  $('.hamburger').click(function (e) {
-    $('.block-menu').fadeIn();
-  });
-  $('.close-menu').click(function () {
-    $('.block-menu').fadeOut();
-
-  });
- 
 
 
  $('.slider-for').slick({
@@ -169,5 +160,20 @@ document.addEventListener("DOMContentLoaded", ()=>{
     addToCart.onclick = function (e) {
       add_tocart();
     }
+
+  let openMenu =  document.getElementById('hamburger');
+
+  if (openMenu != undefined) 
+    openMenu.onclick = function (e) {
+      block_menu.classList.add("block-menu-open");
+    } 
+
+  let closeMenu =  document.getElementById('close_menu');
+
+  if (closeMenu != undefined) 
+    closeMenu.onclick = function (e) {
+        block_menu.classList.remove("block-menu-open");
+    }
+
 });
 

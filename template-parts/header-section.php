@@ -3,7 +3,7 @@
 <div class="header-descr">ДИЗАЙНЕРСКОЕ ОСВЕЩЕНИЕ <br/>НА ЛЮБОЙ ВКУС</div>	
 <div class="header-top">
 		<div class="container">
-			<div class="hamburger"></div>
+			<div class="hamburger" id = "hamburger"></div>
 			<a href="tel:<?echo preg_replace('![^0-9]+!', '', SITE_PHONE)?>" class="header-phone"><?echo SITE_PHONE;?></a>
 			<div class="header-icons__wrap">
 				<a href="#" class="header-icons header-icons__search"></a>
