@@ -23,7 +23,7 @@ get_header(); ?>
                     <tbody>
                         <tr  v-for = "(item, index, key) in bascet" >
                             <td> <img :src = "item.picture" /> </td>
-                            <td>
+                            <td class = "name">
                                 <div class = "b_tov_name">{{item.name}}</div>
                                 <div class = "b_tov_sku">{{item.sku}}</div>
                             </td>
@@ -38,7 +38,7 @@ get_header(); ?>
                     <tfoot>
                         <tr>   
                             <td></td>
-                            <td>Итого:</td>
+                            <td class = "name">Итого:</td>
                             <td>{{bascetCount}}</td>
                             <td class = "price"><span class = "totalprice">{{bascetSumm}}</span>р</td>
                         </tr>

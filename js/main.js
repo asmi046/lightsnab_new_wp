@@ -43,6 +43,7 @@ naviSlider = $('.slider-nav').slick({
   infinite: true,
   centerMode: false,
   focusOnSelect: true,
+  arrows: false,
   responsive: [
     {
       breakpoint: 600,
@@ -51,7 +52,7 @@ naviSlider = $('.slider-nav').slick({
       }
   },
     {
-      breakpoint: 480,
+      breakpoint: 320,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1
