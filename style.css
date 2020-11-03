@@ -2914,6 +2914,77 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 }
 
 
+.search-sec {
+    padding: 70px 0px 70px 0px;
+}
+.search-sec h1 {
+    margin-bottom: 35px;
+}
+.search-sec__form {margin-bottom: 60px;}
+.search-sec__inputs {
+    justify-content: space-between;
+}
+.se-input {
+    /*margin-right: 13px;*/
+    margin-bottom: 18px;
+    border: solid 1px #B17649;
+    padding: 13px 10px;
+    font-size: 16px;
+    color: #555;
+}
+.se-50 {
+    /*width: calc(49% - 10px);*/
+    width: calc(50.3% - 2px);
+}
+.se-25 {
+    width: calc(25% - 12px);
+}
+.search-sec__column {
+    justify-content: space-between;
+}
+.search-sec__option_l {
+    width: 50.2%;
+    background: #fff url(img/arrowdown2.svg) no-repeat 101% -8px;
+}
+.search-sec__option_r {
+    width: 48.9%;
+    background: #fff url(img/arrowdown2.svg) no-repeat 101% -8px;
+    /*margin-left: 17px;*/
+}
+.search-sec__option select {
+    padding: 12px 10px;
+    width: 100%;
+    font-size: 16px;
+    background-color: transparent;
+    border: solid 1px #B17649;
+    margin-bottom: 18px;
+    color: #555;
+    -webkit-appearance: none;
+ }
+.search-sec__box {text-align: center;}
+.search-sec__btn {
+    padding: 20px 50px;
+    display: inline-block;
+    cursor: pointer;
+    color: #B17649;
+    border: solid 1px #B17649;
+    background: none;
+    font-weight: 200;
+}
+.search-sec__link ul { padding: 0}
+.search-sec__link ul li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+.search-sec__link ul li a {padding-left: 5px;}
+.search-sec__link ul li a:before{
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: #B17649;
+    float: left;
+    margin-top: 7px;
+}
 
 
 @media screen and (max-width: 1500px) {
@@ -3090,6 +3161,21 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     }
     .text-body__column h2 {
     order: 1;
+    }
+    .search-sec__inputs {
+        flex-direction: column;
+    }
+    .se-50, .se-25  {
+    width: 100%;
+    }
+    .search-sec__column {
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+    .search-sec__option_l, 
+    .search-sec__option_r {
+    width: 100%;
+    margin-left: 0;
     }
     .footer {
         padding-top: 20px;
