@@ -1698,6 +1698,16 @@ a {
     margin-left: auto;
     margin-right: auto;
 }
+
+.text_conteiner {
+    line-height: 180%;
+}
+
+.text_conteiner h1.category-title {
+    margin: 1.5em 0;
+
+}
+
 .img-responsive {
     display: block;
     max-width: 100%;

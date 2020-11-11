@@ -19,27 +19,11 @@
 		<div class="block-menu__menu">  
 			
  
-				<ul class = "ul-clean">
-					<?
-						$categories = get_categories( [
-							'taxonomy'     => 'lightcat',
-							'orderby'      => 'name',
-							'order'        => 'ASC',
-							'hide_empty'   => 0,
-							'hierarchical' => 1
-						] );
 
-						if( $categories ){
-							foreach( $categories as $cat ){
-						?>
-							<li><a href = "<?echo get_category_link($cat->term_id); ?>"><? echo $cat->name;?></a></li>
-						<?
-							}
-						}
-					?>
-				</ul>
-				<!-- Меню -->
  			
+		
+				<?php wp_nav_menu( array('theme_location' => 'menu-1','menu_class' => 'ul-clean',
+					'container_class' => 'ul-clean','container' => false )); ?>
 		
 				<?php wp_nav_menu( array('theme_location' => 'menu-2','menu_class' => 'ul-clean',
 					'container_class' => 'ul-clean','container' => false )); ?>

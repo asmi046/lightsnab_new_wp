@@ -91,6 +91,11 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 				wp_enqueue_script( 'bascet', get_template_directory_uri().'/js/bascet.js', array(), ALL_VERSION , true);
 			}
 
+		if ( is_page(399))
+		{
+			wp_enqueue_script( 'axios', get_template_directory_uri().'/js/axios.min.js', array(), ALL_VERSION , true);
+		}
+
 		wp_localize_script( 'main', 'allAjax', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'nonce'   => wp_create_nonce( 'NEHERTUTLAZIT' )
@@ -162,6 +167,34 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 				wp_die( 'Ошибка отправки!', '', 403 );
 			}
 			
+		} else {
+			wp_die( 'НО-НО-НО!', '', 403 );
+		}
+	}
+	
+	add_action( 'wp_ajax_get_subcat', 'get_subcat' );
+	add_action( 'wp_ajax_nopriv_get_subcat', 'get_subcat' );
+
+	function get_subcat() {
+		if ( empty( $_REQUEST['nonce'] ) ) {
+			wp_die( '0' );
+		}
+		
+		if ( check_ajax_referer( 'NEHERTUTLAZIT', 'nonce', false ) ) {
+			global $wpdb;
+
+			$mainCat =  $wpdb->get_results('SELECT `lshop_term_taxonomy`.*,  `lshop_terms`.`name`  FROM `lshop_term_taxonomy` LEFT JOIN `lshop_terms` ON `lshop_terms`.`term_id`=`lshop_term_taxonomy`.`term_id` WHERE `lshop_term_taxonomy`.`parent` = '.$_REQUEST["catid"].' AND `lshop_term_taxonomy`.`taxonomy` = "lightcat" ');
+
+			$rezStr = '<option value = "">- Подтип -</option>';
+			foreach ( $mainCat as $catM ) {
+				
+				$rezStr .= '<option value = "'.$catM->term_id.'">'. $catM->name.'</option>';
+				
+			}
+
+			
+			wp_die( $rezStr. $_REQUEST["catid"] );
+
 		} else {
 			wp_die( 'НО-НО-НО!', '', 403 );
 		}

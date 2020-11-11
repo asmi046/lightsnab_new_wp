@@ -3,22 +3,22 @@
     <div class="container">
       <div class="footer-block">
         <ul class="ul-clean">
-          <li><a href="#">Люстры и дизайнерские светильники</a></li>
-          <li><a href="#">Люстры для низких потолков</a></li>
-          <li><a href="#">Бра и настенное освещение</a></li>
-          <li><a href="#">Торшеры</a></li>
-          <li><a href="#">Точечный свет</a></li>
-          <li><a href="#">Детский свет</a></li>
+          <li><a href="<?echo get_category_link(11); ?>">Люстры и дизайнерские светильники</a></li>
+          <li><a href="<?echo get_category_link(13); ?>">Люстры для низких потолков</a></li>
+          <li><a href="<?echo get_category_link(16); ?>">Бра и настенное освещение</a></li>
+          <li><a href="<?echo get_category_link(17); ?>">Торшеры</a></li>
+          <li><a href="<?echo get_category_link(19); ?>">Точечный свет</a></li>
+          <li><a href="<?echo get_category_link(20); ?>">Детский свет</a></li>
         </ul>
       </div>
       <div class="footer-block">
         <ul class="ul-clean">
-          <li><a href="#">Оптовым покупателям</a></li>
-          <li><a href="#">Доставка и оплата </a></li>
-          <li><a href="#">Возврат и обмен товара </a></li>
-          <li><a href="#">Договор оферты </a></li>
-          <li><a href="#">Пользовательское соглашение </a></li>
-          <li><a href="#">Условия использования Сайта</a></li>
+          <li><a href="<?echo get_the_permalink(436)?>">Оптовым покупателям</a></li>
+          <li><a href="<?echo get_the_permalink(393)?>">Доставка и оплата </a></li>
+          <li><a href="<?echo get_the_permalink(396)?>">Возврат и обмен товара </a></li>
+          <li><a href="<?echo get_the_permalink(438)?>">Договор оферты </a></li>
+          <li><a href="<?echo get_the_permalink(3)?>">Пользовательское соглашение </a></li>
+          <li><a href="<?echo get_the_permalink(440)?>">Условия использования Сайта</a></li>
         </ul>
       </div>
       <div class="footer-block footer-block-last">

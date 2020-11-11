@@ -175,6 +175,28 @@ document.addEventListener("DOMContentLoaded", ()=>{
     closeMenu.onclick = function (e) {
         block_menu.classList.remove("block-menu-open");
     }
+  
+    let subTypeSelect =  document.getElementById('id_sub_type');
+    let typeSelect =  document.getElementById('id_prod_type');
+
+    if (typeSelect != null) {
+      typeSelect.onchange = function (e) { 
+        var params = new URLSearchParams();
+        params.append('action', 'get_subcat');
+        params.append('nonce', allAjax.nonce);
+        params.append('catid', typeSelect.value);
+        
+
+        axios.post(allAjax.ajaxurl, params)
+          .then(function (response) {
+            console.log(response);
+            subTypeSelect.innerHTML = response.data;
+          })
+          .catch(function (error) {
+            alert(error);
+          });
+      }
+    }
 
 });
 

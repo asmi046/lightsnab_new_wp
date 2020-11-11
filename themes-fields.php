@@ -20,6 +20,12 @@ Container::make('post_meta', 'light_product_cr', 'Характеристики �
 		->show_on_post_type(array( 'light'))
 		  ->add_fields(array(   
 			Field::make('textarea', 'offer_smile_descr', 'Краткое описание')->set_width(100),
+			Field::make('select', 'offer_type', 'Тип светильника')->add_options( array(
+				'0' => 'Не задано',
+				'Светодиодный (LED)' => 'Светодиодный (LED)',
+				'Цокольный (Со сменными лампами)' => 'Цокольный (Со сменными лампами)'
+			) )->set_width(100),
+
 			 Field::make('text', 'offer_sku', 'Артикул (Базовый)')->set_width(50),
 			Field::make('text', 'offer_nal', 'Наличие на складе')->set_default_value( 'В наличии')->set_width(50),
 			

@@ -27,57 +27,45 @@ get_header(); ?>
 				<select id="id_prod_type" name="prod_type">
 					<option value = "">- Тип продукции -</option>
 					<?
-						$categories = get_categories( [
-							'taxonomy'     => 'lightcat',
-							'orderby'      => 'name',
-							'order'        => 'ASC',
-							'hide_empty'   => 0,
-							'hierarchical' => 1
-						] );
+						global $wpdb;
 
-						if( $categories ){
-							foreach( $categories as $cat ){
-						?>
-							<option value="<?echo $cat->term_id?>"><?echo $cat->name?></option>
-						<?
-							}
+						$mainCat =  $wpdb->get_results('SELECT `lshop_term_taxonomy`.*,  `lshop_terms`.`name`  FROM `lshop_term_taxonomy` LEFT JOIN `lshop_terms` ON `lshop_terms`.`term_id`=`lshop_term_taxonomy`.`term_id` WHERE `lshop_term_taxonomy`.`parent` = 0 AND `lshop_term_taxonomy`.`taxonomy` = "lightcat"');
+
+						foreach ( $mainCat as $catM ) {
+							?>
+										<option <? echo ($_REQUEST["prod_type"] === $catM->term_id)?"selected":""; ?> value = "<?echo $catM->term_id?>"><?echo $catM->name?></option>
+							<?
 						}
 					?>
 				</select>
 			</div>
-
+						
 			<div class="search-sec__option search-sec__option_r">
 				<select class="chained" id="id_sub_type" name="sub_type">
-				<option value = "">- Стиль -</option>
+					<option value = "">- Подтип -</option>
 					<?
-						$categories = get_categories( [
-								'taxonomy'     => 'lightstyle',
-								'orderby'      => 'name',
-								'order'        => 'ASC',
-								'hide_empty'   => 0,
-								'hierarchical' => 1
-							] );
+						if (!empty($_REQUEST["sub_type"])){
+							global $wpdb;
 
-							
-							if( $categories ){
-								foreach( $categories as $cat ){				
-						?>
-										<li><a href = "<?echo $cat->term_id?>"><? echo $cat->name;?></a></li>
-						<?
-								}
+							$mainCat =  $wpdb->get_results('SELECT `lshop_term_taxonomy`.*,  `lshop_terms`.`name`  FROM `lshop_term_taxonomy` LEFT JOIN `lshop_terms` ON `lshop_terms`.`term_id`=`lshop_term_taxonomy`.`term_id` WHERE `lshop_term_taxonomy`.`parent` = '.$_REQUEST["prod_type"].' AND `lshop_term_taxonomy`.`taxonomy` = "lightcat" ');
+
+							foreach ( $mainCat as $catM ) {
+								$sel = ($_REQUEST["sub_type"] === $catM->term_id)?"selected":"";
+								echo '<option '.$sel.' value = "'.$catM->term_id.'">'. $catM->name.'</option>';
+								
 							}
-		    			?>
-				
+						}
+					?>
 				</select>
 			</div>
 		</div> 
 
 		<div class="search-sec__column d-flex">
 			<div class="search-sec__option search-sec__option_l">
-				<select id="id_cap" name="cap">
+				<select  id="id_cap" name="cap">
 					<option value="0">- Тип светильника -</option>
-					<option value="3">Светодиодный (LED)</option>
-					<option value="8">Цокольный (Со сменными лампами)</option>
+					<option <? echo ($_REQUEST["cap"] === "Светодиодный (LED)")?"selected":""; ?> value="Светодиодный (LED)">Светодиодный (LED)</option>
+					<option <? echo ($_REQUEST["cap"] === "Цокольный (Со сменными лампами)")?"selected":""; ?> value="Цокольный (Со сменными лампами)">Цокольный (Со сменными лампами)</option>
 				</select>
 			</div>
 
@@ -100,20 +88,20 @@ get_header(); ?>
 			<div class="search-sec__link">
 				<h3>Примеры поиска</h3>
 				<ul>
-					<li><a href="#">
-						Детские люстры от 20 000 до 30 000</a>
+					<li><a href="<?the_permalink()?>?q=Лампа&price_from=&price_to=700&prod_type=&sub_type=&cap=0&sort=DESC&do_search=+Искать">
+						Лампа до 700 рублей</a>
 					</li>
-					<li><a href="#">
-						Светильник бронза до 30 000</a>
+					<li><a href="<?the_permalink()?>?q=&price_from=&price_to=30000&prod_type=17&sub_type=&cap=0&sort=DESC&do_search=+Искать">
+						Торшеры от 30 000 рублей</a>
 					</li>
-					<li><a href="#" >
-						Дорогие люстры LED</a>
+					<li><a href="<?the_permalink()?>?q=&price_from=&price_to=&prod_type=11&sub_type=&cap=0&sort=DESC&do_search=+Искать" >
+						Люстры дорогие</a>
 					</li>
-					<li><a href="#" >
-						Бра до 10 тыс. рублей</a>
+					<li><a href="<?the_permalink()?>?q=Кристал&price_from=&price_to=&prod_type=23&sub_type=&cap=0&sort=DESC&do_search=+Искать" >
+						Лампа Эдисона кристалл</a>
 					</li>
-					<li><a href="#" >
-						Светильники с отделкой из дерева до 25 000</a>
+					<li><a href="<?the_permalink()?>?q=&price_from=&price_to=50000&prod_type=11&sub_type=&cap=0&sort=DESC&do_search=+Искать" >
+						Люстры до 50 000</a>
 					</li>
 				</ul>
 			</div>
@@ -144,10 +132,40 @@ get_header(); ?>
 				)
 			);
 
+			if (!empty($_REQUEST["cap"]))
+				$metaquery["capType"] = array(
+					'key'     => '_offer_type',
+					'value' => $_REQUEST["cap"],
+					'compare' => '=',
+					'type'    => 'CHAR',
+				); 
+
+			if (!empty($_REQUEST["q"]))
+				$metaquery["textQery"] = array(
+					'key'     => '_offer_smile_descr',
+					'value' => $_REQUEST["q"],
+					'compare' => 'LIKE',
+					'type'    => 'CHAR',
+				); 
+
+
 			$taxquery = [];
 
+			if (!empty($_REQUEST["sub_type"]))
+			{
+					$taxquery = array(
+					'relation' => "AND",
+					[
+						'taxonomy' => 'lightcat',
+						'field'    => 'id',
+						'terms'    => array( $_REQUEST["sub_type"] ),
+					]
+				);
+			} 
+				else
 			if (!empty($_REQUEST["prod_type"]))
-				$taxquery = array(
+			{
+					$taxquery = array(
 					'relation' => "AND",
 					[
 						'taxonomy' => 'lightcat',
@@ -155,6 +173,7 @@ get_header(); ?>
 						'terms'    => array( $_REQUEST["prod_type"] ),
 					]
 				);
+			}
 
 			$args = array( 
 				'post_type' => "light",
@@ -164,35 +183,38 @@ get_header(); ?>
 				'order'   => $_REQUEST["sort"],
 			);
 
-			$search_term = empty($_REQUEST["q"])?"%":$_REQUEST["q"];	
+			// $search_term = empty($_REQUEST["q"])?"%":$_REQUEST["q"];	
 				
 			
-			add_filter( 'posts_where', 'title_like_posts_where', 10, 2 );
-			function title_like_posts_where( $where, $wp_query ) {
-				global $wpdb;
-				if ( $post_title_like = $wp_query->get( 'post_title_like' ) ) {
-					$argument = explode(" ", $post_title_like);
-					for ($i =0; $i<count($argument); $i++)
-						$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . trim($argument[$i]) . '%\'';	
-				}
-				return $where;
-			}
+			// add_filter( 'posts_where', 'title_like_posts_where', 10, 2 );
+			// function title_like_posts_where( $where, $wp_query ) {
+			// 	global $wpdb;
+			// 	if ( $post_title_like = $wp_query->get( 'post_title_like' ) ) {
+			// 		$argument = explode(" ", $post_title_like);
+			// 		for ($i =0; $i<count($argument); $i++)
+			// 			$where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'%' . trim($argument[$i]) . '%\'';	
+			// 	}
+			// 	return $where;
+			// }
 
-			$args['post_title_like'] = $search_term;
+			// $args['post_title_like'] = $search_term;
 			
 			// query_posts( $args );
 			
 			$query = new WP_Query( $args );
-			 echo "<pre>";
-			 print_r($query);
-			 echo "</pre>";
+			//  echo "<pre>";
+			//  print_r($query);
+			//  echo "</pre>";
 		?>
 			<div class = "products-wrapper">
 				<?php if ( $query->have_posts() ) : ?>
 					<?php  while ( $query->have_posts() ) : $query->the_post(); ?>
 							<?php get_template_part('template-parts/product-elem');?>
 					<?php endwhile;?>
+				<?php else: ?>
+					<h2>По Вашему запросу ничего не найдено.</h2>
 				<?php endif; ?>
+
 			</div>
 		<?
 			}
