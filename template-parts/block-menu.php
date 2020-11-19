@@ -14,7 +14,7 @@
 			<input type="submit" id="searchsubmit" value="" />
 		</form>
 		<div class="block-menu__full-search">
-			<a href="#">Расширенный поиск</a>
+			<a href="<?echo get_the_permalink(399)?>">Расширенный поиск</a> 
 		</div>
 		<div class="block-menu__menu">  
 			

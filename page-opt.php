@@ -123,7 +123,7 @@ get_header(); ?>
 				<label for="id_phone" id="p_id_phone" class="form-label">Телефон*</label>
 				<div class="form-item">    
 					<input id="id_phone" maxlength="255" name="phone" v-model="phone" type="text">
-					<div class="form-help-text">+7-916-329-23-71</div>
+					<div class="form-help-text">+7-994-444-48-44</div>
 				</div>
 			</div>
 

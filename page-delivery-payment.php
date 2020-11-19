@@ -18,7 +18,7 @@ get_header(); ?>
 
 		<section class="deliv-pay">
 			<div class="container">
-				<div class="deliv-pay__text">
+				<div class="deliv-pay__text list-style">
 					<p>Доставку мы осуществляем по <span>Москве</span>, в <span>Санкт Петербург</span> и во все <span>города России</span>, а также в<br> 
 						<span>Казахстан</span> и республику <span>Беларусь</span>.
 					</p> 
@@ -41,7 +41,7 @@ get_header(); ?>
 		<section class="deliv-pay deliv-pay__cl">
 			<div class="container">
 				<div class="deliv-pay__column">
-					<div class="deliv-pay__text deliv-pay__text_cl">
+					<div class="deliv-pay__text list-style deliv-pay__text_cl">
 						<p>
 							<span>СТОИМОСТЬ ДОСТАВКИ ПО МОСКВЕ</span>
 						</p> 
@@ -69,7 +69,7 @@ get_header(); ?>
 							<li><p>Также Вы всегда можете БЕСПЛАТНО забрать свой заказ с нашего склада в г. Москве.(метро Калужская).</p></li> 
 						</ul>
 					</div>
-					<div class="deliv-pay__text deliv-pay__text_cl">
+					<div class="deliv-pay__text list-style deliv-pay__text_cl">
 						<p>
 							<span>ДОСТАВКА В САНКТ-ПЕТЕРБУРГ и другие города РОССИИ</span>
 						</p> 

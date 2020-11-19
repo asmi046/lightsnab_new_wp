@@ -18,7 +18,7 @@
           <li><a href="<?echo get_the_permalink(396)?>">Возврат и обмен товара </a></li>
           <li><a href="<?echo get_the_permalink(438)?>">Договор оферты </a></li>
           <li><a href="<?echo get_the_permalink(3)?>">Пользовательское соглашение </a></li>
-          <li><a href="<?echo get_the_permalink(440)?>">Условия использования Сайта</a></li>
+          <li><a href="<?echo get_the_permalink(452)?>">Политика конфиденциальности</a></li>
         </ul>
       </div>
       <div class="footer-block footer-block-last">
