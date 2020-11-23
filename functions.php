@@ -1,6 +1,6 @@
 <?php
 
-define("SITE_PHONE", "+7 (495) 208 83 66");
+define("SITE_PHONE", "+7 (994) 444 48 44");
 define("SITE_MAIL", "info@light-snab.ru");
 
 define("INSTA_LNK", "#");

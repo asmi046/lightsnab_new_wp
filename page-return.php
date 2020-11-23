@@ -13,7 +13,7 @@ get_header(); ?>
 		<section class="return">
 			<div class="container">
 				<h1>Возврат и обмен товара</h1>
-				<div class="text-body__column d-flex">
+				<div class="text-body__column list-style d-flex">
 					<ul>
 						<li><p>В случае поставки товара ненадлежащего качества, 
 							товара в неполной комплектации или не соответствующей заказу модификации, 
@@ -31,7 +31,7 @@ get_header(); ?>
 
 		<section class="instruction">
 			<div class="container">
-				<div class="text-body__row">
+				<div class="text-body__row list-style">
 					<h3>Инструкция по приемке товара:</h3>
 					<ul>
 						<li><p>Внимательно осмотрите товар в момент доставки. Удостоверьтесь в правильной модификации товара, верном размере, цвете и полной комплектации, 
@@ -49,7 +49,7 @@ get_header(); ?>
 							покупки товара (накладная, кассовый чек).</p></li>
 					</ul>
 				</div>
-				<div class="text-body__column text-body__column_md d-flex">
+				<div class="text-body__column list-style text-body__column_md d-flex">
 					<ul>
 						<li><p>
 							Если товар вам не подошел, вы можете вернуть его нам в течение 14 календарных дней с момента его приемки, за исключением товаров, не подлежащих возврату.</p>
@@ -57,7 +57,7 @@ get_header(); ?>
 					</ul>
 					<h2>ВОЗВРАТ ТОВАРА <br> НАДЛЕЖАЩЕГО КАЧЕСТВА.</h2>
 				</div>
-				<div class="text-body__row">
+				<div class="text-body__row list-style">
 					<h3>К товарам не подлежащим возврату относятся:</h3>
 					<ul>
 						<li><p>Товары, сделанные по индивидуальному заказу, где качество и характеристики произведенных товаров соответствуют параметрам, 
@@ -74,7 +74,7 @@ get_header(); ?>
 
 		<section class="remember">
 			<div class="container">
-				<div class="text-body__column d-flex">
+				<div class="text-body__column list-style d-flex">
 					<ul>
 						<li><p>Если комплектация товара состоит из нескольких составляющих, вам необходимо вернуть все элементы. К возврату принимается только товар 
 							в полной комплектации!</p></li>
@@ -85,7 +85,7 @@ get_header(); ?>
 					</ul>
 					<h2>ВАЖНО ПОМНИТЬ!</h2>
 				</div>
-				<div class="text-body__column d-flex">
+				<div class="text-body__column list-style d-flex">
 					<ul>
 						<li><p>Денежные средства будут перечислены на ваш счет в течение 
 							<span>10 (десяти) рабочих</span> дней с момента получения и проверки состояния и качества товара на нашем складе 
@@ -95,7 +95,7 @@ get_header(); ?>
 					</ul>
 					<h2>СРОКИ ПЕРЕЧИСЛЕНИЯ ДЕНЕГ <br> ЗА ВОЗВРАТ</h2>
 				</div>
-				<div class="text-body__column d-flex">
+				<div class="text-body__column list-style d-flex">
 					<ul>
 						<li><p>Заполните бланк Заявления на возврат. (Форму Заявления можно получить у менеджера магазина.)</p></li>
 						<li><p>Внимание! Все поля Заявления являются обязательными для заполнения.</p></li>
@@ -106,7 +106,7 @@ get_header(); ?>
 					</ul>
 					<h2>ЗАЯВЛЕНИЕ НА ВОЗВРАТ ИЛИ <br> ОБМЕН</h2>
 				</div>
-				<div class="text-body__column text-body__column_bt d-flex">
+				<div class="text-body__column list-style text-body__column_bt d-flex">
 					<ul>
 						<li><p>Для товаров, на которые установлен срок гарантийного обслуживания, ремонт в нашем сервисном центре 
 							возможен в течение указанного срока.</p>
@@ -120,7 +120,7 @@ get_header(); ?>
 				<div class="text-body__row">
 					<p>
 						В случае обнаружения любых дефектов или претензий к товарам, пожалуйста, сообщите об этом в нашу сервисную службу по телефону: 
-							+7 (495) 740−80−33 или напишите нам на <a href="#">info@light-snab.ru</a>
+							+7 (994) 444−48−44 или напишите нам на <a href="#">info@light-snab.ru</a>
 					</p>
 					<p>Спасибо!</p>
 				</div>

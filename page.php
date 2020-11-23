@@ -3,7 +3,7 @@
     <?php get_template_part('template-parts/header-category');?>
 	
 	<section class = "page_content">
-        <div class = "container text_conteiner">
+        <div class = "container text_conteiner list-style">
             
 			<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 				<h1 class="category-title"><?the_title();?></h1>
