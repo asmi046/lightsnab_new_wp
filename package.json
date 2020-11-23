@@ -16,6 +16,7 @@
     "mk_part_carbon": "ssh u0743099@ftp.light-snab.ru \"mkdir -p lshop/wp-content/themes/light-shop/inc\"",
     "send_carbon": "scp -C -r inc u0743099@ftp.light-snab.ru:lshop/wp-content/themes/light-shop/",
     "send_carbon_fild": "scp -C -r inc/custom-fields-options u0743099@ftp.light-snab.ru:lshop/wp-content/themes/light-shop/inc/",
+    "send_pars": "scp -C -r pars u0743099@ftp.light-snab.ru:lshop/wp-content/themes/light-shop/",
     "mk_part_dir": "ssh u0743099@ftp.light-snab.ru \"mkdir -p lshop/wp-content/themes/light-shop/template-parts\"",
     "send_part": "scp -C -r template-parts u0743099@ftp.light-snab.ru:lshop/wp-content/themes/light-shop/",
     "mk_part_img": "ssh u0743099@ftp.light-snab.ru \"mkdir -p lshop/wp-content/themes/light-shop/img\"",
