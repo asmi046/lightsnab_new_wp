@@ -10,3 +10,15 @@
     </div>
   </div>
 </section>
+
+<section class = "pagination">
+  <div class="container">
+    <?php 
+    the_posts_pagination( array(
+      'mid_size' => 2,
+      'prev_next'    => false,
+      'screen_reader_text' => "11",
+    ) ); 
+    ?>
+  </div>
+</section>

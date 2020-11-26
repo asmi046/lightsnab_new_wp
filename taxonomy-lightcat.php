@@ -8,4 +8,6 @@
 
 	<?php get_template_part('template-parts/products-category-section');?>
 
+	<?php get_template_part('template-parts/category-page-tags');?>
+
 <?php get_footer(); ?> 

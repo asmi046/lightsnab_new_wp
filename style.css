@@ -2032,7 +2032,7 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 }
 .collection-content {
     color: #fff;
-    max-width: 514px;
+    max-width: 380px;
 }
 .collection-content h2 {
     font-weight: 400;
@@ -2047,7 +2047,25 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     margin:0;
 }
 
+.pagination {
+    margin-bottom: 35px;
+}
 
+.page-numbers.current {
+    border: 1px solid #d3820f;
+    color: #d3820f;
+}
+.page-numbers {
+    width:40px;
+    height:40px;
+    border: 1px solid black;
+    text-align: center;
+    margin-right: 5px;
+    display: inline-block;
+    color: black;
+    line-height: 40px;
+    margin-bottom: 5px;
+}
 
 .w-320 {
     max-width: 320px;
@@ -2078,6 +2096,7 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 }
 .products-loop__price {
     color: #d3820f;
+    margin-bottom: 10px;
 }
 .products-loop__content {
     display: -webkit-flex;
@@ -2093,15 +2112,17 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     justify-content: space-between;
     text-transform: uppercase;
     font-size: 16px;
+    flex-direction: column-reverse;
 }
 .products-loop img {
     -o-object-fit: cover;
     object-fit: cover;
-    margin-bottom: 24px;
+    margin-bottom: 10px;
     width: 280px;
     height: 280px;
     object-fit: cover;
     object-position: center;
+    border: 1px solid #e1e1e1;
 }
 .products-loop img:hover {
     opacity: 0.8;
@@ -2326,7 +2347,7 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     font-size: 42px;
 }
 .category-descr {
-    font-family: Lato-Light, sans-serif;
+    font-family: LatoRegular, sans-serif;
     margin-bottom: 35px;
 }
 .category-menu {
@@ -2343,7 +2364,7 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     margin-bottom: 30px;
 }
 .category-menu-2 a {
-    border-radius: 30px;
+    border-radius: 5px;
 }
 .category-menu a {
     display: block;
@@ -2362,8 +2383,15 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     border-radius: 14px;
 }
 .bb {
-    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    padding-top: 30px;
 }
+
+#breadcrumbs {
+    font-family: Lato-Light, sans-serif;
+    font-size: 14px;
+}
+
 .product-wrapper {
     display: -webkit-flex;
     display: -moz-flex;

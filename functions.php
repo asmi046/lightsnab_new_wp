@@ -289,5 +289,65 @@ function light_custom_init(){
 		'supports'           => array('title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats')
 	) );
 }
+
+// _____________________Колонки в таблицу админки
+
+add_filter('manage_posts_columns', 'posts_columns', 5);
+add_action('manage_posts_custom_column', 'posts_custom_columns', 5, 2);
+ 
+function posts_columns($defaults){
+    $defaults['riv_post_sku'] = __('Артикул');
+	$defaults['riv_post_thumbs'] = __('Миниатюра');
+	$defaults['riv_post_price'] = __('Цена');
+	return $defaults;
+}
+ 
+function posts_custom_columns($column_name, $id){
+	
+	
+	if($column_name === 'riv_post_sku'){
+		$SKU_t = get_post_meta(get_the_ID(), "_offer_sku", true);
+		echo empty($SKU_t)?"-":$SKU_t;
+	}
+	
+	if($column_name === 'riv_post_thumbs'){	
+		$img1 = get_the_post_thumbnail_url( get_the_ID(), "thumbnail");
+		
+		if (empty($img1))
+			$img1 = get_bloginfo("template_url")."/img/no-photo.jpg";
+		
+		echo '<img width = "60" src = "'.$img1.'" />';
+			
+	
+	}
+	
+	if($column_name === 'riv_post_price'){
+		$PRICE = get_post_meta(get_the_ID(), "_offer_price", true);
+		echo empty($PRICE)?"0 руб.":$PRICE." руб.";
+	}
+	
+	
+}
+
+// удаляет H2 из шаблона пагинации
+add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
+function my_navigation_template( $template, $class ){
+	/*
+	Вид базового шаблона:
+	<nav class="navigation %1$s" role="navigation">
+		<h2 class="screen-reader-text">%2$s</h2>
+		<div class="nav-links">%3$s</div>
+	</nav>
+	*/
+
+	return '
+	<nav class="navigation %1$s" role="navigation">
+		<div class="nav-links">%3$s</div>
+	</nav>    
+	';
+}
+
+
+
 	
 ?>

@@ -1,6 +1,11 @@
 <section class="single-product">
   <div class="container">
     <h1 class="category-title" id = "tovar_title"><?the_title();?></h1>
+    <?php
+			if ( function_exists('yoast_breadcrumb') ) {
+				yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+			}
+		?> 
     <div class="product-wrapper">
       <div class="product-slider">
         <div class="slider-for">
