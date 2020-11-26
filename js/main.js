@@ -149,7 +149,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
     
 
     if (naviSlider != undefined) {
-      naviSlider.slick('slickGoTo',document.getElementById(this.options[this.selectedIndex].dataset.pictureid).dataset.indexelem);
+      if (document.getElementById(this.options[this.selectedIndex].dataset.pictureid) != null)
+        naviSlider.slick('slickGoTo',document.getElementById(this.options[this.selectedIndex].dataset.pictureid).dataset.indexelem);
     }
 
     number_format ();
