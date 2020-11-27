@@ -2419,7 +2419,7 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     max-width: 750px;
 }
 .product-slider .slick-dots {
-    bottom: -44px;
+    bottom: -60px;
 }
 .slider-for__item {
     width: 750px;
@@ -2517,7 +2517,7 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     flex-shrink: 0;
 }
 .product-slider .slick-dotted.slick-slider {
-    margin-bottom: 80px;
+    margin-bottom: 100px;
 }
 .product-single__add-to-cart {
     width: 100%;
@@ -2595,11 +2595,9 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     padding: 40px 30px;
 }
 .uppsells-title {
-    text-align: center;
     margin-bottom: 20px;
     margin-top: 0;
     font-size: 16px;
-    font-weight: normal;
 }
 .uppsells-wrapper {
     display: -webkit-flex;
@@ -2618,6 +2616,15 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     margin: 10px;
     margin-bottom: 37px;
 }
+
+.uppsells-wrapper .uppsells-item:first-child{
+    margin-left: 0;
+}
+
+.uppsells-wrapper .uppsells-item:last-child{
+    margin-right: 0;
+}
+
 .uppsells-item:hover .uppsells-item__title {
     color: #000;
 }
@@ -3444,10 +3451,6 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     .products-loop__price
     {
         flex: 1;
-    }
-
-    .products-loop__price {
-        text-align: right;
     }
 
     .footer .container {

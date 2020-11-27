@@ -99,6 +99,7 @@ function add_tocart() {
     let cartElem = {
       sku: product_current_sku.innerHTML,
       lnk:window.location.href,
+      modtext:mod_product_selector.options[mod_product_selector.selectedIndex].innerHTML,
       price: product_current_price.dataset.realPrice,
       subtotal:product_current_price.dataset.realPrice,
       name: tovar_title.innerHTML,

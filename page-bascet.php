@@ -25,7 +25,7 @@ get_header(); ?>
                             <td> <img :src = "item.picture" /> </td>
                             <td class = "name">
                                 <div class = "b_tov_name">{{item.name}}</div>
-                                <div class = "b_tov_sku">{{item.sku}}</div>
+                                <div class = "b_tov_sku">{{item.sku}} {{item.modtext}}</div>
                             </td>
                             <td>
                                 <input type = "number"  @change = "recalcBascet" v-model="item.count" min = "0" />
