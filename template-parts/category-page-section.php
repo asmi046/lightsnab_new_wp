@@ -1,5 +1,6 @@
 <?
-$categoryID = get_queried_object()->term_id
+$categoryID = get_queried_object()->term_id;
+$ancestors = get_ancestors( $categoryID, 'lightcat' );
 ?>
 <section class="category-page">
     <div class="container">
@@ -12,14 +13,21 @@ $categoryID = get_queried_object()->term_id
 	  <div class="category-descr"><?echo category_description();?></div>
       <ul class="category-menu category-menu-2 ul-clean">
             <?
-				$categories = get_categories( [
+				$sparam =  [
 					'taxonomy'     => 'lightcat',
 					'orderby'      => 'name',
 					'order'        => 'ASC',
 					'hide_empty'   => 0,
 					'hierarchical' => 1,
 					'parent' => $categoryID
-				] );
+				];
+
+				$categories = get_categories($sparam);
+
+				if (empty($categories)) {
+					$sparam["parent"] = $ancestors[0];
+					$categories = get_categories( $sparam );
+				}	
 
 				$options = "<option selected disabled >-Выберите тип светильника-</option>";
 
@@ -27,7 +35,7 @@ $categoryID = get_queried_object()->term_id
 					foreach( $categories as $cat ){
 						$options .= "<option value = '".get_category_link($cat->term_id)."'>".$cat->name."</option>";
 			?>
-							<li><a href = "<?echo get_category_link($cat->term_id); ?>"><? echo $cat->name;?></a></li>
+							<li><a class = "<?echo ($categoryID == $cat->term_id)?"selected":"";?>" href = "<?echo get_category_link($cat->term_id); ?>"><? echo $cat->name;?></a></li>
 			<?
 					}
 				}
