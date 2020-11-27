@@ -104,26 +104,33 @@
         </div>
         <div class="product-single__price"><span data-real-price = "<?echo carbon_get_post_meta(get_the_ID(),"offer_price"); ?>" class = "price_formator" id = "product_current_price"><?echo carbon_get_post_meta(get_the_ID(),"offer_price"); ?></span> P</div>
         <a href="<? echo get_the_permalink(447); ?>" class="product-single__opt">Узнать оптовую цену</a>
-        <div class="product-single__choice-wrap">
-          <div class="product-single__choice-title">Выберите комлектацию:</div>
-          <select class="product-single__choice" id = "mod_product_selector">
+        <?
+           $modif = carbon_get_the_post_meta('offer_modification');
+           if (!empty($modif)) {
+        ?>
+            <div class="product-single__choice-wrap">
+              <div class="product-single__choice-title">Выберите комлектацию:</div>
+              <select class="product-single__choice" id = "mod_product_selector">
+              <?
+              
+                if($modif) {
+                  foreach($modif as $item) {
+              ?>  
+                    <option 
+                      data-sku = "<?echo $item["mod_sku"];?>" 
+                      data-price = "<?echo $item["mod_price"];?>" 
+                      data-oldprice = "<?echo $item["mod_old_price"];?>" 
+                      data-pictureid = "<?echo $item["mod_picture_id"];?>" 
+                      value="<?echo $item["mod_name"];?>"><?echo $item["mod_name"];?></option>
+                <?
+                  }
+                }
+              ?>
+              </select>
+            </div>
           <?
-            $modif = carbon_get_the_post_meta('offer_modification');
-            if($modif) {
-              foreach($modif as $item) {
-          ?>  
-                <option 
-                  data-sku = "<?echo $item["mod_sku"];?>" 
-                  data-price = "<?echo $item["mod_price"];?>" 
-                  data-oldprice = "<?echo $item["mod_old_price"];?>" 
-                  data-pictureid = "<?echo $item["mod_picture_id"];?>" 
-                  value="<?echo $item["mod_name"];?>"><?echo $item["mod_name"];?></option>
-            <?
-              }
             }
           ?>
-          </select>
-        </div>
         <button id = "add_to_cart" class="product-single__add-to-cart">Добавить в корзину</button>
         <div class = "to_bascet_msg" id = "to_bascet_msg">
           Товар добавлен в корзину. В принципе, можно <a href = "#">оформить заказ</a>.
