@@ -2159,6 +2159,7 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     padding: 18px 28px;
     font-size: 18px;
     font-family: Lato-Light, sans-serif;
+    text-transform: uppercase;
 }
 .all-link:hover {
     background-color: #d3820f;
@@ -2377,6 +2378,8 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 .category-menu a span {
     color: #d3d3d3;
 }
+
+.selected,
 .category-menu a:hover {
     background-color: #d3820f;
     color: #fff;

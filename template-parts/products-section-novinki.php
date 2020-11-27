@@ -1,6 +1,6 @@
 <section class="products">
     <div class="container">
-      <h2 class="section-title">Новинки</h2>
+      <h2 class="section-title">Светильники в стиле ВИНТАЖ</h2>
       <div class="products-wrapper">
         
         <?
@@ -9,9 +9,9 @@
             'post_type' => 'light',
             'tax_query' => array(
               array(
-                'taxonomy' => 'lightcat',
+                'taxonomy' => 'lightstyle',
                 'field' => 'id',
-                'terms' => array(10)
+                'terms' => array(94)
               )
             )
           );
@@ -25,7 +25,7 @@
         ?>
       </div>
       <div class="btn-wrapper">
-        <a href="<?echo get_category_link(10); ?>" class="all-link">ПОСМОТРЕТЬ ВСЕ НОВИНКИ</a>
+        <a href="<?echo get_category_link(94); ?>" class="all-link">Смотреть все</a>
       </div>
     </div>
   </section>

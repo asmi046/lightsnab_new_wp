@@ -1,3 +1,6 @@
+<?
+$categoryID = get_queried_object()->term_id
+?>
 <section class="category-page category-page-tags">
     <div class="container">			
 	
@@ -7,7 +10,7 @@
 					'taxonomy'     => 'lightstyle',
 					'orderby'      => 'name',
 					'order'        => 'ASC',
-					'hide_empty'   => 0,
+					'hide_empty'   => 1,
 					'hierarchical' => 1,
 					
 				] );
@@ -18,7 +21,7 @@
 					foreach( $categories as $cat ){
 						$options .= "<option value = '".get_category_link($cat->term_id)."'>".$cat->name."</option>";
 			?>
-							<li><a href = "<?echo get_category_link($cat->term_id); ?>"><? echo $cat->name;?></a></li>
+							<li><a class = "<?echo ($categoryID == $cat->term_id)?"selected":"";?>" href = "<?echo get_category_link($cat->term_id); ?>"><? echo $cat->name;?></a></li>
 			<?
 					}
 				}
