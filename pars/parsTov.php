@@ -12,8 +12,8 @@
         $tovArr = $wpdb->get_results("SELECT * FROM `lshop_parsed_tovars` WHERE `post_id` = 0 ORDER BY rand() LIMIT 5");
         
         
-        foreach ($tovArr  as $tt)
-        {
+       foreach ($tovArr  as $tt)
+       {
             echo "Обробатываем: ".$tt->lnk. "\n\r";
             
             $html = file_get_html($tt->lnk);
@@ -25,28 +25,28 @@
             
             $tovarInfo["name"] = $html->find('h1')[0]->plaintext;
             $tovarInfo["sku"] = str_replace(array(" ","Артикул:"), "", $html->find('.product-summary')[0]->plaintext);
-            $tovarInfo["price"] = $html->find('.price')[0]->attr["data-real-price"];
-            $descr = $html->find('.product-description')[0]->innertext;
-            $tovarInfo["description"] = substr( $descr, 0, strpos( $descr, "<table>"));
-            $tovarInfo["caracter"] = array();
-
+            $tovarInfo["price"] = $html->find('.product-prices')[0]->children(0)->attr["data-price"];
+            $tovarInfo["description"] = $html->find('#product-description')[0]->children(0)->children(0)->plaintext;;
             
-            $table = $html->find('.product-description table')[0];
+            
+            $tovarInfo["caracter"] = array();
+            $table = $html->find('#product-description table')[0];
 
             foreach($table->find('tr') as $cr) {
                 $crLine = $cr->find("td");
-                $toc["name"] = $crLine[0]->plaintext;
-                $toc["value"] = $crLine[1]->plaintext;
+                $toc["name"] = trim($crLine[0]->plaintext);
+                $toc["value"] = trim($crLine[1]->plaintext);
                 $tovarInfo["caracter"][] =  $toc;
             }
 
             $tovarInfo["modification"] = array();
 
-            foreach($html->find('.select-skus option') as $cr) {
-                $opt["name"] = $cr->plaintext;
-                $opt["sku"] = $cr->value;
-                $opt["price"] = $cr->attr["data-price"];
-                $opt["price_old"] = $cr->attr["data-compare-price"];
+            foreach($html->find('.skus li') as $cr) {
+            
+                $opt["name"] = trim($cr->children(1)->children(0)->plaintext);
+                $opt["sku"] = $cr->children(0)->value;
+                $opt["price"] = $cr->children(0)->attr["data-price"];
+                $opt["price_old"] = $cr->children(0)->attr["data-compare-price"];
                 $tovarInfo["modification"][] =  $opt;
             }
 
