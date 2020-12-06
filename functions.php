@@ -65,7 +65,7 @@ function my_assets_admin(){
 }
 
 
-define("ALL_VERSION", "1.0.10");
+define("ALL_VERSION", "1.0.13");
 
 // Подключение стилей и nonce для Ajax и скриптов во фронтенд 
 add_action( 'wp_enqueue_scripts', 'my_assets' );
@@ -83,6 +83,11 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 		wp_enqueue_script( 'slick', get_template_directory_uri().'/js/slick.min.js', array(), ALL_VERSION , true); //Слайдер
 		
 		wp_enqueue_script( 'main', get_template_directory_uri().'/js/main.js', array(), ALL_VERSION , true); // Подключение основного скрипта в самом конце
+		
+		if ( is_page(447))
+		{
+			wp_enqueue_script( 'imasc', get_template_directory_uri().'/js/imask.js', array(), ALL_VERSION , true);
+		}
 		
 		if ( is_page(79))
 			{

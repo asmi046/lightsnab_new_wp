@@ -175,7 +175,8 @@ get_header(); ?>
 				);
 			}
 
-			$args = array( 
+			$args = array(
+				'posts_per_page' => -1, 
 				'post_type' => "light",
 				'tax_query' => $taxquery,
 				'meta_query' => $metaquery,
@@ -224,5 +225,16 @@ get_header(); ?>
 
 </section>
 
+<section class = "pagination">
+  <div class="container">
+    <?php 
+    the_posts_pagination( array(
+      'mid_size' => 2,
+      'prev_next'    => false,
+      'screen_reader_text' => "11",
+    ) ); 
+    ?>
+  </div>
+</section>
 
 <?php get_footer(); ?> 

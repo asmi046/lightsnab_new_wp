@@ -16,8 +16,6 @@ get_header(); ?>
 	</div>
 </section>
 
-<section class="opt-backg" style="background-image: url(<?php echo get_template_directory_uri();?>/img/opt-bg-1.jpg);">
-</section>
 
 <section class="opt-text">
 	<div class="container">
@@ -30,45 +28,50 @@ get_header(); ?>
 			</div>
 			<div class="opt-text__row opt-text__row_tp">
 				<h2>
-					Особые условия для вашего <br> бизнеса!
+					Самые выгодные условия для вашего <br> бизнеса!
 				</h2>
 			</div>
 		</div>
 	</div>
 </section>
 
+<section class="opt-backg" style="background-image: url(<?php echo get_template_directory_uri();?>/img/opt-bg-1.jpg);">
+</section>
+
+<?php get_template_part('template-parts/products-section-novinki');?>
+
 <section class="argument">
 	<div class="container">
 		<div class="argument__column d-flex">
 			<div class="argument__row">
-				<h3 class="model-icon">Более 5000 моделей!</h3>
-				<p>Самый большой каталог новинок и популярных моделей дизайнерского освещения.</p>
+				<h3 class="model-icon">Широкий ассортимент</h3>
+				<p>Каталоге на 5000 + позиций. Все виды освещения в одном каталоге.</p>
 			</div>
 			<div class="argument__row">
-				<h3 class="range-icon">Ассортимент не как у всех!</h3>
-				<p>Собственный уникальный ассортимент, который вы можете найти только у нас.</p>
+				<h3 class="range-icon">Уникальный ассортимент</h3>
+				<p>К нас Вы найдете эксклюзивные модели которых нет в других магазинах.</p>
 			</div>
-			<div class="argument__row">
+			<!-- <div class="argument__row">
 				<h3 class="new-model-icon">Новые модели каждый день!</h3>
 				<p>Среди всех поставщиков освещения у нас новые люстры появляются первыми.</p>
-			</div>
-		</div>
-		<div class="argument__column argument__column_bottom d-flex">
+			</div> -->
+		<!-- </div>
+		<div class="argument__column argument__column_bottom d-flex"> -->
 			<div class="argument__row">
-				<h3 class="brand-icon">Мы — бренд!</h3>
-				<p>Наш каталог — самый динамично развивающийся проект на рынке дизайнерского освещения!</p>
+				<h3 class="brand-icon">Уверенное развитие</h3>
+				<p>Мы постоянно совершенствуем клиентский сервис и становимся удобней и доступней для клиента.</p>
 			</div>
 			<div class="argument__row">
-				<h3 class="vip-icon">Доверие статусных клиентов!</h3>
-				<p>Нам доверяют свои проекты уже более 300 дизайнеров и дизайн студий по всей России.</p>
+				<h3 class="vip-icon">Доверие профессионалов</h3>
+				<p>Нашей компании доверяют профессиональные дизайнеры интерьеров по всей России.</p>
 			</div>
 		</div>
 	</div>
 </section>
 
-<?php get_template_part('template-parts/products-section-novinki');?>
 
-<section class="partner-title partner-title__top">
+
+<!-- <section class="partner-title partner-title__top">
 	<div class="container">
 		<h2>
 			БОЛЕЕ 1000 РЕАЛИЗОВАННЫХ ПРОЕКТОВ ОТ ДИЗАЙНЕРОВ <br> И НАШИХ ПАРТНЕРОВ ПО ВСЕЙ РОССИИ И СТРАНАМ СНГ!  
@@ -77,12 +80,12 @@ get_header(); ?>
 </section>
 
 <section class="opt-backg-bottom" style="background-image: url(<?php echo get_template_directory_uri();?>/img/opt-bg-2.jpg);">
-</section>
+</section> -->
 
 <section class="partner-title">
 	<div class="container">
 		<h2>
-			ЛУЧШИЙ МОМЕНТ, ЧТОБЫ НАЧАТЬ ЗАРАБАТЫВАТЬ!  
+			ОСТАВЬ ЗАЯВКУ НА ОФОРМЛЕНИЕ СОТРУДНИЧЕСТВА  
 		</h2>
 	</div>
 </section>
@@ -97,9 +100,9 @@ get_header(); ?>
 			<div class="opt-form__row d-flex">
 				<label class="label__value">Кто вы *</label>
 				<ul>
-					<li><label class="label__radio"><input tabindex="1" checked type="radio" name="who" value="designer">Дизайнер</label></li>
-					<li><label class="label__radio"><input tabindex="1" type="radio" name="who" value="distributor">Дистрибьютор</label></li>
-					<li><label class="label__radio"><input tabindex="1" type="radio" name="who" value="person">Частное лицо</label></li>
+					<li><label class="label__radio"><input tabindex="1" checked type="radio" name="who" value="Дизайнер">Дизайнер</label></li>
+					<li><label class="label__radio"><input tabindex="1" type="radio" name="who" value="Дистрибьютор">Дистрибьютор</label></li>
+					<li><label class="label__radio"><input tabindex="1" type="radio" name="who" value="Частное лицо">Частное лицо</label></li>
 				</ul>
 			</div>
 
@@ -122,7 +125,7 @@ get_header(); ?>
 			<div class="form-line">
 				<label for="id_phone" id="p_id_phone" class="form-label">Телефон*</label>
 				<div class="form-item">    
-					<input id="id_phone" maxlength="255" name="phone" v-model="phone" type="text">
+					<input id="id_phone" maxlength="255" name="phone" id="opt_phone" type="text">
 					<div class="form-help-text">+7-994-444-48-44</div>
 				</div>
 			</div>
@@ -144,10 +147,10 @@ get_header(); ?>
 			</div>
 
 			<div class = "form_submit_line btn-wrapper">
-				<button type = "button" class = "all-link opt-btn">Отправить заявку</button>
-				<!-- <div v-show = "formNoValid" class = "no_feild">
+				<button id = "opt_send_btn" type = "button" class = "all-link opt-btn">Отправить заявку</button>
+				<div id = "opt_no_feild" class = "no_feild" style = "display:none;">
 					Заполните все обязательные поля помеченные <span style = "color:#d3820f;">"*"</span>
-				</div> -->
+				</div>
 			</div>
 
 		</form>

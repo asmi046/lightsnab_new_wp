@@ -1,4 +1,4 @@
-<header class="header" style="background-image: url(<?php echo get_template_directory_uri();?>/img/Light_snab_ban_1.jpg);">
+<header class="header" >
 <div class = "logo_main_blk_svg"></div>
 <div class="header-descr">ДИЗАЙНЕРСКОЕ ОСВЕЩЕНИЕ <br/>НА ЛЮБОЙ ВКУС</div>	
 <div class="header-top">

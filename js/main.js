@@ -177,6 +177,36 @@ document.addEventListener("DOMContentLoaded", ()=>{
     closeMenu.onclick = function (e) {
         block_menu.classList.remove("block-menu-open");
     }
+
+  let optSendBtn =  document.getElementById('opt_send_btn');
+
+  //Маска для телефона
+  var phoneMask = IMask(document.getElementById('id_phone'), {
+    mask: '+{7}(000)000-00-00',
+    lazy: true,  // make placeholder always visible
+    placeholderChar: '_'     // defaults to '_'
+  });
+  
+  //______________Отправка формы
+
+
+
+  if (optSendBtn != undefined) 
+  optSendBtn.onclick = function (e) {
+    let who = document.querySelector('.opt-form__form input[name="who"]:checked').value;
+    let name = document.querySelector('.opt-form__form input[name="fio"]').value;
+    let mail = document.querySelector('.opt-form__form input[name="email"]').value;
+    let phone = document.querySelector('.opt-form__form input[name="phone"]').value;
+    let comment = document.querySelector('.opt-form__form textarea[name="comment"]').value;
+     
+    document.getElementById("opt_no_feild").style.display = 'none';
+    if ((who == "")||(name == "")||(mail == "")||(phone == "")) 
+    {
+        document.getElementById("opt_no_feild").style.display = 'block';
+        return;
+    }
+        console.log(who);
+  }
   
     let subTypeSelect =  document.getElementById('id_sub_type');
     let typeSelect =  document.getElementById('id_prod_type');
