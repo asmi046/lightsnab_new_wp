@@ -109,24 +109,24 @@ get_header(); ?>
 			<div class = "form-line">
 				<label for = "id_fio">Имя, Фамилия*</label>
 				<div class="form-item">    
-					<input id="id_fio" maxlength="255" name="fio" v-model="name" type="text">
-					<div class="form-help-text">Например, Алина.</div>
+					<input id="id_fio" class="form-line__input" placeholder="Например, Александр" maxlength="255" name="fio" v-model="name" type="text">
+					<!-- <div class="form-help-text">Например, Алина</div> -->
 				</div>
 			</div>
 
 			<div class="form-line">
 				<label for="id_email" id="p_id_email" class="form-label">Эл. почта *</label>
 				<div class="form-item">    
-					<input id="id_email" maxlength="255" name="email" v-model="mail"  type="email">
-					<div class="form-help-text">alina-ivanova@gmail.com</div>  
+					<input id="id_email" class="form-line__input" placeholder="alex-ivanov@gmail.com" maxlength="255" name="email" v-model="mail"  type="email">
+					<!-- <div class="form-help-text">alina-ivanova@gmail.com</div> -->
 				</div>
 			</div>
 
 			<div class="form-line">
 				<label for="id_phone" id="p_id_phone" class="form-label">Телефон*</label>
 				<div class="form-item">    
-					<input id="id_phone" maxlength="255" name="phone" id="opt_phone" type="text">
-					<div class="form-help-text">+7-994-444-48-44</div>
+					<input id="id_phone" class="form-line__input" placeholder="+7-991-441-48-43" maxlength="255" name="phone" id="opt_phone" type="text">
+					<!-- <div class="form-help-text">+7-994-444-48-44</div> -->
 				</div>
 			</div>
 
