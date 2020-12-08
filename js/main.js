@@ -205,7 +205,25 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.getElementById("opt_no_feild").style.display = 'block';
         return;
     }
-        console.log(who);
+    
+    var params = new URLSearchParams();
+    params.append('action', 'send_opt');
+    params.append('nonce', allAjax.nonce);
+    params.append('name', name);
+    params.append('mail', mail);
+    params.append('phone', phone);
+    params.append('comment', comment);
+    params.append('who', who);
+
+
+    axios.post(allAjax.ajaxurl, params)
+      .then(function (response) {
+        window.location.href = thencs_page;
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+
   }
   
     let subTypeSelect =  document.getElementById('id_sub_type');

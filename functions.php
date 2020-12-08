@@ -87,6 +87,7 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 		if ( is_page(447))
 		{
 			wp_enqueue_script( 'imasc', get_template_directory_uri().'/js/imask.js', array(), ALL_VERSION , true);
+			wp_enqueue_script( 'axios', get_template_directory_uri().'/js/axios.min.js', array(), ALL_VERSION , true);
 		}
 		
 		if ( is_page(79))
@@ -166,6 +167,47 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 
 			
 			if (wp_mail($adr_to_send, $mail_them, $mail_content, $headers)) {
+				wp_die(json_encode(array("send" => true )));
+			}
+			else {
+				wp_die( 'Ошибка отправки!', '', 403 );
+			}
+			
+		} else {
+			wp_die( 'НО-НО-НО!', '', 403 );
+		}
+	}
+
+	// Заявка на опт
+	
+	add_action( 'wp_ajax_send_opt', 'send_opt' );
+	add_action( 'wp_ajax_nopriv_send_opt', 'send_opt' );
+
+	function send_opt() {
+		if ( empty( $_REQUEST['nonce'] ) ) {
+			wp_die( '0' );
+		}
+		
+		if ( check_ajax_referer( 'NEHERTUTLAZIT', 'nonce', false ) ) {
+
+			$headers = array(
+				'From: Сайт '.COMPANY_NAME.' <'.MAIL_RESEND.'>',
+				'content-type: text/html',
+			);
+		
+			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+			
+			$adr_to_send = carbon_get_theme_option("mail_to_send");
+			$adr_to_send = (empty($adr_to_send))?"asmi046@gmail.com":$adr_to_send;
+			
+			$mail_content = "<h1>Заявка на оптовое сторудничество Lightsnab</h1>";
+			$mail_content .=  "<strong>Профессия: </strong>".$_REQUEST["who"]."<br/>";
+			$mail_content .=  "<strong>Имя: </strong>".$_REQUEST["name"]."<br/>";
+			$mail_content .=  "<strong>e-mail: </strong>".$_REQUEST["mail"]."<br/>";
+			$mail_content .=  "<strong>Телефон: </strong>".$_REQUEST["phone"]."<br/>";
+			$mail_content .=  "<strong>Комментарий: </strong>".$_REQUEST["comment"]."<br/>";
+
+			if (wp_mail($adr_to_send, "Оптовое сторудничество Lightsnab", $mail_content, $headers)) {
 				wp_die(json_encode(array("send" => true )));
 			}
 			else {

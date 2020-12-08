@@ -9,8 +9,9 @@
 				</a>
 			</div>
 		</div>
-		<form role="search" method="get" id="searchform" action="<?php echo home_url( '/' ) ?>">
-			<input type="text" value="" name="s" id="s" />
+		<form role="search" method="get" id="searchform" action="<?echo get_the_permalink(399)?>">
+			<input type="text" value="" name="q" id="s" />
+			<input type="hidden" value="Искать" name="do_search" />
 			<input type="submit" id="searchsubmit" value="" />
 		</form>
 		<div class="block-menu__full-search">

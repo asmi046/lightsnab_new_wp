@@ -142,10 +142,21 @@ get_header(); ?>
 
 			if (!empty($_REQUEST["q"]))
 				$metaquery["textQery"] = array(
-					'key'     => '_offer_smile_descr',
-					'value' => $_REQUEST["q"],
-					'compare' => 'LIKE',
-					'type'    => 'CHAR',
+
+					'relation' => 'OR',
+					'tqDescr' => array(
+						'key'     => '_offer_smile_descr',
+						'value' => $_REQUEST["q"],
+						'compare' => 'LIKE',
+						'type'    => 'CHAR',
+					),
+
+					'tqTitle' => array(
+						'key'     => '_offer_name',
+						'value' => $_REQUEST["q"],
+						'compare' => 'LIKE',
+						'type'    => 'CHAR',
+					)
 				); 
 
 
