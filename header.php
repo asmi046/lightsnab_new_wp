@@ -6,6 +6,8 @@
 
   <title><?php wp_title(); ?></title>
 
+  
+
   <link rel="icon" type="image/png" sizes="256x256" href="<?php echo get_template_directory_uri();?>/img/favicons/icon256.png">
   <link rel="icon" type="image/png" sizes="128x128" href="<?php echo get_template_directory_uri();?>/img/favicons/icon128.png">
   <link rel="icon" type="image/png" sizes="64x64" href="<?php echo get_template_directory_uri();?>/img/favicons/icon64.png">
@@ -16,7 +18,7 @@
 
   <?php wp_head();?> 
 
-
+  <meta name="mailru-domain" content="6RYVibgKzkiavY1a" />
 </head> 
 <body>
   <!-- Yandex.Metrika counter -->
