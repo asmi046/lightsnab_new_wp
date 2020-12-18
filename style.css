@@ -2751,6 +2751,10 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     flex-direction: column;
 }
 
+.bascet_form input {
+    padding: 0 10px;
+}
+
 .form-line {
     width: 100%;
     display: flex;
