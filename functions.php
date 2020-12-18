@@ -1,7 +1,8 @@
 <?php
 
-define("SITE_PHONE", "+7 (994) 444 48 44");
-define("SITE_MAIL", "info@light-snab.ru");
+define("SITE_PHONE", "+7 (994) 444 44 83");
+define("SITE_PHONE_DOP", "+7 (994) 444 48 44");
+define("SITE_MAIL", "sale@lightsnab.ru");
 
 define("INSTA_LNK", "#");
 define("FB_LNK", "#");
