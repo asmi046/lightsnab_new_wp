@@ -78,7 +78,7 @@ get_header(); ?>
                     <label for="id_address" id="p_id_address" class="form-label">Адрес</label>
                     <div class="form-item">    
                         <textarea cols="40" id="id_address" name="address" v-model="adres" rows="10"></textarea>
-                        <div class="form-help-text">ул. Сталеваров, д. 8, корп. 2, кв. 28, под. 2, код: 28в</div>
+                        <div class="form-help-text">ул. Строителей, д. 10, корп. 12, кв. 38, под. 3, код: 58а</div>
                     </div>
                 </div>
 
