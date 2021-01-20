@@ -15,11 +15,15 @@ $categoryID = get_queried_object()->term_id
 					
 				] );
 
+				
 				$options = "<option selected disabled >-Выберите стиль-</option>";
 
 				if( $categories ){
 					foreach( $categories as $cat ){
-						$options .= "<option value = '".get_category_link($cat->term_id)."'>".$cat->name."</option>";
+						if ($categoryID == $cat->term_id)
+							$options .= "<option selected value = '".get_category_link($cat->term_id)."'>".$cat->name."</option>";
+						else
+							$options .= "<option value = '".get_category_link($cat->term_id)."'>".$cat->name."</option>";
 			?>
 							<li><a class = "<?echo ($categoryID == $cat->term_id)?"selected":"";?>" href = "<?echo get_category_link($cat->term_id); ?>"><? echo $cat->name;?></a></li>
 			<?

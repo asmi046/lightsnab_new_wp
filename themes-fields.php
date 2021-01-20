@@ -20,7 +20,10 @@ Container::make('post_meta', 'light_product_cr', 'Характеристики �
 		->show_on_post_type(array( 'light'))
 		  ->add_fields(array(   
 			Field::make('textarea', 'offer_smile_descr', 'Краткое описание')->set_width(100),
-			Field::make('text', 'offer_name', 'Название товара')->set_width(100),
+			Field::make('text', 'offer_name', 'Название товара')->set_width(30),
+			Field::make('text', 'offer_label', 'Метка на товаре')->set_width(30),
+			Field::make('text', 'offer_allsearch', 'Все артикулы для поиска')->set_width(100),
+			Field::make('text', 'offer_siries', 'Серия (для сопутствующих)')->set_width(30),
 			Field::make('select', 'offer_type', 'Тип светильника')->add_options( array(
 				'0' => 'Не задано',
 				'Светодиодный (LED)' => 'Светодиодный (LED)',

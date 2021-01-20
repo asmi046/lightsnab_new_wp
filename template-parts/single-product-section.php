@@ -12,6 +12,12 @@
 		?> 
     <div class="product-wrapper">
       <div class="product-slider">
+        <? 
+          $label = carbon_get_post_meta(get_the_ID(),"offer_label");
+          if (!empty($label)) {?>
+            <div class = "tov_label"><?echo $label;?></div>
+        <?  }?>
+
         <div class="slider-for">
         <?
             $pict = carbon_get_the_post_meta('offer_picture');
@@ -56,6 +62,10 @@
           ?>  
         </div>
         <div class="uppsells">
+          <?
+            $series_prod = carbon_get_the_post_meta('offer_siries');
+            if (empty($series_prod)) {
+          ?>
           <h2 class="uppsells-title">Так же обратите внимание на эти товары</h2>
           <div class="uppsells-wrapper">
             
@@ -79,6 +89,36 @@
             ?>
             
           </div>
+          <?} else {
+              $current_id = get_the_ID();
+              $args = array(
+                'post_type' => 'light',
+                'post__not_in' => array($current_id),
+                'meta_key' => '_offer_siries',
+                'meta_value' => $series_prod,
+              );
+              ?>
+                <h2 class="uppsells-title">Товары серии <? echo $series_prod?></h2>
+                  <div class="uppsells-wrapper">
+
+              <?
+              $query = new WP_Query($args);
+              if($query->have_posts()):
+                while($query->have_posts()):
+                  $query->the_post();
+          ?>
+              <a href="<?echo get_the_permalink(get_the_ID());?>" class="uppsells-item">
+                <img class="uppsells-item__img" src="<?php  $imgTm = get_the_post_thumbnail_url( get_the_ID(), "tominiatyre" ); echo empty($imgTm)?get_bloginfo("template_url")."/img/no-photo.jpg":$imgTm; ?>" alt="<? echo $mp->post_title;?>">
+                <div class="uppsells-item__title"><? the_title();?></div>
+              </a>
+          <?
+              endwhile;
+            endif;
+            ?>
+              </div>
+            <?
+          }
+        ?>
         </div>
       </div>
       <div class="product-info">

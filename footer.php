@@ -25,9 +25,10 @@
         <div class="">Телефон: <?echo SITE_PHONE_DOP;?></div>
         <div class="">E-mail: <?echo SITE_MAIL;?></div>
         <div class="soc-block">
-          <a class = "soc_btn_insta" href="#"></a>
-          <a class = "soc_btn_fb" href="#" ></a>
+          <a class = "soc_btn_insta" href="<?echo INSTA_LNK;?>"></a>
+          <a class = "soc_btn_fb" href="<?echo FB_LNK;?>" ></a>
         </div>
+        <!-- <a class = "workerlnk" href = "https://asmi-studio.ru/">Разработка сайта <span>Asmi-Studio</span></a> -->
       </div>
     </div>
 	</footer>

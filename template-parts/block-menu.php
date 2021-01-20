@@ -39,6 +39,11 @@
 					<a href="tel:<?echo preg_replace('![^0-9]+!', '', SITE_PHONE_DOP)?>"><?echo SITE_PHONE_DOP;?></a>
 					<a href="mailto:<?echo SITE_MAIL;?>"><?echo SITE_MAIL;?></a>
 				</div>
+
+				<div class="adr-block">
+					127247, Москва, Дмитровское ш., 100, стр. 2
+				</div>
+				
 				<div class="soc-block">
 					<a class = "soc_btn_insta" href="<?echo INSTA_LNK;?>"></a>
 					<a class = "soc_btn_fb" href="<?echo FB_LNK;?>"></a>

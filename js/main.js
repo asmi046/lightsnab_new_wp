@@ -134,12 +134,31 @@ function add_tocart() {
 
 document.addEventListener("DOMContentLoaded", ()=>{
 
+  //работа с корзиной
   cart = JSON.parse(localStorage.getItem("cart"));
   if (cart == null) cart = [];
   
   cart_recalc ();
 
   number_format ();
+
+  // Селекторы на мобильной версии
+
+  let subcatSelector =  document.getElementById('mobile_type_selector');
+
+  if (subcatSelector != undefined)
+  subcatSelector.onchange = function (e) {
+    console.log(this.options[this.selectedIndex].value);
+    window.location.href = this.options[this.selectedIndex].value;
+  }
+
+  let designSelector =  document.getElementById('mobile_style_selector');
+
+  if (designSelector != undefined)
+  designSelector.onchange = function (e) {
+    window.location.href = this.options[this.selectedIndex].value;
+  }
+
 
   let modSelector =  document.getElementById('mod_product_selector');
   

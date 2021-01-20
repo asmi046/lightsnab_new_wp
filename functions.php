@@ -4,8 +4,8 @@ define("SITE_PHONE", "+7 (994) 444 44 83");
 define("SITE_PHONE_DOP", "+7 (994) 444 48 44");
 define("SITE_MAIL", "sale@lightsnab.ru");
 
-define("INSTA_LNK", "#");
-define("FB_LNK", "#");
+define("INSTA_LNK", "https://instagram.com/light_snab?igshid=3qjj6waf8lj4");
+define("FB_LNK", "https://vm.tiktok.com/ZSTc25a5/");
 
 define("COMPANY_NAME", "Магазин LightSnab");
 define("MAIL_RESEND", "noreply@light-snab.ru");
@@ -66,7 +66,7 @@ function my_assets_admin(){
 }
 
 
-define("ALL_VERSION", "1.0.13");
+define("ALL_VERSION", "1.0.19");
 
 // Подключение стилей и nonce для Ajax и скриптов во фронтенд 
 add_action( 'wp_enqueue_scripts', 'my_assets' );
@@ -159,7 +159,7 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 
 			
 			$mail_content .= "<strong>Имя:</strong> ".$_REQUEST["name"]."<br/>";
-			$mail_content .= "<strong>Телефон:</strong> ".$_REQUEST["naphoneme"]."<br/>";
+			$mail_content .= "<strong>Телефон:</strong> ".$_REQUEST["phone"]."<br/>";
 			$mail_content .= "<strong>e-mail:</strong> ".$_REQUEST["mail"]."<br/>";
 			$mail_content .= "<strong>Адрес:</strong> ".$_REQUEST["adres"]."<br/>";
 			$mail_content .= "<strong>Комментарий:</strong> ".$_REQUEST["comment"]."<br/>";

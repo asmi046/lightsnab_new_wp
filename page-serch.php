@@ -156,6 +156,13 @@ get_header(); ?>
 						'value' => $_REQUEST["q"],
 						'compare' => 'LIKE',
 						'type'    => 'CHAR',
+					),
+
+					'tqAllSerch' => array(
+						'key'     => '_offer_allSearch',
+						'value' => $_REQUEST["q"],
+						'compare' => 'LIKE',
+						'type'    => 'CHAR',
 					)
 				); 
 
