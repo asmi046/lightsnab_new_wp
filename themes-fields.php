@@ -57,7 +57,8 @@ Container::make('post_meta', 'light_product_cr', 'Характеристики �
 				Field::make('text', 'gal_img_sku', 'ID для модификации')->set_width(30),
 				Field::make('text', 'gal_img_alt', 'alt и title')->set_width(30)				
 			) ),
-			  
+			
+			Field::make('rich_text', 'offer_fulltext', 'Полное описание (SEO)')->set_width(50),
 			
 		  ));
 

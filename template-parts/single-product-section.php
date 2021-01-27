@@ -123,6 +123,10 @@
           }
         ?>
         </div>
+          <div class = "s_text">
+            <? echo apply_filters( 'the_content', carbon_get_the_post_meta('offer_fulltext')); ?>
+          </div>
+
       </div>
       <div class="product-info">
         <div class="product-descr"><?echo carbon_get_post_meta(get_the_ID(),"offer_smile_descr"); ?></div>
