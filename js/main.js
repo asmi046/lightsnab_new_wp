@@ -198,9 +198,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
     }
 
   let optSendBtn =  document.getElementById('opt_send_btn');
+  let otzSendBtn =  document.getElementById('otz_send_btn');
 
   //Маска для телефона
-  var phoneMask = IMask(document.getElementById('id_phone'), {
+  let mascedPhoneElem = document.getElementById('id_phone');
+  if (mascedPhoneElem != undefined) 
+  var phoneMask = IMask(mascedPhoneElem, {
     mask: '+{7}(000)000-00-00',
     lazy: true,  // make placeholder always visible
     placeholderChar: '_'     // defaults to '_'
@@ -208,6 +211,46 @@ document.addEventListener("DOMContentLoaded", ()=>{
   
   //______________Отправка формы
 
+
+  if (otzSendBtn != undefined) 
+  otzSendBtn.onclick = function (e) {
+    let name = document.querySelector('.rev-form__form input[name="otz_fio"]').value;
+    let tovName = document.querySelector('.rev-form__form input[name="otz_tovname"]').value;
+    let mail = document.querySelector('.rev-form__form input[name="otz_email"]').value;
+    let reiting = document.querySelector('.rev-form__form input[name="reiting"]').value;
+    let comment = document.querySelector('.rev-form__form textarea[name="otz_comment"]').value;
+
+    document.getElementById("otz_no_feild").style.display = 'none';
+    
+    console.log(reiting);
+    console.log(name);
+    console.log(mail);
+    console.log(comment);
+
+    if ((reiting == "")||(name == "")||(mail == "")||(comment == "")) 
+    {
+        document.getElementById("otz_no_feild").style.display = 'block';
+        return;
+    }
+
+    var params = new URLSearchParams();
+    params.append('action', 'send_otz');
+    params.append('nonce', allAjax.nonce);
+    params.append('name', name);
+    params.append('mail', mail);
+    params.append('tovname', tovName);
+    params.append('comment', comment);
+    params.append('reiting', reiting);
+
+    axios.post(allAjax.ajaxurl, params)
+    .then(function (response) {
+      window.location.href = thencs_page;
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+
+  }
 
 
   if (optSendBtn != undefined) 

@@ -35,5 +35,7 @@ $categoryID = get_queried_object()->term_id
 	<select id = "mobile_style_selector" class = "mobile_selectors mobile_style_selector">			
 		<? echo $options; ?>
 	</select>
+
+	<div class="category-descr"><?echo category_description();?></div>	
 </div>
 </section>

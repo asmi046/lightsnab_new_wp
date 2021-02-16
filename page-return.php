@@ -13,6 +13,16 @@ get_header(); ?>
 		<section class="return">
 			<div class="container">
 				<h1>Возврат и обмен товара</h1>
+				<div class="text-body__column_new list-style d-flex">
+					<? echo apply_filters( 'the_content', carbon_get_theme_option( "obmen_fulltext" ) );?>
+				<div class="text-body__column list-style d-flex">
+			</div>
+		</section>
+<!-- 
+		<section class="return">
+			<div class="container">
+				
+				
 				<div class="text-body__column list-style d-flex">
 					<ul>
 						<li><p>В случае поставки товара ненадлежащего качества, 
@@ -115,7 +125,7 @@ get_header(); ?>
 					<p>Спасибо!</p>
 				</div>
 			</div>
-		</section>
+		</section> -->
 
 
 <?php get_footer(); ?> 

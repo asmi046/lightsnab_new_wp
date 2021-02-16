@@ -66,7 +66,7 @@ function my_assets_admin(){
 }
 
 
-define("ALL_VERSION", "1.0.19");
+define("ALL_VERSION", "1.0.23");
 
 // Подключение стилей и nonce для Ajax и скриптов во фронтенд 
 add_action( 'wp_enqueue_scripts', 'my_assets' );
@@ -98,7 +98,7 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 				wp_enqueue_script( 'bascet', get_template_directory_uri().'/js/bascet.js', array(), ALL_VERSION , true);
 			}
 
-		if ( is_page(399))
+		if ( is_page(399) || is_single())
 		{
 			wp_enqueue_script( 'axios', get_template_directory_uri().'/js/axios.min.js', array(), ALL_VERSION , true);
 		}
@@ -220,6 +220,48 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 		}
 	}
 	
+
+	// Отзыв о продукте
+	
+	add_action( 'wp_ajax_send_otz', 'send_otz' );
+	add_action( 'wp_ajax_nopriv_send_otz', 'send_otz' );
+
+	function send_otz() {
+		if ( empty( $_REQUEST['nonce'] ) ) {
+			wp_die( '0' );
+		}
+		
+		if ( check_ajax_referer( 'NEHERTUTLAZIT', 'nonce', false ) ) {
+
+			$headers = array(
+				'From: Сайт '.COMPANY_NAME.' <'.MAIL_RESEND.'>',
+				'content-type: text/html',
+			);
+		
+			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+			
+			$adr_to_send = carbon_get_theme_option("mail_to_send");
+			$adr_to_send = (empty($adr_to_send))?"asmi046@gmail.com":$adr_to_send;
+			
+			$mail_content = "<h1>Отзыв на товар - ".$_REQUEST["tovname"]." - с сайта  Lightsnab</h1>";
+			$mail_content .=  "<strong>Наименование товара: </strong>".$_REQUEST["tovname"]."<br/>";
+			$mail_content .=  "<strong>Имя: </strong>".$_REQUEST["name"]."<br/>";
+			$mail_content .=  "<strong>e-mail: </strong>".$_REQUEST["mail"]."<br/>";
+			$mail_content .=  "<strong>Ваша оценка: </strong>".$_REQUEST["reiting"]."<br/>";
+			$mail_content .=  "<strong>Комментарий: </strong>".$_REQUEST["comment"]."<br/>";
+
+			if (wp_mail($adr_to_send, "Отзыв на товар - ".$_REQUEST["tovname"]." - c сайта Lightsnab", $mail_content, $headers)) {
+				wp_die(json_encode(array("send" => true )));
+			}
+			else {
+				wp_die( 'Ошибка отправки!', '', 403 );
+			}
+			
+		} else {
+			wp_die( 'НО-НО-НО!', '', 403 );
+		}
+	}
+
 	add_action( 'wp_ajax_get_subcat', 'get_subcat' );
 	add_action( 'wp_ajax_nopriv_get_subcat', 'get_subcat' );
 

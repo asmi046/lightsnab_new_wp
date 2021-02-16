@@ -25,7 +25,7 @@
         ?>
       </div>
       <div class="btn-wrapper">
-        <a href="<?echo get_category_link(94); ?>" class="all-link">Смотреть все новинки</a>
+        <a href="<?echo get_category_link(10); ?>" class="all-link">Смотреть все новинки</a>
       </div>
     </div>
   </section>

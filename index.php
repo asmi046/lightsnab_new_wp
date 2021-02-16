@@ -14,4 +14,12 @@
 
 	<?php get_template_part('template-parts/products-two-section');?>
 
+	<section class = "main_text_section">
+		<div class = "container">
+			<?
+				echo apply_filters( 'the_content', carbon_get_theme_option( "main_fulltext" ) );
+			?>
+		</div>
+	</section>
+
 <?php get_footer(); ?>

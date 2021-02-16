@@ -14,6 +14,9 @@ use Carbon_Fields\Field;
 Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
 		->add_fields( array(
 			Field::make( 'text', 'mail_to_send', 'E-mail для отправки' ),
+			Field::make('rich_text', 'main_fulltext_top', 'Текст для главной страницы (Верхний)')->set_width(100),
+			Field::make('rich_text', 'main_fulltext', 'Текст для главной страницы (SEO)')->set_width(100),
+			Field::make('rich_text', 'obmen_fulltext', 'Текст в раздел обмен возврат')->set_width(100),
 		) );
 		
 Container::make('post_meta', 'light_product_cr', 'Характеристики товара')
@@ -57,8 +60,26 @@ Container::make('post_meta', 'light_product_cr', 'Характеристики �
 				Field::make('text', 'gal_img_sku', 'ID для модификации')->set_width(30),
 				Field::make('text', 'gal_img_alt', 'alt и title')->set_width(30)				
 			) ),
-			
+
 			Field::make('rich_text', 'offer_fulltext', 'Полное описание (SEO)')->set_width(50),
+
+			Field::make( 'complex', 'offer_rev', "Отзывы о товаре" )
+			->add_fields( array(
+				Field::make('text', 'rev_name', 'Имя' )->set_width(20),
+				Field::make('text', 'rev_mail', 'e-mail' )->set_width(20),
+				Field::make('date', 'rev_date', 'Дата отзыва' )->set_width(20),
+				Field::make('select', 'rev_reiting', 'Оценка' )->add_options( array(
+					'1' => '1',
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
+					'5' => '5'
+				) )->set_width(20),
+				Field::make('rich_text', 'rev_text', 'Текст отзыва')->set_width(100),
+				Field::make('rich_text', 'rev_otv', 'Ответ')->set_width(100)				
+			) ),
+			
+			
 			
 		  ));
 

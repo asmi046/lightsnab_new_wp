@@ -123,9 +123,10 @@
           }
         ?>
         </div>
-          <div class = "s_text">
+          <div class = "s_text s_text_desc">
             <? echo apply_filters( 'the_content', carbon_get_the_post_meta('offer_fulltext')); ?>
           </div>
+
 
       </div>
       <div class="product-info">
@@ -190,7 +191,126 @@
           Товар добавлен в корзину. В принципе, можно <a href = "<?echo get_the_permalink(79);?>">оформить заказ</a>.
         </div>    
 
+        
+
+        <noindex>
+          <div class = "s_text s_text_mob">
+              <? echo apply_filters( 'the_content', carbon_get_the_post_meta('offer_fulltext')); ?>
+          </div>
+        </noindex>
+
+          
+
       </div>
     </div>
+
+    <div class = "revSection">
+                <h2>Отзывы о продукте</h2>
+                <div class = "reviews">
+                    <?
+                      $rev = carbon_get_the_post_meta('offer_rev');
+                      if($rev) 
+                
+                        foreach($rev as $item) {
+                    ?>
+                        <div class = "rev">
+                            <h3 class = "name"><? echo $item["rev_name"]; ?></h3>
+                            <p class = "date"><? echo date("d.m.Y", strtotime($item["rev_date"])); ?></p>
+                            <div class = "reiting">
+                              <div class = "starReitingStatic">
+                                <input type = "radio" name = "reiting" id = "r5" <?if ($item["rev_reiting"] === 5) echo "checked"; ?> value = "5"/>
+                                <label for="r5"></label>
+                                <input type = "radio" name = "reiting" id = "r4" <?if ($item["rev_reiting"] === 4) echo "checked"; ?> value = "4"/>
+                                <label for="r4"></label>
+                                <input type = "radio" name = "reiting" id = "r3" <?if ($item["rev_reiting"] === 3) echo "checked"; ?> value = "3"/>
+                                <label for="r3"></label>
+                                <input type = "radio" name = "reiting" id = "r2" <?if ($item["rev_reiting"] === 2) echo "checked"; ?> value = "2"/>
+                                <label for="r2"></label>
+                                <input type = "radio" name = "reiting" id = "r1" <?if ($item["rev_reiting"] === 1) echo "checked"; ?> value = "1"/>
+                                <label for="r1"></label>
+                              </div>
+
+                        </div>
+                            <div class = "text">
+                                <?
+                                  echo apply_filters('the_content', $item["rev_text"]);
+                                ?>
+                            </div>
+
+                            <? if (!empty($item["rev_otv"])) {?>
+                              <div class = "otv">
+                                  <p class = "otvZag">Ответ:</p>
+                                  <?
+                                    echo apply_filters('the_content', $item["rev_otv"]);
+                                  ?>
+                              </div>
+                            <?}?>
+
+                        </div> 
+                    <?}?>
+                </div>
+
+                <div class = "reviewsForm">
+                  <form action="#" method="get" class="rev-form__form">
+                    <input type = "hidden" name = "otz_tovname" id = "otz_tovname" value = "<?the_title();?>">
+                    <div class = "form-line">
+                      <label for = "otz_fio">Имя, Фамилия*</label>
+                      <div class="form-item">    
+                        <input id="otz_fio" name="otz_fio" class="form-line__input" placeholder="Например, Александр" maxlength="255" type="text">
+                      </div>
+                    </div>
+
+                    <div class="form-line">
+                      <label for="otz_email" id="p_id_email" class="form-label">Эл. почта *</label>
+                        <div class="form-item">    
+                          <input id="otz_email" name="otz_email" class="form-line__input" placeholder="alex-ivanov@gmail.com" maxlength="255" type="email">
+                        </div>
+                    </div>
+
+                    <div class="form-line">
+                      <label for="id_phone" id="p_id_phone" class="form-label">Ваша оценка*</label>
+                      <div class="form-item">    
+                        <div class = "starReiting">
+                          <input type = "radio" name = "reiting" id = "v5" value = "5"/>
+                          <label for="v5" title="Оценка «5»"></label>
+                          <input type = "radio" name = "reiting" id = "v4" value = "4"/>
+                          <label for="v4" title="Оценка «4»"></label>
+                          <input type = "radio" name = "reiting" id = "v3" value = "3"/>
+                          <label for="v3" title="Оценка «3»"></label>
+                          <input type = "radio" name = "reiting" id = "v2" value = "2"/>
+                          <label for="v2" title="Оценка «2»"></label>
+                          <input type = "radio" name = "reiting" id = "v1" value = "1"/>
+                          <label for="v1" title="Оценка «1»"></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-line">
+                      <label for="otz_comment" id="p_id_comment" class="form-label">Комментарии*</label>
+                      <div class="form-item opt-textarea">    
+                        <textarea cols="40" id="otz_comment" name="otz_comment" rows="10"></textarea>
+                        <div class="form-help-text">Напишите что вы думаете об этом продукте</div>  
+                      </div>
+                    </div>
+
+                    <div class="form-line">
+                      <label for="otz_i_agree" id="p_id_i_agree" class="form-label">Я согласен (-на)</label>
+                      <div class="form-item form-item-policy">    
+                        <input checked id="otz_i_agree" name="otz_i_agree" class="chek-agree" type="checkbox">
+                        <div class="form-help-text">Ставя отметку, я даю своё согласие на обработку моих персональных данных в соответствии с законом №152-ФЗ "О персональных данных" от 27.07.2006 и <a href="/page/i-agree/">принимаю условия пользовательского соглашения и политики в области обработки персональных данных</a>.</div>
+                      </div>
+                    </div>
+
+                    <div class = "form_submit_line btn-wrapper">
+                      <button id = "otz_send_btn" type = "button" class = "all-link opt-btn">Оставить отзыв</button>
+                      <div id = "otz_no_feild" class = "no_feild" style = "display:none;">
+                        Заполните все обязательные поля помеченные <span style = "color:#d3820f;">"*"</span>
+                      </div>
+                    </div>
+
+                    </form>
+                </div>
+          </div>      
+
   </div>
 </section>

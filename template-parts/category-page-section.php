@@ -10,7 +10,7 @@ $ancestors = get_ancestors( $categoryID, 'lightcat' );
 				yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
 			}
 		?> 
-	  <div class="category-descr"><?echo category_description();?></div>
+	  
       <ul class="category-menu category-menu-2 ul-clean">
             <?
 				$sparam =  [
@@ -47,6 +47,7 @@ $ancestors = get_ancestors( $categoryID, 'lightcat' );
 
 	<select id = "mobile_type_selector" class = "mobile_selectors mobile_type_selector">			
 		<? echo $options; ?>
-	</select>			
+	</select>
+			
 </div>
 </section>
