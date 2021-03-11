@@ -215,6 +215,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   if (otzSendBtn != undefined) 
   otzSendBtn.onclick = function (e) {
     let name = document.querySelector('.rev-form__form input[name="otz_fio"]').value;
+    let tovID = document.querySelector('.rev-form__form input[name="otz_tovid"]').value;
     let tovName = document.querySelector('.rev-form__form input[name="otz_tovname"]').value;
     let mail = document.querySelector('.rev-form__form input[name="otz_email"]').value;
     let reiting = document.querySelector('.rev-form__form input[name="reiting"]').value;
@@ -225,7 +226,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     console.log(reiting);
     console.log(name);
     console.log(mail);
-    console.log(comment);
+    console.log(tovID);
 
     if ((reiting == "")||(name == "")||(mail == "")||(comment == "")) 
     {
@@ -239,6 +240,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     params.append('name', name);
     params.append('mail', mail);
     params.append('tovname', tovName);
+    params.append('tovid', tovID);
     params.append('comment', comment);
     params.append('reiting', reiting);
 

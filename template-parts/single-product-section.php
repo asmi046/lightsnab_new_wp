@@ -210,7 +210,7 @@
                     <?
                       $rev = carbon_get_the_post_meta('offer_rev');
                       if($rev) 
-                
+                      $i = 0;
                         foreach($rev as $item) {
                     ?>
                         <div class = "rev">
@@ -218,15 +218,15 @@
                             <p class = "date"><? echo date("d.m.Y", strtotime($item["rev_date"])); ?></p>
                             <div class = "reiting">
                               <div class = "starReitingStatic">
-                                <input type = "radio" name = "reiting" id = "r5" <?if ($item["rev_reiting"] === 5) echo "checked"; ?> value = "5"/>
+                                <input type = "radio" name = "reiting<?echo $i;?>" id = "r5" <?if ($item["rev_reiting"] === 5) echo "checked"; ?> value = "5"/>
                                 <label for="r5"></label>
-                                <input type = "radio" name = "reiting" id = "r4" <?if ($item["rev_reiting"] === 4) echo "checked"; ?> value = "4"/>
+                                <input type = "radio" name = "reiting<?echo $i;?>" id = "r4" <?if ($item["rev_reiting"] === 4) echo "checked"; ?> value = "4"/>
                                 <label for="r4"></label>
-                                <input type = "radio" name = "reiting" id = "r3" <?if ($item["rev_reiting"] === 3) echo "checked"; ?> value = "3"/>
+                                <input type = "radio" name = "reiting<?echo $i;?>" id = "r3" <?if ($item["rev_reiting"] === 3) echo "checked"; ?> value = "3"/>
                                 <label for="r3"></label>
-                                <input type = "radio" name = "reiting" id = "r2" <?if ($item["rev_reiting"] === 2) echo "checked"; ?> value = "2"/>
+                                <input type = "radio" name = "reiting<?echo $i;?>" id = "r2" <?if ($item["rev_reiting"] === 2) echo "checked"; ?> value = "2"/>
                                 <label for="r2"></label>
-                                <input type = "radio" name = "reiting" id = "r1" <?if ($item["rev_reiting"] === 1) echo "checked"; ?> value = "1"/>
+                                <input type = "radio" name = "reiting<?echo $i;?>" id = "r1" <?if ($item["rev_reiting"] === 1) echo "checked"; ?> value = "1"/>
                                 <label for="r1"></label>
                               </div>
 
@@ -247,11 +247,15 @@
                             <?}?>
 
                         </div> 
-                    <?}?>
+                    <?
+                    $i++;  
+                  }
+                  ?>
                 </div>
 
                 <div class = "reviewsForm">
                   <form action="#" method="get" class="rev-form__form">
+                    <input type = "hidden" name = "otz_tovid" id = "otz_tovid" value = "<?the_ID();?>">
                     <input type = "hidden" name = "otz_tovname" id = "otz_tovname" value = "<?the_title();?>">
                     <div class = "form-line">
                       <label for = "otz_fio">Имя, Фамилия*</label>

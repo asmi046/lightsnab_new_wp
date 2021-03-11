@@ -66,7 +66,7 @@ function my_assets_admin(){
 }
 
 
-define("ALL_VERSION", "1.0.23");
+define("ALL_VERSION", "1.0.25");
 
 // Подключение стилей и nonce для Ajax и скриптов во фронтенд 
 add_action( 'wp_enqueue_scripts', 'my_assets' );
@@ -251,6 +251,27 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 			$mail_content .=  "<strong>Комментарий: </strong>".$_REQUEST["comment"]."<br/>";
 
 			if (wp_mail($adr_to_send, "Отзыв на товар - ".$_REQUEST["tovname"]." - c сайта Lightsnab", $mail_content, $headers)) {
+				
+				if (carbon_get_theme_option("load_rew"))
+				{
+					$allRev = carbon_get_post_meta($_REQUEST["tovid"], "offer_rev");
+
+					add_post_meta($_REQUEST["tovid"], '_offer_rev|rev_name|'.count($allRev).'|0|value', $_REQUEST["name"], true );
+					add_post_meta($_REQUEST["tovid"], '_offer_rev|rev_mail|'.count($allRev).'|0|value', $_REQUEST["mail"], true );
+					add_post_meta($_REQUEST["tovid"], '_offer_rev|rev_reiting|'.count($allRev).'|0|value', $_REQUEST["reiting"], true );
+					add_post_meta($_REQUEST["tovid"], '_offer_rev|rev_date|'.count($allRev).'|0|value', date("Y-m-d"), true );
+					add_post_meta($_REQUEST["tovid"], '_offer_rev|rev_text|'.count($allRev).'|0|value', $_REQUEST["comment"], true );
+				}
+				// carbon_set_post_meta( $_REQUEST["tovid"], 'offer_rev', array(
+				// 	array(
+				// 		"rev_name" => $_REQUEST["name"],
+				// 		"rev_mail" => $_REQUEST["mail"],
+				// 		"rev_date" => date("Y-m-d"),
+				// 		"rev_reiting" => $_REQUEST["reiting"],
+				// 		"rev_text" => $_REQUEST["comment"]
+				// 	)
+				// ));
+
 				wp_die(json_encode(array("send" => true )));
 			}
 			else {

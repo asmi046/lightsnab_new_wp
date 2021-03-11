@@ -13,7 +13,8 @@ use Carbon_Fields\Field;
 
 Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
 		->add_fields( array(
-			Field::make( 'text', 'mail_to_send', 'E-mail для отправки' ),
+			Field::make( 'text', 'mail_to_send', 'E-mail для отправки' )->set_width(50),
+			Field::make( 'checkbox', 'load_rew', 'Принимать отзывы' )->set_option_value('no')->set_width(50),
 			Field::make('rich_text', 'main_fulltext_top', 'Текст для главной страницы (Верхний)')->set_width(100),
 			Field::make('rich_text', 'main_fulltext', 'Текст для главной страницы (SEO)')->set_width(100),
 			Field::make('rich_text', 'obmen_fulltext', 'Текст в раздел обмен возврат')->set_width(100),
