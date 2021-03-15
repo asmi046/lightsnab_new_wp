@@ -54,7 +54,7 @@ get_header(); ?>
                     <label for = "id_fio">Имя, Фамилия*</label>
                     <div class="form-item">    
                         <input id="id_fio" maxlength="255" name="fio" v-model="name" type="text" placeholder="Например, Александр">
-                        <!-- <div class="form-help-text">Например, Алина.</div> -->
+                        
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@ get_header(); ?>
                     <label for="id_email" id="p_id_email" class="form-label">E-mail*</label>
                     <div class="form-item">    
                         <input id="id_email" maxlength="255" name="email" v-model="mail"  type="email" placeholder="alex-ivanov@gmail.com">
-                        <!-- <div class="form-help-text">alina-ivanova@gmail.com</div>   -->
+                        
                     </div>
                 </div>
 
@@ -70,7 +70,7 @@ get_header(); ?>
                     <label for="id_phone" id="p_id_phone" class="form-label">Телефон*</label>
                     <div class="form-item">    
                         <input id="id_phone" maxlength="255" name="phone" v-model="phone" type="text" placeholder="+7-991-441-48-43">
-                        <!-- <div class="form-help-text">+7-994-444-48-44</div> -->
+                        
                     </div>
                 </div>
 
