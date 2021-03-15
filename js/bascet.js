@@ -121,6 +121,8 @@ Vue.component('bascetform', {
                 return;
             }
 
+            this.bascet = JSON.parse(localStorage.getItem("cart"));
+
             var params = new URLSearchParams();
             params.append('action', 'send_cart');
             params.append('nonce', allAjax.nonce);
