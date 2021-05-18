@@ -217,7 +217,133 @@
             array( 
                 "cat" => "Консоли",
                 "pages" => array(
-                    "https://loft-concept.ru/catalog/commode/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=2",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=3",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=4",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=5",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=6",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=7",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=8",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=9",
+                    "https://loft-concept.ru/catalog/consol/?PAGEN_4=10",
+                )
+            ),
+
+            array( 
+                "cat" => "Шкафы и буфеты",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/cabinet/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/cabinet/?PAGEN_4=2",
+                    "https://loft-concept.ru/catalog/cabinet/?PAGEN_4=3",
+                    "https://loft-concept.ru/catalog/cabinet/?PAGEN_4=4",
+                    "https://loft-concept.ru/catalog/cabinet/?PAGEN_4=5",
+                    "https://loft-concept.ru/catalog/cabinet/?PAGEN_4=6",
+                    "https://loft-concept.ru/catalog/cabinet/?PAGEN_4=7",
+                )
+            ),
+
+            array( 
+                "cat" => "Сундуки",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/box-chest/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/box-chest/?PAGEN_4=2",
+                    "https://loft-concept.ru/catalog/box-chest/?PAGEN_4=3",
+                )
+            ),
+
+            array( 
+                "cat" => "Приставные столики и табуреты",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=2",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=3",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=4",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=5",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=6",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=7",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=8",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=9",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=10",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=11",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=12",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=13",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=14",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=15",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=16",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=17",
+                    "https://loft-concept.ru/catalog/stool-and-pouf/?PAGEN_4=18",
+                )
+            ),
+
+            array( 
+                "cat" => "TV-тумбы",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/tv_tumby/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/tv_tumby/?PAGEN_4=2",
+                )
+            ),
+            
+            array( 
+                "cat" => "Витрины",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/vitriny/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/vitriny/?PAGEN_4=2",
+                )
+            ),
+
+            array( 
+                "cat" => "Кровати",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/krovati/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/krovati/?PAGEN_4=2",
+                )
+            ),
+
+            array( 
+                "cat" => "Оттоманки, банкетки, пуфы",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=2",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=3",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=4",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=5",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=6",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=7",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=8",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=9",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=10",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=11",
+                    "https://loft-concept.ru/catalog/ottomanki_i_banketki/?PAGEN_4=12",
+                    
+                )
+            ),
+
+            array( 
+                "cat" => "Стеллажи",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/stellazhi/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/stellazhi/?PAGEN_4=2",
+                    "https://loft-concept.ru/catalog/stellazhi/?PAGEN_4=3",
+                    "https://loft-concept.ru/catalog/stellazhi/?PAGEN_4=4",
+                    "https://loft-concept.ru/catalog/stellazhi/?PAGEN_4=5",
+                    "https://loft-concept.ru/catalog/stellazhi/?PAGEN_4=6",
+                    "https://loft-concept.ru/catalog/stellazhi/?PAGEN_4=7",
+                    "https://loft-concept.ru/catalog/stellazhi/?PAGEN_4=8",
+                    
+                    
+                )
+            ),
+
+            array( 
+                "cat" => "Тумбы",
+                "pages" => array(
+                    "https://loft-concept.ru/catalog/tumby/?PAGEN_4=1",
+                    "https://loft-concept.ru/catalog/tumby/?PAGEN_4=2",
+                    "https://loft-concept.ru/catalog/tumby/?PAGEN_4=3",
+                    "https://loft-concept.ru/catalog/tumby/?PAGEN_4=4",
+                    "https://loft-concept.ru/catalog/tumby/?PAGEN_4=5",
+                    "https://loft-concept.ru/catalog/tumby/?PAGEN_4=6"
                 )
             ),
             
