@@ -19,6 +19,7 @@
     "send_pars": "scp -C -r pars u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
     "send_pars_one": "scp -C pars/alllist-mebel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_one1": "scp -C pars/pages-mebel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
+    "send_pars_one2": "scp -C pars/parsTov-mebel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     
     "send_inexcel": "scp -C  pars/inexcel/inexcel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "mk_part_dir": "ssh u0743099@ftp.light-snab.ru \"mkdir -p www/lightsnab.ru/wp-content/themes/light-shop/template-parts\"",
