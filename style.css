@@ -1480,6 +1480,7 @@ img.mfp-img {
 .slick-slide img {
     display: block;
     border: 1px solid #e1e1e1;
+    object-fit: contain;
 }
 .slick-slide.slick-loading img {
     display: none;

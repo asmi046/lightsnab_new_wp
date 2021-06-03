@@ -29,7 +29,7 @@ $ancestors = get_ancestors( $categoryID, 'lightcat' );
 					$categories = get_categories( $sparam );
 				}	
 
-				$options = "<option selected disabled >-Выберите тип светильника-</option>";
+				$options = "<option selected disabled >-Выберите подкатегорию-</option>";
 
 				if( $categories ){
 					foreach( $categories as $cat ){
