@@ -1,13 +1,23 @@
 <?
+    //php www/lightsnab.ru/wp-content/themes/light-shop/pars/setDescr.php
     require_once("../../../../wp-config.php");
         
     // параметры по умолчанию
     $posts = get_posts( array(
         'numberposts' => 1000,
         'post_type' => "light",
-        'offset' => 4000
+        'offset' => 4002,
+
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'lightcat',
+                'field'    => 'id',
+                'terms'    => 113
+            )
+        )
     ) );
 
+    $counter = 0;
     foreach( $posts as $post ){
         
         // if (!has_post_thumbnail( $post->ID )) {
@@ -20,10 +30,10 @@
         // if ($post->ID != 27063) continue;
 
         $curPrice = carbon_get_post_meta($post->ID,"offer_price");
-        $curPriceNew = round($curPrice * 1.25);
+        $curPriceNew = round($curPrice * 0.9);
         update_post_meta( $post->ID, '_offer_price', $curPriceNew);    
         
-        echo $curPrice . " - " . $curPriceNew."\n\r";
+        echo $post->post_title . " -> " . $curPrice . " - " . $curPriceNew."\n\r";
         
         $modif = carbon_get_the_post_meta('offer_modification');
         if($modif) {
@@ -32,7 +42,7 @@
                 
 
                 $curPrice = $item["mod_price"];
-                $curPriceNew = round($curPrice * 1.2);
+                $curPriceNew = round($curPrice * 0.9);
                 
                 carbon_set_post_meta( $post->ID, 'offer_modification['.$i.']/mod_price', $curPriceNew );
 
@@ -43,6 +53,8 @@
         }
         echo "\n\r";
         
+        // if ($counter == 0) break;
+
         // echo $post->post_title."\n\r";
     //     $descr = get_post_meta( $post->ID, '_offer_smile_descr', true);
         
@@ -50,6 +62,8 @@
     //         update_post_meta( $post->ID, '_offer_smile_descr', "Товар: ".$post->post_title );
     //         echo $post->post_title."\n\r";
     //     } 
+
+        $counter ++; 
      }
 
 
