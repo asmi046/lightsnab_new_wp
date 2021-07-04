@@ -25,10 +25,17 @@
                 continue;
             }
 
-            $html = file_get_html($tt->lnk);
+            $context = stream_context_create(
+                array(
+                    "http" => array(
+                        "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+                    )
+                )
+            );
 
-            //$html = file_get_html("https://loft-concept.ru/catalog/mebel_inkrustirovannaya_kostyu/bolshie_dveri_inkrustirovannye_kostyu/");
+            $html = file_get_html($tt->lnk, false, $context);
 
+            
             $tovarInfo = array();
             
             
@@ -37,16 +44,19 @@
             $tovarInfo["subcat"] = $tt->cat;
             
             $tovarInfo["name"] = $html->find('h1')[0]->plaintext;
-            // $tovarInfo["sku"] = str_replace(array(" ","Артикул:"), "", $html->find('.product-summary')[0]->plaintext);
-            $tovarInfo["price"] = $tt->price;
+            
+            $rub_price = trim(str_replace(array(" ","USD","руб.","₽","$",",",",00",".00"), "", $html->find('.price .money')[0]->plaintext));
+            $rub_price = round ((float)$rub_price*72);
+
+            $tovarInfo["price"] = $rub_price;
 
             // if (!empty($html->find('#product-description')[0])) $tovarInfo["description"] = $html->find('#product-description')[0]->children(0)->children(0)->plaintext;;
             
-            if (!empty($html->find('.detail-text')[0])) 
+            if (!empty($html->find('h3 em')[0])) 
             {
                 
 
-                $textDescr = $html->find('.detail-text')[0]->plaintext;
+                $textDescr = $html->find('h3 em')[0]->plaintext;
 
                 $tovarInfo["description"] = trim(strip_tags($textDescr));
                 
@@ -55,34 +65,37 @@
              
             
             $tovarInfo["caracter"] = array();
-            $table = $html->find('#mainproperties')[0];
+            // $table = $html->find('.span7 p')[0];
 
-            if (!empty($table))
-            foreach($table->find('tr') as $cr) {
-                $crLine = $cr->find("td");
-                $toc["name"] = trim($crLine[0]->plaintext);
-                $toc["value"] = trim($crLine[1]->plaintext);
+           // if (!empty($table))
+            foreach($html->find('.span7 p') as $cr) {
+                $tarr = explode(":", $cr->plaintext);
+                $toc["name"] = trim($tarr[0]);
+                $toc["value"] = trim($tarr[1]);
                 
-                if ($toc["name"] === "Место использования") $toc["value"] = str_replace (array(" ", ""), "", $toc["value"] );
+                // if ($toc["name"] === "Место использования") $toc["value"] = str_replace (array(" ", ""), "", $toc["value"] );
                 
                 
-                $tovarInfo["caracter"][] =  $toc;
-                if ($toc["name"] === "Артикул") $tovarInfo["sku"] = $toc["value"];
+                $tovarInfo["caracter"][] =   $toc;
+                // if ($toc["name"] === "Артикул") $tovarInfo["sku"] = $toc["value"];
             }
 
      
+            $tovarInfo["sku"] = "LH-".$indexAdd;;
+
             $tovarInfo["images"] = array();
 
             
-            $img["lnk"] = "https://loft-concept.ru".$html->find('.detail-flexslider-img')[0]->src;
+            $img["lnk"] = "https:".$html->find('.image img')[0]->src;
             $tovarInfo["images"][] =  $img;
 
-            foreach($html->find('.carousel-top') as $cr) {
-                $img["lnk"] = "https://loft-concept.ru".$cr->src;
+            foreach($html->find('.thumbs a') as $cr) {
+                $img["lnk"] = "https:".$cr->href;
             
                 $tovarInfo["images"][] =  $img;
             }
 
+            print_r($tovarInfo);
             // --------------- Делаем пост --------------------
 
             $to_post_meta  = [ 
@@ -118,6 +131,17 @@
              $postCat = array();
             
             // ----- Категории люстр
+
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Настенные зеркала")) $postCat = array(113,129);
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Напольные зеркала")) $postCat = array(113,130);
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Консоли и тумбы")) $postCat = array(113,131);
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Кофейные и журнальные столы")) $postCat = array(113,132);
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Люстры и подвесные светильники")) $postCat = array(113,133);
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Настенные светильники и бра")) $postCat = array(113,134);
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Торшеры и напольные лампы")) $postCat = array(113,135);
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Диваны, Кресла, Стулья")) $postCat = array(113,136);
+            if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Настольные лампы")) $postCat = array(113,18);
+ 
 
             if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Диваны")) $postCat = array(113,114);
             if (($tovarInfo["cat"] === "Мебель")&&($tovarInfo["subcat"] === "Кресла")) $postCat = array(113,115);
