@@ -105,6 +105,18 @@
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
 
+        $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
+
+        if (empty($galery)) {
+            echo "Нет фото! \n\r";
+            continue;
+        }
+
+        if (file_exists($galery[0]["filename"])) {
+            echo "Нет фото! \n\r";
+            continue;
+        }
+
         $to_post_meta  = [ 
             '_offer_smile_descr' => $tovarInfo["kratkoe"], 
             '_offer_type' => "Цокольный (Со сменными лампами)", 
@@ -173,7 +185,7 @@
         wp_set_object_terms( $post_id, explode(',', $tovarInfo["style"]), "lightstyle" );
 
         $indexImg = 0;
-        $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
+        
         foreach ($galery as $img) {
             $img1 = get_bloginfo("template_url").'/pars/inexcel/photo/'. $img["filename"];
             $ttl = $img["alttitle"];
