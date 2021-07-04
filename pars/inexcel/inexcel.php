@@ -1,4 +1,6 @@
 <?
+    //php www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/inexcel.php
+
     ini_set('max_execution_time', 900);
 
     require_once("../../../../../wp-config.php");
@@ -10,7 +12,7 @@
     
     require_once dirname(__FILE__) . '/Classes/PHPExcel.php';
 
-    $inputFileName = './data.xlsx';
+    $inputFileName = './data_04_07_2021.xlsx';
 
     $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
     
@@ -20,28 +22,30 @@
     $i = 3;
     
     echo "Начато добавление в БД из Excel\n\r";
-
+    $wpdb->show_errors(); // включит показ ошибок
     $wpdb->query( "TRUNCATE `transfer_main`" );
     while (!empty($objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue()))
     {
+        // echo $objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue()."\n\r";
         $wpdb->insert( 'transfer_main', array (
                 "naimenovanie" => !empty($objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue():"",
                 "kategoria" => !empty($objPHPExcel->getSheet(0)->getCell('B'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('B'.$i)->getValue():"",
                 "kategoria_pop" => !empty($objPHPExcel->getSheet(0)->getCell('C'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('C'.$i)->getValue():"",
                 "style" => !empty($objPHPExcel->getSheet(0)->getCell('D'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('D'.$i)->getValue():"",
-                "kratkoe" => !empty($objPHPExcel->getSheet(0)->getCell('F'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('F'.$i)->getValue():"",
-                "nazvanie" => !empty($objPHPExcel->getSheet(0)->getCell('G'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('G'.$i)->getValue():"",
-                "metka" => !empty($objPHPExcel->getSheet(0)->getCell('H'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('H'.$i)->getValue():"",
-                "dluapoiska" => !empty($objPHPExcel->getSheet(0)->getCell('I'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('I'.$i)->getValue():"",
-                "seria" => !empty($objPHPExcel->getSheet(0)->getCell('J'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('J'.$i)->getValue():"",
-                "articulbase" => !empty($objPHPExcel->getSheet(0)->getCell('K'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('K'.$i)->getValue():"",
-                "nalichie" => !empty($objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue():"",
-                "seotext" => !empty($objPHPExcel->getSheet(0)->getCell('M'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('M'.$i)->getValue():""
+                "kratkoe" => !empty($objPHPExcel->getSheet(0)->getCell('E'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('E'.$i)->getValue():"",
+                "nazvanie" => !empty($objPHPExcel->getSheet(0)->getCell('F'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('F'.$i)->getValue():"",
+                "metka" => !empty($objPHPExcel->getSheet(0)->getCell('G'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('G'.$i)->getValue():"",
+                "dluapoiska" => !empty($objPHPExcel->getSheet(0)->getCell('H'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('H'.$i)->getValue():"",
+                "seria" => !empty($objPHPExcel->getSheet(0)->getCell('I'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('I'.$i)->getValue():"",
+                "articulbase" => !empty($objPHPExcel->getSheet(0)->getCell('J'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('J'.$i)->getValue():"",
+                "nalichie" => !empty($objPHPExcel->getSheet(0)->getCell('K'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('K'.$i)->getValue():"",
+                "seotext" => !empty($objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue():""
             ) );
 
         
         $i++;
     } 
+ 
     
     echo "Добавлена основная таблица\n\r";
 
@@ -108,14 +112,15 @@
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
         if (empty($galery)) {
-            echo "Нет фото! \n\r";
+            //echo "Нет фото! \n\r";
             continue;
         }
 
-        if (file_exists($galery[0]["filename"])) {
-            echo "Нет фото! \n\r";
+        if (!file_exists(__DIR__.'/photo/'.$galery[0]["filename"])) {
+            //echo __DIR__.'/photo/'.$galery[0]["filename"]." - Нет фото! \n\r";
             continue;
         }
+
 
         $to_post_meta  = [ 
             '_offer_smile_descr' => $tovarInfo["kratkoe"], 

@@ -21,7 +21,8 @@
     "send_pars_one1": "scp -C pars/pages-mebel2.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_one2": "scp -C pars/parsTov-mebel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     
-    "send_inexcelall": "scp -C -r pars/inexcel/ u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
+    "send_inexcelall": "scp -C -r pars/inexcel/ u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
+    "send_inexcel_data": "scp -C  pars/inexcel/data_04_07_2021.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_inexcel": "scp -C  pars/inexcel/inexcel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "mk_part_dir": "ssh u0743099@ftp.light-snab.ru \"mkdir -p www/lightsnab.ru/wp-content/themes/light-shop/template-parts\"",
     "send_part": "scp -C -r template-parts u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
