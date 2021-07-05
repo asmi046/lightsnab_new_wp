@@ -108,19 +108,39 @@
 
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
-
+        $tovIndex ++;
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
+
+
+        $args = array(
+            'posts_per_page' => -1,
+            'post_type' => 'light',
+            
+            'meta_query' => [
+                    'relation' => 'OR',
+                    [
+                        'key' => '_offer_sku',
+                        'value' => (string)$tovarInfo["articulbase"]
+                    ]
+            ]
+          );
+        $posts = new WP_Query($args);
+
+        if (!empty($posts)) {
+            echo "#" . $tovIndex . " " . $tovarInfo["naimenovanie"]." - Пост уже существует  \n\r";
+            continue; 
+        }
+
         if (empty($galery)) {
-            //echo "Нет фото! \n\r";
+            echo "#" . $tovIndex . " " . $tovarInfo["naimenovanie"]." - Нет фото в базе! \n\r";
             continue;
         }
 
         if (!file_exists(__DIR__.'/photo/'.$galery[0]["filename"])) {
-            //echo __DIR__.'/photo/'.$galery[0]["filename"]." - Нет фото! \n\r";
+            echo "#" . $tovIndex . " " . $galery[0]["filename"]." - Нет фото в папке! \n\r";
             continue;
         }
-
 
         $to_post_meta  = [ 
             '_offer_smile_descr' => $tovarInfo["kratkoe"], 
@@ -186,6 +206,9 @@
             
         ) ) );
 
+
+        echo "#" . $tovIndex . " " . $tovarInfo["naimenovanie"]." - ДОБАВЛЕН! \n\r";
+
         wp_set_object_terms( $post_id, $postCat, "lightcat" );
         wp_set_object_terms( $post_id, explode(',', $tovarInfo["style"]), "lightstyle" );
 
@@ -204,7 +227,7 @@
             
             $indexImg++;
         }   
-        $tovIndex ++;
+        // $tovIndex ++;
 
         // if ($tovIndex > 3)
         // break;
