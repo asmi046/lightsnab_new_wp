@@ -1,8 +1,8 @@
 <?php
 
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
+// ini_set('error_reporting', E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
 
 define("SITE_PHONE", "+7 (994) 444 44 83");
 define("SITE_PHONE_DOP", "+7 (994) 444 48 44");
