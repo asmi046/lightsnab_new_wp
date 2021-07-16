@@ -1,5 +1,9 @@
 <?php
 
+ini_set('error_reporting', E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
 define("SITE_PHONE", "+7 (994) 444 44 83");
 define("SITE_PHONE_DOP", "+7 (994) 444 48 44");
 define("SITE_MAIL", "sale@lightsnab.ru");
@@ -458,7 +462,20 @@ function my_navigation_template( $template, $class ){
 	';
 }
 
+function filter_wpseo_sitemap_urlimages( $images, $post_id ) { 
+	$pict = carbon_get_post_meta($post_id, 'offer_picture');
+	if($pict) {
+		$pictIndex = 0;
+		foreach($pict as $item) {
+			array_push($images, wp_get_attachment_image_src($item['gal_img'], 'full')[0]);
+		}
+	}
 
-
+	 array_push($images, 'https://www.example.com/wp-content/uploads/extra-image.jpg');
 	
+	return $images; 
+  }
+
+  add_filter( 'wpseo_sitemap_urlimages', 'filter_wpseo_sitemap_urlimages', 10, 2 );
+
 ?>

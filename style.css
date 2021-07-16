@@ -32,6 +32,11 @@ h1 {
     margin: 0.67em 0; 
 }
 
+.h404 {
+    font-size: 8em;
+    margin: 40px 0;
+}
+
 h2 {
     font-size: 28px;
 }
@@ -2046,6 +2051,12 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 .about {
     padding: 60px 0;
 }
+
+.section_404 {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
 .about-title {
     flex: 1;
     margin-bottom: 30px;
