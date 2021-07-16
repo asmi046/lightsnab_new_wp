@@ -127,7 +127,9 @@
           );
         $posts = new WP_Query($args);
 
-        if (!empty($posts)) {
+        //  print_r($posts->posts);
+        // break;
+         if (!empty($posts->posts)) {
             echo "#" . $tovIndex . " " . $tovarInfo["naimenovanie"]." - Пост уже существует  \n\r";
             continue; 
         }
