@@ -2192,10 +2192,12 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     max-width: 320px;
 }
 .products-loop {
-    position: relative;
-    width: 280px;
-    margin-bottom: 58px;
-    position: relative;
+	display: flex;
+	flex-direction: column;
+  position: relative;
+  width: 280px;
+  margin-bottom: 58px;
+  position: relative;
 }
 .products-loop__new {
     display: block;
@@ -2235,6 +2237,7 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     text-transform: uppercase;
     font-size: 16px;
     flex-direction: column-reverse;
+		margin-bottom: 6px;
 }
 
 .products-loop__title {
@@ -2253,6 +2256,10 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 }
 .products-loop img:hover {
     opacity: 0.8;
+}
+
+.products-loop__btn {
+	margin-top: auto;
 }
 
 .tov_label {
