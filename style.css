@@ -3919,6 +3919,13 @@ margin-left: 0;
 
 }
 
+@media screen and (max-width: 540px) {
+	.popup__item img {
+		display: none; }
+	.popup__form-btn {
+		width: 100%; }
+}
+
 @media screen and (max-width: 500px) {
 
     .header {
@@ -3950,6 +3957,8 @@ margin-left: 0;
     height: 300px; }
   .ymaps-2-1-78-map, .ymaps-2-1-78-i-ua_js_yes, .ymaps-2-1-78-map-bg, .ymaps-2-1-78-islets_map-lang-ru {
     height: 300px !important; }
+	.popup__form-block {
+		padding: 45px 20px 35px 20px; }
 }
 
 @media screen and (max-width: 450px) {
