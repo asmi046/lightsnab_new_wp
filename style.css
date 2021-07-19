@@ -3554,7 +3554,15 @@ margin-left: 0;
   margin: 10px 0; }
 /* Popup JS End*/
 
-
+/* Стилизация скролла сайта */
+::-webkit-scrollbar {
+  overflow-y: scroll;
+  width: 7px;
+  background-color: #f9f9fd;
+}
+::-webkit-scrollbar-thumb {
+  background-color: grey;
+}
 
 
 
