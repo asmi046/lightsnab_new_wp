@@ -3938,6 +3938,13 @@ margin-left: 0;
     }
 }
 
+@media (max-width: 460px) {
+  .block__map {
+    height: 300px; }
+  .ymaps-2-1-78-map, .ymaps-2-1-78-i-ua_js_yes, .ymaps-2-1-78-map-bg, .ymaps-2-1-78-islets_map-lang-ru {
+    height: 300px !important; }
+}
+
 @media screen and (max-width: 450px) {
     .about {
         margin-top: 20px;
