@@ -3614,6 +3614,10 @@ margin-left: 0;
   margin: 0;
 }
 
+.promotions {
+	padding-bottom: 35px;
+}
+
 .promotions__row {
 	display: flex;
 	justify-content: space-between;
