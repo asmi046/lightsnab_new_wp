@@ -20,36 +20,22 @@ get_header(); ?>
 		?> 
 	  
     <div class="promotions__row">
-
-      <div class="promotions__item">
-        <div class="promotions__item-img">
-          <img src="<?php echo get_template_directory_uri();?>/img/opt-bg-2.jpg" alt="">
-        </div> 
-        <p>Скидка 15% на светильники</p>
-      </div>
-
-      <div class="promotions__item">
-        <div class="promotions__item-img">
-          <img src="<?php echo get_template_directory_uri();?>/img/opt-bg-2.jpg" alt="">
-        </div> 
-        <p>Скидка 15% на светильники</p>
-      </div>
-
-      <div class="promotions__item">
-        <div class="promotions__item-img">
-          <img src="<?php echo get_template_directory_uri();?>/img/opt-bg-2.jpg" alt="">
-        </div> 
-        <p>Скидка 15% на светильники</p>
-      </div>
-
-      <div class="promotions__item">
-        <div class="promotions__item-img">
-          <img src="<?php echo get_template_directory_uri();?>/img/opt-bg-2.jpg" alt="">
-        </div> 
-        <p>Скидка 15% на светильники</p>
-      </div>
-
-
+      <?	$pict = carbon_get_theme_option('promo_complex');
+			  if($pict) {
+			  	$pictIndex = 0;
+					  foreach($pict as $item) {
+	    ?>
+        <div class="promotions__item"> 
+          <div class="promotions__item-img">
+            <img src ="<?php echo wp_get_attachment_image_src($item['promo_img'], 'large')[0];?>" />
+          </div> 
+          <p><? echo $item['promo_text']; ?></p> 
+        </div>
+	    <?
+	      $pictIndex++; 
+	      	}
+  	    }
+	    ?>
     </div>
 			
 </div>

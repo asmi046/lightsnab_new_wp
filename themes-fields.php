@@ -19,10 +19,22 @@ Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
 			Field::make('rich_text', 'main_fulltext', 'Текст для главной страницы (SEO)')->set_width(100),
 			Field::make('rich_text', 'obmen_fulltext', 'Текст в раздел обмен возврат')->set_width(100),
 			))
+		->add_tab('Акции', array(
+		  Field::make('complex', 'promo_complex', 'Акции')
+  			// ->set_max(3) // Можно будет выбрать только 5 постов
+  	->add_fields(array(
+   		Field::make('image', 'promo_img', 'Фото')
+    		->set_width(30),
+    	Field::make('text', 'promo_text', 'Текст')   
+    		->set_width(30),
+    	// Field::make('text', 'link_benefit', 'Ссылка')   
+    	// 	->set_width(30),
+   	 )) 
+		))
 		->add_tab('Контакты', array(
 			Field::make( 'text', 'as_company', __( 'Название' ) )
 				->set_width(50),
-			Field::make( 'text', 'as_schedule', __( 'Режим работы' ) )
+			Field::make( 'text', 'as_schedule', __( 'Режим работы' ) ) 
 				->set_width(50),
 			Field::make( 'text', 'as_phones_1', __( 'Телефон' ) )
 				->set_width(50),
@@ -30,8 +42,8 @@ Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
 				->set_width(50),
 			Field::make( 'text', 'as_email', __( 'Email' ) )
 				->set_width(50),
-			Field::make( 'text', 'as_email_send', __( 'Email для отправки' ) ) 
-				->set_width(50),
+			// Field::make( 'text', 'as_email_send', __( 'Email для отправки' ) ) 
+			// 	->set_width(50),
 			Field::make( 'text', 'as_inn', __( 'ИНН' ) )
 				->set_width(50),
 			Field::make( 'text', 'as_orgn', __( 'ОРГН' ) )
