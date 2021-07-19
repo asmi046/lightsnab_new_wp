@@ -61,6 +61,50 @@ jQuery(document).ready(function ($) {
     ]
   });
 
+
+  // Отправка Popup 
+  $('.popup__form-btn').click(function (e) {
+
+    e.preventDefault();
+    const name = $("#form-callback-name").val();
+    const tel = $("#form-callback-tel").val();
+    const email = $("#form-callback-email").val();
+
+    if (jQuery("#form-callback-tel").val() == "") {
+      jQuery("#form-callback-tel").css("border", "1px solid red");
+      return;
+    }
+
+    // if (jQuery("#sig-inp-e").val() == ""){
+    // 	jQuery("#sig-inp-e").css("border","1px solid red");
+    // 	return;
+    // }
+
+    else {
+      var jqXHR = jQuery.post(
+        allAjax.ajaxurl,
+        {
+          action: 'sendphone',
+          nonce: allAjax.nonce,
+          name: name,
+          tel: tel,
+          email: email,
+        }
+      );
+
+      jqXHR.done(function (responce) {
+        jQuery(".headen_form_blk").hide();
+        jQuery('.SendetMsg').show();
+      });
+
+      jqXHR.fail(function (responce) {
+        alert("Произошла ошибка. Попробуйте позднее.");
+      });
+
+    }
+  });
+
+
 });
 
 
@@ -141,7 +185,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   number_format();
 
-  // Селекторы на мобильной версии
+
+  // Селекторы на мобильной версии =============================================================
 
   let subcatSelector = document.getElementById('mobile_type_selector');
 
@@ -208,9 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
       placeholderChar: '_'     // defaults to '_'
     });
 
-  //______________Отправка формы
 
-
+  // Отправка формы =============================================================================================
   if (otzSendBtn != undefined)
     otzSendBtn.onclick = function (e) {
       let name = document.querySelector('.rev-form__form input[name="otz_fio"]').value;
@@ -311,6 +355,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
+// ========================================================================================================
 
 
 //BodyLock для Popup на JS
@@ -439,4 +484,5 @@ document.addEventListener('keydown', function (e) {
     popup_close();
   }
 });
+
 
