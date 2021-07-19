@@ -20,43 +20,26 @@ get_header(); ?>
 		?> 
 	  
     <div class="reviews__block">
-
-			<div class="reviews__body">
-				<div class="reviews__img">
-					<img src="<?php echo get_template_directory_uri();?>/img/reviews-img.jpg" alt="">
-				</div>
-				<div class="reviews__content">
-					<h4 class="reviews__initials">
-						Владимир Николаевич Владимиров
-					</h4>
-					<div class="reviews__date">
-						13.07.2021г.
+		<?	$reviews = carbon_get_theme_option('reviews_complex');
+			  if($reviews) {
+			  	$reviewsIndex = 0;
+					  foreach($reviews as $item) {
+	    ?>
+				<div class="reviews__body">
+					<div class="reviews__img">
+					<img src ="<?php echo wp_get_attachment_image_src($item['reviews_img'], 'large')[0];?>" />
 					</div>
-					<p class="reviews__text">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laboriosam, pariatur ea esse voluptates dignissimos voluptate eaque ducimus, 
-						excepturi nihil consequatur nam. Iure at similique nesciunt rerum impedit nulla minus!
-					</p>
-				</div>
-			</div>	
-
-			<div class="reviews__body">
-				<div class="reviews__img">
-					<img src="<?php echo get_template_directory_uri();?>/img/reviews-img.jpg" alt="">
-				</div>
-				<div class="reviews__content">
-					<h4 class="reviews__initials">
-						Юрий Владимирович Владимиров
-					</h4>
-					<div class="reviews__date">
-						10.07.2021г.
+					<div class="reviews__content">
+						<h4 class="reviews__initials"><? echo $item['reviews_fio']; ?></h4>
+						<div class="reviews__date"><? echo $item['reviews_date']; ?></div>
+						<p class="reviews__text"><? echo $item['reviews_text']; ?></p>
 					</div>
-					<p class="reviews__text">
-						Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa laboriosam, pariatur ea esse voluptates dignissimos voluptate eaque ducimus, 
-						excepturi nihil consequatur nam. Iure at similique nesciunt rerum impedit nulla minus!
-					</p>
 				</div>
-			</div>	
-
+	    <?
+	      $reviewsIndex++; 
+	      	}
+  	    }
+	    ?>
     </div>
 			
 </div>

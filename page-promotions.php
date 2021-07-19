@@ -20,10 +20,10 @@ get_header(); ?>
 		?> 
 	  
     <div class="promotions__row">
-      <?	$pict = carbon_get_theme_option('promo_complex');
-			  if($pict) {
-			  	$pictIndex = 0;
-					  foreach($pict as $item) {
+      <?	$promo = carbon_get_theme_option('promo_complex');
+			  if($promo) {
+			  	$promoIndex = 0;
+					  foreach($promo as $item) {
 	    ?>
         <div class="promotions__item"> 
           <div class="promotions__item-img">
@@ -32,7 +32,7 @@ get_header(); ?>
           <p><? echo $item['promo_text']; ?></p> 
         </div>
 	    <?
-	      $pictIndex++; 
+	      $promoIndex++; 
 	      	}
   	    }
 	    ?>

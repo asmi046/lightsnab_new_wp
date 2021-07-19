@@ -31,6 +31,22 @@ Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
     	// 	->set_width(30),
    	 )) 
 		))
+		->add_tab('Отзывы', array(
+		  Field::make('complex', 'reviews_complex', 'Отзывы')
+  			// ->set_max(3) // Можно будет выбрать только 5 постов
+  	->add_fields(array(
+   		Field::make('image', 'reviews_img', 'Фото')
+    		->set_width(30),
+			Field::make('text', 'reviews_fio', 'ФИО')   
+    		->set_width(30),
+			Field::make('text', 'reviews_date', 'Дата')   
+    		->set_width(30),
+    	Field::make('text', 'reviews_text', 'Отзыв')   
+    		->set_width(30),
+    	// Field::make('text', 'link_benefit', 'Ссылка')   
+    	// 	->set_width(30),
+   	 )) 
+		))
 		->add_tab('Контакты', array(
 			Field::make( 'text', 'as_company', __( 'Название' ) )
 				->set_width(50),
