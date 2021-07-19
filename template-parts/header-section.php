@@ -4,7 +4,10 @@
 <div class="header-top">
 		<div class="container">
 			<div class="hamburger" id = "hamburger"></div>
-			<a href="tel:<?echo preg_replace('![^0-9]+!', '', SITE_PHONE)?>" class="header-phone"><?echo SITE_PHONE;?></a>
+			<div class="header__contacts">
+				<a href="tel:<?echo preg_replace('![^0-9]+!', '', SITE_PHONE)?>" class="header-phone"><?echo SITE_PHONE;?></a> 
+				<a href="#callback" class="header__popup-link callback _popup-link">ЗАКАЗАТЬ ЗВОНОК</a> 
+			</div>
 			<div class="header-icons__wrap">
 				<a href="<?echo get_the_permalink(399);?>" class="header-icons header-icons__search"></a>
 				<a href="<?echo get_the_permalink(79);?>" class="header-icons header-icons__cart">

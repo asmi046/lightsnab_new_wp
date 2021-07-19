@@ -1755,6 +1755,11 @@ body {
     font-family: LatoRegular, sans-serif;
     color: #333;
 }
+
+body.lock {
+  overflow: hidden;
+}
+
 input[type="submit"] {
     cursor: pointer;
     outline: 0;
@@ -1883,8 +1888,6 @@ a {
     justify-content: space-between;
 }
 
-
-
 .header-icons {
     display: block;
     width: 30px;
@@ -1930,10 +1933,33 @@ a {
     color: #fff;
 }
 
+.header__contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 190px;
+  margin-left: 6%;
+}
+
 .header-phone {
-    color: #d3820f;
-    font-size: 20px;
-    margin-left: 6%;
+  font-size: 20px;
+  color: #d3820f;
+  /* margin-left: 6%; */
+}
+
+.callback {
+  font-size: 12px !important;
+  padding: 0 !important;
+}
+
+.header__contacts .callback {
+  margin-left: 3px;
+}
+
+.block-menu__contacts .callback {
+  display: block;
+  margin-top: 3px;
+  margin-left: 33px;
 }
 
 .header-top .container {
@@ -3392,6 +3418,151 @@ margin-left: 0;
 .main_text_section {
     margin-bottom: 40px;
 }
+
+
+/* Popup JS */
+.popup {
+  -webkit-overflow-scrolling: touch;
+  z-index: 500000;
+  padding: 30px 10px;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: visibility 0.8s ease 0s;
+  -o-transition: visibility 0.8s ease 0s;
+  transition: visibility 0.8s ease 0s;
+  visibility: hidden; }
+.popup::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.8s ease 0s;
+  -o-transition: opacity 0.8s ease 0s;
+  transition: opacity 0.8s ease 0s; }
+.popup.show {
+  visibility: visible;
+  overflow: auto; }
+.popup.show::before {
+  opacity: 1; }
+.popup.show .popup__body {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1); }
+.popup._active {
+  overflow: auto;
+  visibility: visible; }
+.popup._active::before {
+  opacity: 1; }
+.popup._active .popup__body {
+  -webkit-transition: all 0.3s ease 0.2s;
+  -o-transition: all 0.3s ease 0.2s;
+  transition: all 0.3s ease 0.2s;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  border-radius: 3px; }
+.popup__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 100%;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  align-items: center; }
+.popup__body {
+  max-width: 800px;
+  width: 100%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  background: #EBEFE2;
+  overflow: hidden; }
+.popup__close {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 30;
+  background: url("img/close.svg") 0 0 no-repeat; }
+.popup__form-block {
+  width: 100%;
+  padding: 35px; }
+.popup__form-block h2 {
+  margin: 0 0 20px 0; }
+.popup__form-block p {
+  margin: 0 0 30px 0; }
+.popup__form-input {
+  width: 100%;
+  min-height: 45px;
+  padding: 0 10px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  margin-bottom: 25px; }
+.popup__form-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 18px;
+  font-family: Lato-Light, sans-serif;
+  text-transform: uppercase;
+  color: #d3820f;
+  border: 1px solid #d3820f; 
+  cursor: pointer; }
+.popup__form-btn:hover {
+  color: #fff;
+  background-color: #d3820f; }
+.popup__item img {
+  width: 40%; }
+.SendetMsg {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600; }
+.SendetMsg:before{
+  content: "";
+  width: 100%;
+  height: 70px;
+  background-image: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 507.2 507.2' style='enable-background:new 0 0 507.2 507.2;' xml:space='preserve'%3E%3Ccircle style='fill:%2332BA7C;' cx='253.6' cy='253.6' r='253.6'/%3E%3Cpath style='fill:%230AA06E;' d='M188.8,368l130.4,130.4c108-28.8,188-127.2,188-244.8c0-2.4,0-4.8,0-7.2L404.8,152L188.8,368z'/%3E%3Cg%3E%3Cpath style='fill:%23FFFFFF;' d='M260,310.4c11.2,11.2,11.2,30.4,0,41.6l-23.2,23.2c-11.2,11.2-30.4,11.2-41.6,0L93.6,272.8 c-11.2-11.2-11.2-30.4,0-41.6l23.2-23.2c11.2-11.2,30.4-11.2,41.6,0L260,310.4z'/%3E%3Cpath style='fill:%23FFFFFF;' d='M348.8,133.6c11.2-11.2,30.4-11.2,41.6,0l23.2,23.2c11.2,11.2,11.2,30.4,0,41.6l-176,175.2 c-11.2,11.2-30.4,11.2-41.6,0l-23.2-23.2c-11.2-11.2-11.2-30.4,0-41.6L348.8,133.6z'/%3E%3C/g%3E%3C/svg%3E%0A");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  float: left;
+  margin: 10px 0; }
+/* Popup JS End*/
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 1500px) {
     .container {
