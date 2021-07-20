@@ -21,19 +21,18 @@ get_header(); ?>
 
 	<h1><? the_title();?></h1> 
 
-		<ul>
-      <li>Организация: <? echo carbon_get_theme_option("as_company"); ?></li>
-			<li>Адрес: <? echo carbon_get_theme_option("as_address"); ?></li>
-			<li>ИНН: <? echo carbon_get_theme_option("as_inn"); ?></li>
-			<li>КПП: <? echo carbon_get_theme_option("as_kpp"); ?></li>
-			<li>ОРГН: <? echo carbon_get_theme_option("as_orgn"); ?></li>
-			<li>Р/С: <? echo carbon_get_theme_option("as_rs"); ?></li>
-			<li>К/С: <? echo carbon_get_theme_option("as_ks"); ?></li>
-      <li>БИК: <? echo carbon_get_theme_option("as_bik"); ?></li>
-			<li>Email: <a href="mailto:<? echo $mail = carbon_get_theme_option("as_email"); ?>"><? echo $mail; ?></a></li>
-			<li>Тел: <a href="tel:<? echo preg_replace('/[^0-9]/', '', $tel); ?>"><? echo $tel = carbon_get_theme_option("as_phones_1"); ?></a></li>
-			<li>Тел.доп: <a href="tel:<? echo preg_replace('/[^0-9]/', '', $tel); ?>"><? echo $tel = carbon_get_theme_option("as_phone_2"); ?></a></li>
-		</ul>
+  <ul> 
+	  <? $org = carbon_get_theme_option("as_company"); if (!empty($org)){?><li>Организация: <strong><? echo $org; ?></strong></li><?}?>
+		<? $adr = carbon_get_theme_option("as_address"); if (!empty($adr)){?><li>Адрес: <strong><? echo $adr; ?></strong></li><?}?>
+		<? $inn = carbon_get_theme_option("as_inn"); if (!empty($inn)){?><li>ИНН: <strong><? echo $inn; ?></strong></li><?}?>
+		<? $kpp = carbon_get_theme_option("as_kpp"); if (!empty($kpp)){?><li>КПП: <strong><? echo $kpp; ?></strong></li><?}?>
+		<? $ogrn = carbon_get_theme_option("as_orgn"); if (!empty($ogrn)){?><li>ОРГН: <strong><? echo $ogrn; ?></strong></li><?}?>
+		<? $rs = carbon_get_theme_option("as_rs"); if (!empty($rs)){?><li>Р/С: <strong><? echo $rs; ?></strong></li><?}?>
+		<? $ks = carbon_get_theme_option("as_ks"); if (!empty($ks)){?><li>К/С: <strong><? echo $ks; ?></strong></li><?}?>
+		<? $bik = carbon_get_theme_option("as_bik"); if (!empty($bik)){?><li>БИК: <strong><? echo $bik; ?></strong></li><?}?>
+		<? $mail = carbon_get_theme_option("as_email"); if (!empty($mail)){?><li>Email: <strong><a href="mailto:<? echo $mail; ?>"><? echo $mail; ?></strong></a></li><?}?>
+		<? $tel = carbon_get_theme_option("as_phones_1"); $tel2 = carbon_get_theme_option("as_phone_2"); if (!empty($tel)){?><li>Тел: <strong><a href="tel:<? echo preg_replace('/[^0-9]/', '', $tel); ?>"><? echo $tel; ?></strong></a> <a href="tel:<? echo preg_replace('/[^0-9]/', '', $tel2); ?>"><? echo $tel2; ?></strong></a></li><?}?> 
+	</ul>
 
 		<div class="block__map" id="map"></div>
 		<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script> 
