@@ -2,7 +2,7 @@
   <div class="container">
     <div class="about__wrap-flex">
       <div class="about-title">
-        <h2><span class="color-light">LIGHTSNAB.RU</span> — у нас есть люстры <br/>на любой вкус и кошелек!</h2>
+        <h1><span class="color-light">LIGHTSNAB.RU</span> — у нас есть люстры <br/>на любой вкус и кошелек!</h1>
       </div>
       <div class="about-text">
       <?

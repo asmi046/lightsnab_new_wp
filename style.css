@@ -2087,6 +2087,11 @@ background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     flex: 1;
     margin-bottom: 30px;
 }
+.about-title h1 {
+    line-height: 36px;
+    color: #1A1818;
+    margin: 0;
+}
 .about-title h2 {
     line-height: 36px;
     color: #1A1818;
