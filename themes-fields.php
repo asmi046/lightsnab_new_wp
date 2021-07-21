@@ -23,7 +23,7 @@ Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
 		  Field::make('complex', 'promo_complex', 'Акции')
   			// ->set_max(3) // Можно будет выбрать только 5 постов
   	->add_fields(array(
-   		Field::make('image', 'promo_img', 'Фото')
+   		Field::make('image', 'promo_img', 'Фото') 
     		->set_width(30),
     	Field::make('text', 'promo_text', 'Текст')   
     		->set_width(30),
