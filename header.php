@@ -15,10 +15,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_template_directory_uri();?>/img/favicons/icon16.png">
   <link rel="icon" type="image/svg+xml" sizes="any" href="<?php echo get_template_directory_uri();?>//img/favicons/iconSVG.svg"> 
 
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
   <?php wp_head();?> 
 
-  <meta name="mailru-domain" content="6RYVibgKzkiavY1a" />
+  <meta name="yandex-verification" content="a34ce6fa3f7a1a6e" />
 </head> 
 <body>
   <!-- Yandex.Metrika counter -->
