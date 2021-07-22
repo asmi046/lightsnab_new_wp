@@ -9,4 +9,5 @@
         <div class="products-loop__title"><? the_title();?></div>
         <div class="products-loop__price"><span class = "price_formator"><?echo carbon_get_post_meta(get_the_ID(),"offer_price"); ?></span> P</div>
     </div>
-</a> 
+    <div class="products-loop__btn">Подробнее...</div>
+</a>  

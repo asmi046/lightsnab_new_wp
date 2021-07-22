@@ -38,7 +38,8 @@
 					<a href="tel:<?echo preg_replace('![^0-9]+!', '', SITE_PHONE)?>"><?echo SITE_PHONE;?></a>
 					<a href="tel:<?echo preg_replace('![^0-9]+!', '', SITE_PHONE_DOP)?>"><?echo SITE_PHONE_DOP;?></a>
 					<a href="mailto:<?echo SITE_MAIL;?>"><?echo SITE_MAIL;?></a>
-				</div>
+				</div> 
+				<a href="#callback" class="header__popup-link callback _popup-link">ЗАКАЗАТЬ ЗВОНОК</a>
 
 				<div class="adr-block">
 					127247, Москва, Дмитровское ш., 100, стр. 2

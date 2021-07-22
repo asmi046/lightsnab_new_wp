@@ -21,7 +21,7 @@
 
   <meta name="yandex-verification" content="a34ce6fa3f7a1a6e" />
 </head> 
-<body>
+<body class="body">
   <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

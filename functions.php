@@ -1,5 +1,9 @@
 <?php
 
+// ini_set('error_reporting', E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+
 define("SITE_PHONE", "+7 (994) 444 44 83");
 define("SITE_PHONE_DOP", "+7 (994) 444 48 44");
 define("SITE_MAIL", "sale@lightsnab.ru");
@@ -11,7 +15,7 @@ define("COMPANY_NAME", "Магазин LightSnab");
 define("MAIL_RESEND", "noreply@light-snab.ru");
 
 add_image_size( "togalery", 900, 900, true );
-add_image_size( "tominiatyre", 300, 300, true );
+add_image_size( "tominiatyre", 300, 300, true ); 
 
 
 //----Подключене carbon fields
@@ -66,7 +70,7 @@ function my_assets_admin(){
 }
 
 
-define("ALL_VERSION", "1.0.32");
+define("ALL_VERSION", "1.0.38");
 
 // Подключение стилей и nonce для Ajax и скриптов во фронтенд 
 add_action( 'wp_enqueue_scripts', 'my_assets' );
@@ -178,6 +182,34 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 			wp_die( 'НО-НО-НО!', '', 403 );
 		}
 	}
+
+
+// Отправка формы из модального окна
+add_action( 'wp_ajax_sendphone', 'sendphone' );
+add_action( 'wp_ajax_nopriv_sendphone', 'sendphone' );
+
+  function sendphone() {
+    if ( empty( $_REQUEST['nonce'] ) ) {
+      wp_die( '0' );
+    }
+    
+    if ( check_ajax_referer( 'NEHERTUTLAZIT', 'nonce', false ) ) {
+      
+      $headers = array(
+        'From: Сайт '.COMPANY_NAME.' <'.MAIL_RESEND.'>', 
+        'content-type: text/html',
+      );
+    
+      add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+       if (wp_mail(carbon_get_theme_option( 'mail_to_send' ), 'Заявка на обратный звонок', '<strong>Имя:</strong> '.$_REQUEST["name"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["tel"]. ' <br/> <strong>Email:</strong> '.$_REQUEST["email"], $headers))
+        wp_die("<span style = 'color:green;'>Мы свяжемся с Вами в ближайшее время.</span>");
+      else wp_die("<span style = 'color:red;'>Сервис недоступен попробуйте позднее.</span>"); 
+      
+    } else {
+      wp_die( 'НО-НО-НО!', '', 403 ); 
+    }
+  }
+
 
 	// Заявка на опт
 	
@@ -458,7 +490,20 @@ function my_navigation_template( $template, $class ){
 	';
 }
 
+function filter_wpseo_sitemap_urlimages( $images, $post_id ) { 
+	$pict = carbon_get_post_meta($post_id, 'offer_picture');
+	if($pict) {
+		$pictIndex = 0;
+		foreach($pict as $item) {
+			array_push($images, wp_get_attachment_image_src($item['gal_img'], 'full')[0]);
+		}
+	}
 
-
+	 array_push($images, 'https://www.example.com/wp-content/uploads/extra-image.jpg');
 	
+	return $images; 
+  }
+
+  add_filter( 'wpseo_sitemap_urlimages', 'filter_wpseo_sitemap_urlimages', 10, 2 );
+
 ?>

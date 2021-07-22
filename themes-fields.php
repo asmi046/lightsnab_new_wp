@@ -18,7 +18,79 @@ Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
 			Field::make('rich_text', 'main_fulltext_top', 'Текст для главной страницы (Верхний)')->set_width(100),
 			Field::make('rich_text', 'main_fulltext', 'Текст для главной страницы (SEO)')->set_width(100),
 			Field::make('rich_text', 'obmen_fulltext', 'Текст в раздел обмен возврат')->set_width(100),
-		) );
+			))
+		->add_tab('Акции', array(
+		  Field::make('complex', 'promo_complex', 'Акции')
+  			// ->set_max(3) // Можно будет выбрать только 5 постов
+  	->add_fields(array(
+   		Field::make('image', 'promo_img', 'Фото') 
+    		->set_width(30),
+    	Field::make('text', 'promo_text', 'Текст')   
+    		->set_width(30),
+    	// Field::make('text', 'link_benefit', 'Ссылка')   
+    	// 	->set_width(30),
+   	 )) 
+		))
+		->add_tab('Отзывы', array(
+		  Field::make('complex', 'reviews_complex', 'Отзывы')
+  			// ->set_max(3) // Можно будет выбрать только 5 постов
+  	->add_fields(array(
+   		Field::make('image', 'reviews_img', 'Фото')
+    		->set_width(30),
+			Field::make('text', 'reviews_fio', 'ФИО')   
+    		->set_width(30),
+			Field::make('text', 'reviews_date', 'Дата')   
+    		->set_width(30),
+    	Field::make('text', 'reviews_text', 'Отзыв')   
+    		->set_width(30),
+    	// Field::make('text', 'link_benefit', 'Ссылка')   
+    	// 	->set_width(30),
+   	 )) 
+		))
+		->add_tab('Контакты', array(
+			Field::make( 'text', 'as_company', __( 'Название' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_schedule', __( 'Режим работы' ) ) 
+				->set_width(50),
+			Field::make( 'text', 'as_phones_1', __( 'Телефон' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_phone_2', __( 'Телефон дополнительный' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_email', __( 'Email' ) )
+				->set_width(50),
+			// Field::make( 'text', 'as_email_send', __( 'Email для отправки' ) ) 
+			// 	->set_width(50),
+			Field::make( 'text', 'as_inn', __( 'ИНН' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_orgn', __( 'ОРГН' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_kpp', __( 'КПП' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_address', __( 'Адрес' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_bik', __( 'БИК' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_rs', __( 'Р/С' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_ks', __( 'К/С' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_bank', __( 'БАНК' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_insta', __( 'instagram' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_face', __( 'facebook' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_vk', __( 'Вконтакте' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_telegr', __( 'telegram' ) )
+				->set_width(50),
+			Field::make( 'text', 'as_whatsapp', __( 'whatsapp' ) )
+				->set_width(50),
+			Field::make('text', 'map_point', 'Координаты карты')
+				->set_width(50),
+			Field::make('text', 'text_map', 'Текст метки карты')
+				->set_width(50),
+	) );
 		
 Container::make('post_meta', 'light_product_cr', 'Характеристики товара')
 		->show_on_post_type(array( 'light'))
