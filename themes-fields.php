@@ -74,6 +74,8 @@ Container::make( 'theme_options', __( 'Настройки темы', 'crb' ) )
 				->set_width(50),
 			Field::make( 'text', 'as_ks', __( 'К/С' ) )
 				->set_width(50),
+			Field::make( 'text', 'as_bank', __( 'БАНК' ) )
+				->set_width(50),
 			Field::make( 'text', 'as_insta', __( 'instagram' ) )
 				->set_width(50),
 			Field::make( 'text', 'as_face', __( 'facebook' ) )
