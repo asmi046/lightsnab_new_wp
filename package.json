@@ -4,7 +4,7 @@
   "description": "Магазин дизайнерского света",
   "main": "index.php",
   "scripts": {
-    "test": "editorconfig-checker", 
+    "test": "editorconfig-checker",
     "clear_r": "ssh u0743099@ftp.light-snab.ru \"rm  www/lightsnab.ru/wp-content/themes/light-shop/*.*\"",
     "send_r": "scp -C *.php *.png *.css u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
     "send_ms": "scp -C *.css u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
@@ -20,7 +20,6 @@
     "send_pars_one": "scp -C pars/setDescr.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_one1": "scp -C pars/pages-mebel2.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_one2": "scp -C pars/parsTov-mebel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
-    
     "send_inexcel_photo": "scp -C -r pars/inexcel/photo u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_inexcelall": "scp -C -r pars/inexcel/ u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_inexcel_data": "scp -C  pars/inexcel/data_04_07_2021.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
