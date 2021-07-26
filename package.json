@@ -4,7 +4,7 @@
   "description": "Магазин дизайнерского света",
   "main": "index.php",
   "scripts": {
-    "test": "editorconfig-checker", 
+    "test": "editorconfig-checker",
     "clear_r": "ssh u0743099@ftp.light-snab.ru \"rm  www/lightsnab.ru/wp-content/themes/light-shop/*.*\"",
     "send_r": "scp -C *.php *.png *.css u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
     "send_ms": "scp -C *.css u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
@@ -12,11 +12,7 @@
     "send_func": "scp -C functions.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
     "send_index": "scp -C index.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
     "send_footer": "scp -C footer.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
-<<<<<<< HEAD
     "send_one": "scp -C header.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
-=======
-    "send_one": "scp -C 404.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
->>>>>>> 74fa3dac8a44a21a9c0d66120c5eb92d0b9f6a07
     "mk_part_carbon": "ssh u0743099@ftp.light-snab.ru \"mkdir -p www/lightsnab.ru/wp-content/themes/light-shop/inc\"",
     "send_carbon": "scp -C -r inc u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
     "send_carbon_fild": "scp -C themes-fields.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/",
@@ -24,7 +20,6 @@
     "send_pars_one": "scp -C pars/alllist-mebel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_one1": "scp -C pars/pages-mebel2.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_one2": "scp -C pars/parsTov-mebel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
-    
     "send_inexcel_photo": "scp -C -r pars/inexcel/photo u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_inexcelall": "scp -C -r pars/inexcel/ u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_inexcel_data": "scp -C  pars/inexcel/data_04_07_2021.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
