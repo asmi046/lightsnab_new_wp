@@ -6,15 +6,15 @@
     $posts = get_posts( array(
         'numberposts' => 1000,
         'post_type' => "light",
-        'offset' => 4002,
+        'offset' => 8000,
 
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'lightcat',
-                'field'    => 'id',
-                'terms'    => 113
-            )
-        )
+        // 'tax_query' => array(
+        //     array(
+        //         'taxonomy' => 'lightcat',
+        //         'field'    => 'id',
+        //         'terms'    => 113
+        //     )
+        // )
     ) );
 
     $counter = 0;
@@ -29,28 +29,37 @@
 
         // if ($post->ID != 27063) continue;
 
-        $curPrice = carbon_get_post_meta($post->ID,"offer_price");
-        $curPriceNew = round($curPrice * 0.9);
-        update_post_meta( $post->ID, '_offer_price', $curPriceNew);    
+        // $curPrice = carbon_get_post_meta($post->ID,"offer_price");
+        // $curPriceNew = round($curPrice * 0.9);
+        // update_post_meta( $post->ID, '_offer_price', $curPriceNew);    
         
-        echo $post->post_title . " -> " . $curPrice . " - " . $curPriceNew."\n\r";
+        // echo $post->post_title . " -> " . $curPrice . " - " . $curPriceNew."\n\r";
+
         
-        $modif = carbon_get_the_post_meta('offer_modification');
-        if($modif) {
-            $i = 0;
-            foreach($modif as $item) {
+        $sdescr = carbon_get_post_meta($post->ID, "offer_smile_descr");
+
+        if (count($sdescr) < 40)
+            $sdescr = $post->post_title. " - купить по выгодной цене в магазине LightSnab. Доставка по всей территории РФ.";
+
+        echo "#".$counter." -> ".$sdescr;
+        update_post_meta( $post->ID, '_yoast_wpseo_metadesc', $sdescr);    
+
+        // $modif = carbon_get_the_post_meta('offer_modification');
+        // if($modif) {
+        //     $i = 0;
+        //     foreach($modif as $item) {
                 
 
-                $curPrice = $item["mod_price"];
-                $curPriceNew = round($curPrice * 0.9);
+        //         $curPrice = $item["mod_price"];
+        //         $curPriceNew = round($curPrice * 0.9);
                 
-                carbon_set_post_meta( $post->ID, 'offer_modification['.$i.']/mod_price', $curPriceNew );
+        //         carbon_set_post_meta( $post->ID, 'offer_modification['.$i.']/mod_price', $curPriceNew );
 
-                echo 'offer_modification['.$i.']/mod_price: ' . $curPrice . " - " . $curPriceNew."\n\r";
+        //         echo 'offer_modification['.$i.']/mod_price: ' . $curPrice . " - " . $curPriceNew."\n\r";
 
-                $i++;
-            }
-        }
+        //         $i++;
+        //     }
+        // }
         echo "\n\r";
         
         // if ($counter == 0) break;

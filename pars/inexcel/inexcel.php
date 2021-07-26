@@ -70,6 +70,13 @@
     $wpdb->query( "TRUNCATE `transfer_mod`" );
     while (!empty($objPHPExcel->getSheet(2)->getCell('A'.$i)->getValue()))
     {
+        if (empty($objPHPExcel->getSheet(2)->getCell('C'.$i)->getValue())) {
+            $i++;
+            continue;}
+        if (empty($objPHPExcel->getSheet(2)->getCell('E'.$i)->getValue())) {
+            $i++;
+            continue;}
+
         $wpdb->insert( 'transfer_mod', array (
                 "basearticle" => !empty($objPHPExcel->getSheet(2)->getCell('A'.$i)->getValue())?$objPHPExcel->getSheet(2)->getCell('A'.$i)->getValue():"",
                 "naimenovanie" => !empty($objPHPExcel->getSheet(2)->getCell('B'.$i)->getValue())?$objPHPExcel->getSheet(2)->getCell('B'.$i)->getValue():"",
@@ -109,6 +116,8 @@
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
         $tovIndex ++;
+        if ($tovIndex <550) continue;
+
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
 
