@@ -506,4 +506,6 @@ function filter_wpseo_sitemap_urlimages( $images, $post_id ) {
 
   add_filter( 'wpseo_sitemap_urlimages', 'filter_wpseo_sitemap_urlimages', 10, 2 );
 
+  include "crm-rest.php";
+
 ?>
