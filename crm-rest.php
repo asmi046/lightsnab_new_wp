@@ -166,5 +166,45 @@ function pass_rec( WP_REST_Request $request) {
 }
 
 
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/biautorise', array(
+		'methods'  => 'GET',
+		'callback' => 'get_biautorise',
+		'args' => array(
+			'reginfo' => array(
+				'default'           => null,
+				'required'          => true,        		
+			)
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/biautorise?reginfo=null
+function get_biautorise( WP_REST_Request $request ){
+
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	$reginfo = json_decode($request["reginfo"], true);
+
+	$addResult = $serviceBase->get_results("SELECT * FROM `service_users` WHERE `mail` = '".$reginfo["mail"]."'");
+
+	if (!empty($addResult))
+	return new WP_Error( 'user_exist', 'Пользователь с таким e-mail уже зарегистрирован.', [ 'status' => 403 ] );
+
+	$addResult = $serviceBase->insert('service_users', array(
+		"fio" => $reginfo["fio"],
+		"mail" => $reginfo["mail"],
+		"podrazdelenie" => $reginfo["podrazdelenie"],
+		"dolgnost" => $reginfo["dolgnost"],
+		"pass" => md5($reginfo["pass"]."dssff3fxx")
+	));
+	
+	if (empty($addResult))
+		return new WP_Error( 'no_inser_user', 'При регистрации возникли ошибки попробуйте позднее', [ 'status' => 403 ] );
+	else 
+		return array("result" => true);
+}
+
+
 
 ?>
