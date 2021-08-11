@@ -70,7 +70,7 @@ function my_assets_admin(){
 }
 
 
-define("ALL_VERSION", "1.0.38");
+define("ALL_VERSION", "1.0.39");
 
 // Подключение стилей и nonce для Ajax и скриптов во фронтенд 
 add_action( 'wp_enqueue_scripts', 'my_assets' );
@@ -507,5 +507,3 @@ function filter_wpseo_sitemap_urlimages( $images, $post_id ) {
   add_filter( 'wpseo_sitemap_urlimages', 'filter_wpseo_sitemap_urlimages', 10, 2 );
 
   include "crm-rest.php";
-
-?>
