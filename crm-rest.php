@@ -167,9 +167,9 @@ function pass_rec( WP_REST_Request $request) {
 
 
 add_action( 'rest_api_init', function () {
-	register_rest_route( 'lscrm/v2', '/biautorise', array(
+	register_rest_route( 'lscrm/v2', '/getregister', array(
 		'methods'  => 'GET',
-		'callback' => 'get_biautorise',
+		'callback' => 'get_getregister',
 		'args' => array(
 			'reginfo' => array(
 				'default'           => null,
@@ -180,7 +180,7 @@ add_action( 'rest_api_init', function () {
 });
 
 // https://lightsnab.ru/wp-json/lscrm/v2/biautorise?reginfo=null
-function get_biautorise( WP_REST_Request $request ){
+function get_getregister( WP_REST_Request $request ){
 
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 
