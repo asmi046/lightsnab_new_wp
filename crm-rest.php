@@ -179,7 +179,7 @@ add_action( 'rest_api_init', function () {
 	) );
 });
 
-// https://lightsnab.ru/wp-json/lscrm/v2/biautorise?reginfo=null
+// https://lightsnab.ru/wp-json/lscrm/v2/biautorise?getregister=null
 function get_getregister( WP_REST_Request $request ){
 
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
