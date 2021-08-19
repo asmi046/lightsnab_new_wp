@@ -1,7 +1,7 @@
 <?
 
 define("BI_SERVICE_DB_NAME", "u0743099_lscrm");
-define("BI_SERVICE_USER_NAME", "u0743099_lscrm");
+define("BI_SERVICE_USER_NAME", "u0743099__lscrm");
 define("BI_SERVICE_USER_PASS", "2V4o5H6o");
 define("BI_SERVICE_DB_HOST", "localhost");
 
@@ -179,7 +179,7 @@ add_action( 'rest_api_init', function () {
 	) );
 });
 
-// https://lightsnab.ru/wp-json/lscrm/v2/biautorise?getregister=null
+// https://lightsnab.ru/wp-json/lscrm/v2/getregister?reginfo=null
 function get_getregister( WP_REST_Request $request ){
 
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
@@ -194,7 +194,6 @@ function get_getregister( WP_REST_Request $request ){
 	$addResult = $serviceBase->insert('service_users', array(
 		"fio" => $reginfo["fio"],
 		"mail" => $reginfo["mail"],
-		"podrazdelenie" => $reginfo["podrazdelenie"],
 		"dolgnost" => $reginfo["dolgnost"],
 		"pass" => md5($reginfo["pass"]."dssff3fxx")
 	));
