@@ -205,5 +205,42 @@ function get_getregister( WP_REST_Request $request ){
 }
 
 
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/add_zak', array(
+		'methods'  => 'GET',
+		'callback' => 'add_zak',
+		'args' => array(
+			'zakinfo' => array(
+				'default'           => null,
+				'required'          => true,        		
+			)
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/add_zak?zakinfo=null
+function add_zak( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	$insertZacData = array(
+		'zak_numbet' => $request["zaknumber"], 
+		'zak_data' => $request["data"], 
+		'klient_name' => $request["name"], 
+		'phone' => $request["phone"], 
+		'phone2' => $request["phone2"], 
+		'adres' => $request["adr"], 
+		'summa_sheta' => $request["shetsumm"], 
+		'nomer_sheta' => $request["shetn"], 
+		'status' => "Новый", 
+	);
+	$serviceBase.insert('zakaz', $insertZacData);
+
+	if (empty($serviceBase.insert_id) {
+		return new WP_Error( 'no_inser_zak', 'Заказ не добавлен', [ 'status' => 403 ] );
+	} else {
+		return array("result" => true);
+	}
+}
+
 
 ?>
