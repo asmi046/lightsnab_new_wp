@@ -222,24 +222,30 @@ add_action( 'rest_api_init', function () {
 function add_zak( WP_REST_Request $request ){
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 
+	if (empty($request["zakinfo"])) 
+		return new WP_Error( 'no_inser_zak', 'Нет данных для добавления', [ 'status' => 403 ] );
+
+		$zakinfo = json_decode($request["zakinfo"], true);
 	$insertZacData = array(
-		'zak_numbet' => $request["zaknumber"], 
-		'zak_data' => $request["data"], 
-		'klient_name' => $request["name"], 
-		'phone' => $request["phone"], 
-		'phone2' => $request["phone2"], 
-		'adres' => $request["adr"], 
-		'summa_sheta' => $request["shetsumm"], 
-		'nomer_sheta' => $request["shetn"], 
+		'zak_numbet' => $zakinfo["zaknumber"], 
+		'zak_data' => $zakinfo["data"], 
+		'klient_name' => $zakinfo["name"], 
+		'phone' => $zakinfo["phone"], 
+		'phone2' => $zakinfo["phone2"], 
+		'adres' => $zakinfo["adr"], 
+		'summa_sheta' => $zakinfo["shetsumm"], 
+		'nomer_sheta' => $zakinfo["shetn"], 
 		'status' => "Новый", 
 	);
-	$serviceBase.insert('zakaz', $insertZacData);
+	$serviceBase->insert('zakaz', $insertZacData);
 
-	if (empty($serviceBase.insert_id) {
+	if (empty($serviceBase->insert_id)) {
 		return new WP_Error( 'no_inser_zak', 'Заказ не добавлен', [ 'status' => 403 ] );
 	} else {
 		return array("result" => true);
 	}
+
+	
 }
 
 
