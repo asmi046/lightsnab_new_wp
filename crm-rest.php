@@ -248,5 +248,33 @@ function add_zak( WP_REST_Request $request ){
 	
 }
 
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/get_tovar', array(
+		'methods'  => 'GET',
+		'callback' => 'get_tovar',
+		'args' => array(
+			'query' => array(
+				'default'           => null,
+				'required'          => true,        		
+			)
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/get_tovar?query=1122
+function get_tovar( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	if (empty($request["query"])) 
+		return new WP_Error( 'no_query_string', 'Нет данных для добавления', [ 'status' => 403 ] );
+
+	
+	$rez = $serviceBase->get_results('SELECT * FROM `tovar_base` WHERE `sku` LIKE "%'. $request["query"] .'%" OR `name` LIKE "%'. $request["query"] .'%" OR `search_str` LIKE "%'. $request["query"] .'%" LIMIT 30');
+
+	
+	return $rez;
+
+	
+}
 
 ?>
