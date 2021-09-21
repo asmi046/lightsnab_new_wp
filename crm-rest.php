@@ -322,7 +322,7 @@ function get_zakaz( WP_REST_Request $request ){
 	$queryStr = ($request["querystr"] !== "%" )?"%".$request["querystr"]."%":$request["querystr"];
 	$ststus = ($request["status"] !== "" )?$request["status"]:"%";
 
-	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE `status` = '".$ststus."' AND `klient_name` LIKE '".$queryStr."' AND `zak_numbet` LIKE '".$queryStr."'");
+	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE `status` = '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')");
 	
 	return $rez;
 }
