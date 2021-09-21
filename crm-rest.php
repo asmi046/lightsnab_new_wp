@@ -213,6 +213,10 @@ add_action( 'rest_api_init', function () {
 			'zakinfo' => array(
 				'default'           => null,
 				'required'          => true,        		
+			),
+			'status' => array(
+				'default'           => null,
+				'required'          => true,        		
 			)
 		),
 	) );
@@ -228,21 +232,39 @@ function add_zak( WP_REST_Request $request ){
 		$zakinfo = json_decode($request["zakinfo"], true);
 	$insertZacData = array(
 		'zak_numbet' => $zakinfo["zaknumber"], 
-		'zak_data' => $zakinfo["data"], 
+		'zak_data' => date("Y-m-d H:i:s", strtotime($zakinfo["data"])), 
+		'zak_final_data' => date("Y-m-d H:i:s", strtotime($zakinfo["datafinal"])), 
 		'klient_name' => $zakinfo["name"], 
 		'phone' => $zakinfo["phone"], 
 		'phone2' => $zakinfo["phone2"], 
 		'adres' => $zakinfo["adr"], 
 		'summa_sheta' => $zakinfo["shetsumm"], 
 		'nomer_sheta' => $zakinfo["shetn"], 
-		'status' => "Новый", 
+		'status' => $request["status"], 
+		'comment' => $zakinfo["comment"], 
 	);
 	$serviceBase->insert('zakaz', $insertZacData);
 
+	$zak_id = $serviceBase->insert_id;
+
+	for ($i = 0; $i<count($zakinfo["zaktovars"]); $i++)
+	{
+		$serviceBase->insert('zakaz_tovar', array(
+			"zak_number" => $zak_id,
+			"img" => $zakinfo["zaktovars"][$i]["img"],
+			"name" => $zakinfo["zaktovars"][$i]["name"],
+			"count" => $zakinfo["zaktovars"][$i]["count"],
+			"price" => $zakinfo["zaktovars"][$i]["price"],
+			"sale" => $zakinfo["zaktovars"][$i]["sale"],
+			"summ" => $zakinfo["zaktovars"][$i]["summ"],
+		));
+	}
+
+	$serviceBase->insert('zakaz', $insertZacData);
 	if (empty($serviceBase->insert_id)) {
 		return new WP_Error( 'no_inser_zak', 'Заказ не добавлен', [ 'status' => 403 ] );
 	} else {
-		return array("result" => true);
+		return array("result" => true, "zinfo" => $zakinfo );
 	}
 
 	
@@ -275,6 +297,34 @@ function get_tovar( WP_REST_Request $request ){
 	return $rez;
 
 	
+}
+
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/get_zakaz', array(
+		'methods'  => 'GET',
+		'callback' => 'get_zakaz',
+		'args' => array(
+			'querystr' => array(
+				'default'           => "%",        		
+			),
+			'status' => array(
+				'default'           => "",        		
+			)
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/get_zakaz?query=1122
+function get_zakaz( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$queryStr = ($request["querystr"] !== "%" )?"%".$request["querystr"]."%":$request["querystr"];
+	$ststus = ($request["status"] !== "" )?$request["status"]:"%";
+
+	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE `status` = '".$ststus."' AND `klient_name` LIKE '".$queryStr."' AND `zak_numbet` LIKE '".$queryStr."'");
+	
+	return $rez;
 }
 
 ?>
