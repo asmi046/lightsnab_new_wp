@@ -289,14 +289,10 @@ function get_tovar( WP_REST_Request $request ){
 
 	if (empty($request["query"])) 
 		return new WP_Error( 'no_query_string', 'Нет данных для добавления', [ 'status' => 403 ] );
-
 	
 	$rez = $serviceBase->get_results('SELECT * FROM `tovar_base` WHERE `sku` LIKE "%'. $request["query"] .'%" OR `name` LIKE "%'. $request["query"] .'%" OR `search_str` LIKE "%'. $request["query"] .'%" LIMIT 30');
 
-	
 	return $rez;
-
-	
 }
 
 
@@ -325,6 +321,40 @@ function get_zakaz( WP_REST_Request $request ){
 	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE `status` = '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')");
 	
 	return $rez;
+}
+
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/del_order', array(
+		'methods'  => 'DELETE',
+		'callback' => 'del_order',
+		'args' => array(
+			'orderid' => array(
+				'default'           => 0,
+				'required'          => true,              		
+			),
+			
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/del_order?orderid=1122
+function del_order( WP_REST_Request $request ){
+	$dellrez = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$dellrez = 
+
+	$rez = $serviceBase->delete("zakaz", array("id" => $request['orderid']));
+	
+	if ($rez === false) 
+		return new WP_Error( 'no_del_faild', 'При удалении заказа возникла ошибка', [ 'status' => 403 ] );
+	
+	$rezTov = $serviceBase->delete("zakaz_tovar", array("zak_number" => $request['orderid']));
+	
+	if ($rezTov === false) 
+		return new WP_Error( 'no_del_tov_faild', 'При удалении товаров заказа возникла ошибка сообщите администратору.', [ 'status' => 403 ] );
+
+	return array("dellzak" => $rez, "delltov" => $rezTov);
 }
 
 ?>
