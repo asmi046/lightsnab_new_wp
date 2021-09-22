@@ -340,21 +340,20 @@ add_action( 'rest_api_init', function () {
 
 // https://lightsnab.ru/wp-json/lscrm/v2/del_order?orderid=1122
 function del_order( WP_REST_Request $request ){
-	$dellrez = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	
-	$dellrez = 
 
-	$rez = $serviceBase->delete("zakaz", array("id" => $request['orderid']));
+	 $rez = $serviceBase->delete("zakaz", array("id" => $request['orderid']));
 	
 	if ($rez === false) 
 		return new WP_Error( 'no_del_faild', 'При удалении заказа возникла ошибка', [ 'status' => 403 ] );
 	
-	$rezTov = $serviceBase->delete("zakaz_tovar", array("zak_number" => $request['orderid']));
+	 $rezTov = $serviceBase->delete("zakaz_tovar", array("zak_number" => $request['orderid']));
 	
 	if ($rezTov === false) 
 		return new WP_Error( 'no_del_tov_faild', 'При удалении товаров заказа возникла ошибка сообщите администратору.', [ 'status' => 403 ] );
 
-	return array("dellzak" => $rez, "delltov" => $rezTov);
+	return array("id" => $request['orderid'], "dellzak" => $rez, "delltov" => $rezTov);
 }
 
 ?>
