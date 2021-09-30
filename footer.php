@@ -21,7 +21,7 @@
     <div class="footer-block footer-block-last">
       <div class="">© Lightsnab.ru, 2014—<? echo date("Y") ?> </div>
       <div class="">Телефон: <? echo SITE_PHONE; ?></div>
-      <div class="">Телефон: <? echo SITE_PHONE_DOP; ?></div>
+      <!-- <div class="">Телефон: <? echo SITE_PHONE_DOP; ?></div> -->
       <div class="">E-mail: <? echo SITE_MAIL; ?></div>
       <div class="soc-block">
         <a class="soc_btn_insta" href="<? echo INSTA_LNK; ?>"></a>
