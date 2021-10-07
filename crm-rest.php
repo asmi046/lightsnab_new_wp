@@ -238,8 +238,8 @@ function add_zak( WP_REST_Request $request ){
 		'phone' => $zakinfo["phone"], 
 		'phone2' => $zakinfo["phone2"], 
 		'adres' => $zakinfo["adr"], 
-		'summa_sheta' => $zakinfo["shetsumm"], 
-		'nomer_sheta' => $zakinfo["shetn"], 
+		'summa_sheta_1c' => $zakinfo["shetsumm"], 
+		'nomer_sheta_1c' => $zakinfo["shetn"], 
 		'status' => $request["status"], 
 		'comment' => $zakinfo["comment"], 
 	);
