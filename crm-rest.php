@@ -204,6 +204,10 @@ function get_getregister( WP_REST_Request $request ){
 		return array("result" => true);
 }
 
+//
+// Добавление заказа
+//
+
 
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'lscrm/v2', '/add_zak', array(
@@ -231,6 +235,8 @@ function add_zak( WP_REST_Request $request ){
 
 		$zakinfo = json_decode($request["zakinfo"], true);
 	$insertZacData = array(
+		'mng_name' => $zakinfo["mng_name"], 
+		'mng_mail' => $zakinfo["mng_mail"], 
 		'zak_numbet' => $zakinfo["zaknumber"], 
 		'zak_data' => date("Y-m-d H:i:s", strtotime($zakinfo["data"])), 
 		'zak_final_data' => date("Y-m-d H:i:s", strtotime($zakinfo["datafinal"])), 
@@ -242,6 +248,7 @@ function add_zak( WP_REST_Request $request ){
 		'nomer_sheta_1c' => $zakinfo["shetn"], 
 		'status' => $request["status"], 
 		'comment' => $zakinfo["comment"], 
+		'total_summ' => $zakinfo["totalsumm"], 
 	);
 	$serviceBase->insert('zakaz', $insertZacData);
 
@@ -250,17 +257,20 @@ function add_zak( WP_REST_Request $request ){
 	for ($i = 0; $i<count($zakinfo["zaktovars"]); $i++)
 	{
 		$serviceBase->insert('zakaz_tovar', array(
-			"zak_number" => $zak_id,
+			"zak_id" => $zak_id,
+			"zak_number" => $zakinfo["zaknumber"],
 			"img" => $zakinfo["zaktovars"][$i]["img"],
 			"name" => $zakinfo["zaktovars"][$i]["name"],
+			"sku" => $zakinfo["zaktovars"][$i]["sku"],
 			"count" => $zakinfo["zaktovars"][$i]["count"],
 			"price" => $zakinfo["zaktovars"][$i]["price"],
 			"sale" => $zakinfo["zaktovars"][$i]["sale"],
 			"summ" => $zakinfo["zaktovars"][$i]["summ"],
+			"nal" => $zakinfo["zaktovars"][$i]["nal"],
+			"comment" => $zakinfo["zaktovars"][$i]["comment"]
 		));
 	}
 
-	$serviceBase->insert('zakaz', $insertZacData);
 	if (empty($serviceBase->insert_id)) {
 		return new WP_Error( 'no_inser_zak', 'Заказ не добавлен', [ 'status' => 403 ] );
 	} else {
@@ -269,6 +279,97 @@ function add_zak( WP_REST_Request $request ){
 
 	
 }
+
+//
+// Редактирование заказа
+//
+
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/update_zak', array(
+		'methods'  => 'POST',
+		'callback' => 'update_zak',
+		'args' => array(
+			'zaknumber' => array(
+				'default'           => "",
+				'required'          => true,        		
+			),
+
+			'zakinfo' => array(
+				'default'           => null,
+				'required'          => true,        		
+			),
+
+			'status' => array(
+				'default'           => null,
+				'required'          => true,        		
+			)
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/update_zak?zakinfo=null
+function update_zak( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	if (empty($request["zakinfo"])) 
+		return new WP_Error( 'no_inser_zak', 'Нет данных для добавления', [ 'status' => 403 ] );
+
+		// $zakinfo = json_decode($request["zakinfo"], true);
+		
+		$zakinfo = $request["zakinfo"];
+	
+		$insertZacData = array(
+			'mng_name' => $zakinfo["mng_name"], 
+			'mng_mail' => $zakinfo["mng_mail"], 
+			'zak_numbet' => $zakinfo["zaknumber"], 
+			'zak_data' => date("Y-m-d H:i:s", strtotime($zakinfo["data"])), 
+			'zak_final_data' => date("Y-m-d H:i:s", strtotime($zakinfo["datafinal"])), 
+			'klient_name' => $zakinfo["name"], 
+			'phone' => $zakinfo["phone"], 
+			'phone2' => $zakinfo["phone2"], 
+			'adres' => $zakinfo["adr"], 
+			'summa_sheta_1c' => $zakinfo["shetsumm"], 
+			'nomer_sheta_1c' => $zakinfo["shetn"], 
+			'status' => $request["status"], 
+			'comment' => $zakinfo["comment"], 
+			'total_summ' => $zakinfo["totalsumm"], 
+		);
+
+	$updateRez = $serviceBase->update('zakaz', $insertZacData, array("zak_numbet" => $request["zaknumber"]));
+	
+	$serviceBase->delete('zakaz_tovar', array("zak_number" => $request["zaknumber"]));
+
+
+	// for ($i = 0; $i<count($zakinfo["zaktovars"]); $i++)
+	// {
+	// 	$serviceBase->insert('zakaz_tovar', array(
+	// 		"zak_id" => $zakinfo["zak_id"],
+	// 		"zak_number" => $request["zaknumber"],
+	// 		"img" => $zakinfo["zaktovars"][$i]["img"],
+	// 		"name" => $zakinfo["zaktovars"][$i]["name"],
+	// 		"sku" => $zakinfo["zaktovars"][$i]["sku"],
+	// 		"count" => $zakinfo["zaktovars"][$i]["count"],
+	// 		"price" => $zakinfo["zaktovars"][$i]["price"],
+	// 		"sale" => $zakinfo["zaktovars"][$i]["sale"],
+	// 		"summ" => $zakinfo["zaktovars"][$i]["summ"],
+	// 		"nal" => $zakinfo["zaktovars"][$i]["nal"],
+	// 		"comment" => $zakinfo["zaktovars"][$i]["comment"]
+	// 	));
+	// }
+
+	if (empty($updateRez)) {
+		return new WP_Error( 'no_edit_zak', 'Заказ не изменен', [ 'status' => 403 ] );
+	} else {
+		return array("result" => true, "zinfo" => $zakinfo );
+	}
+
+	// return array("result" => true, "zinfo" => $request["zakinfo"] );
+}
+
+//
+// Получение товаров для подсказки
+//
 
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'lscrm/v2', '/get_tovar', array(
@@ -295,6 +396,9 @@ function get_tovar( WP_REST_Request $request ){
 	return $rez;
 }
 
+//
+// Получение заказов
+//
 
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'lscrm/v2', '/get_zakaz', array(
@@ -318,11 +422,14 @@ function get_zakaz( WP_REST_Request $request ){
 	$queryStr = ($request["querystr"] !== "%" )?"%".$request["querystr"]."%":$request["querystr"];
 	$ststus = ($request["status"] !== "" )?$request["status"]:"%";
 
-	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE `status` = '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')");
+	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE `status` LIKE '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')");
 	
 	return $rez;
 }
 
+//
+// Удаление номеров
+//
 
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'lscrm/v2', '/del_order', array(
@@ -354,6 +461,38 @@ function del_order( WP_REST_Request $request ){
 		return new WP_Error( 'no_del_tov_faild', 'При удалении товаров заказа возникла ошибка сообщите администратору.', [ 'status' => 403 ] );
 
 	return array("id" => $request['orderid'], "dellzak" => $rez, "delltov" => $rezTov);
+}
+
+//
+// Получение товаров заказа
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/get_order_tovar', array(
+		'methods'  => 'GET',
+		'callback' => 'get_order_tovar',
+		'args' => array(
+			'orderid' => array(
+				'default'           => 0,
+				'required'          => true,              		
+			),
+			
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/get_order_tovar?orderid=1122
+function get_order_tovar( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$rezTov = $serviceBase->get_results("SELECT * FROM `zakaz_tovar` WHERE `zak_number` = '".$request["orderid"]."'");
+	for ($i = 0; $i< count($rezTov); $i++) {
+		$rezTov[$i]->imgBase64 = 'data:image/jpg;base64,'.base64_encode(file_get_contents($rezTov[$i]->img));
+	}
+	if ($rezTov === false) 
+		return new WP_Error( 'no_del_tov_faild', 'Нет товаров в данном заказе.', [ 'status' => 403 ] );
+
+	return $rezTov;
 }
 
 ?>
