@@ -495,4 +495,35 @@ function get_order_tovar( WP_REST_Request $request ){
 	return $rezTov;
 }
 
+//
+// Добавление товара в справочник
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/add_tov_to_base', array(
+		'methods'  => 'POST',
+		'callback' => 'add_tov_to_base',
+		'args' => array(
+			'name' => array(
+				'default'           => 0,
+				'required'          => true,              		
+			),
+			'sku' => array(
+				'default'           => 0,            		
+			),
+			'search' => array(
+				'default'           => 0            		
+			),
+			
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/add_tov_to_base?orderid=1122
+function add_tov_to_base( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	return $rezTov;
+}
+
 ?>
