@@ -9,9 +9,9 @@
 
     // параметры по умолчанию
     $posts = get_posts( array(
-        'numberposts' => 1000,
+        'numberposts' => 500,
         'post_type' => "light",
-        'offset' => 7000,
+        'offset' => 25000,
 
         // 'tax_query' => array(
         //     array(

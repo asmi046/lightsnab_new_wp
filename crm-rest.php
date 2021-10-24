@@ -522,8 +522,25 @@ add_action( 'rest_api_init', function () {
 // https://lightsnab.ru/wp-json/lscrm/v2/add_tov_to_base?orderid=1122
 function add_tov_to_base( WP_REST_Request $request ){
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	$rez = $request->get_file_params();
+
+	if (!move_uploaded_file($rez["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/img_crm_base/".$rez["image"]["name"])) {
+		return new WP_Error( 'no_copy_img', 'Не скопировано изображение.', [ 'status' => 403 ] );
+	} 
+
+	$lnk = get_bloginfo("url")."/img_crm_base/".$rez["image"]["name"];
+
+	$serviceBase->insert('tovar_base', array(
+		"sku" => $_REQUEST["sku"],
+		"name" => $_REQUEST["name"],
+		"lnk" => $lnk,
+		"search_str" => $_REQUEST["serch"],
+	));
 	
-	return $rezTov;
+	if (empty($serviceBase))
+	return new WP_Error( 'no_not_add', 'Товар не добавлен', [ 'status' => 403 ] );
+
+	return array("file" => $rez, "lnk" => $lnk, "name" => $_REQUEST["name"], "sku" => $_REQUEST["sku"], "serch" => $_REQUEST["serch"]); 
 }
 
 ?>
