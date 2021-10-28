@@ -357,6 +357,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // ========================================================================================================
 
+// input file
+    let inputs = document.querySelectorAll('.popup__input-file');
+    Array.prototype.forEach.call(inputs, function (input) {
+      let label = input.nextElementSibling,
+        labelVal = label.querySelector('.popup__input-file-text').innerText;
+  
+      input.addEventListener('change', function (e) {
+        let countFiles = '';
+        if (this.files && this.files.length >= 1)
+          countFiles = this.files.length;
+  
+        if (countFiles)
+          label.querySelector('.popup__input-file-text').innerText = 'Выбрано файлов: ' + countFiles;
+        else
+          label.querySelector('.popup__input-file-text').innerText = labelVal;
+      });
+    });
+// ========================================================================================================
 
 //BodyLock для Popup на JS
 function body_lock(delay) {
