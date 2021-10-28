@@ -8,7 +8,7 @@ define("SITE_PHONE", "+7 (994) 444 44 83");
 define("SITE_PHONE_DOP", "+7 (994) 444 48 44");
 define("SITE_MAIL", "sale@lightsnab.ru");
 
-define("INSTA_LNK", "https://instagram.com/light_snab?igshid=3qjj6waf8lj4");
+define("INSTA_LNK", "https://www.instagram.com/light_snab_official/");
 define("FB_LNK", "https://vm.tiktok.com/ZSTc25a5/");
 
 define("COMPANY_NAME", "Магазин LightSnab");

@@ -12,7 +12,7 @@
     
     require_once dirname(__FILE__) . '/Classes/PHPExcel.php';
 
-    $inputFileName = './data_04_07_2021.xlsx';
+    $inputFileName = './datd_27_09_2021.xlsx';
 
     $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
     
@@ -116,7 +116,7 @@
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
         $tovIndex ++;
-        if ($tovIndex <550) continue;
+        if ($tovIndex <675) continue;
 
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
@@ -227,9 +227,14 @@
         
         foreach ($galery as $img) {
             $img1 = get_bloginfo("template_url").'/pars/inexcel/photo/'. $img["filename"];
+            // $img1 = "https://lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/photo/Babetta_B.jpg";
+            
+            echo $img1."\n\r";
+
             $ttl = $img["alttitle"];
             $img_id = media_sideload_image( $img1, $post_id, $ttl, "id" );
-            
+            print_r($img_id);
+
             add_post_meta( $post_id, '_offer_picture|gal_img|'.$indexImg.'|0|value', $img_id, true );
             add_post_meta( $post_id, '_offer_picture|gal_img_sku|'.$indexImg.'|0|value',  $img["modid"], true );
             add_post_meta( $post_id, '_offer_picture|gal_img_alt|'.$indexImg.'|0|value', $ttl, true );

@@ -6,15 +6,15 @@
     $posts = get_posts( array(
         'numberposts' => 1000,
         'post_type' => "light",
-        'offset' => 5000,
+        'offset' => 8000,
 
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'lightcat',
-                'field'    => 'id',
-                'terms'    => 113
-            )
-        )
+        // 'tax_query' => array(
+        //     array(
+        //         'taxonomy' => 'lightcat',
+        //         'field'    => 'id',
+        //         'terms'    => 113
+        //     )
+        // )
     ) );
 
     $counter = 0;
@@ -24,7 +24,7 @@
         // if ($post->ID != 27063) continue;
 
         $curPrice = carbon_get_post_meta($post->ID,"offer_price");
-        $curPriceNew = round($curPrice * 1.35);
+        $curPriceNew = round($curPrice * 1.15);
         update_post_meta( $post->ID, '_offer_price', $curPriceNew);    
         
         echo $post->post_title . " -> " . $curPrice . " - " . $curPriceNew."\n\r";
@@ -38,7 +38,7 @@
                 
 
                 $curPrice = $item["mod_price"];
-                $curPriceNew = round($curPrice * 1.35);
+                $curPriceNew = round($curPrice * 1.15);
                 
                 carbon_set_post_meta( $post->ID, 'offer_modification['.$i.']/mod_price', $curPriceNew );
 

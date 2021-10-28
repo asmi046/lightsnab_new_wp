@@ -1,0 +1,6 @@
+{
+    "require": {
+        "alhimik1986/php-excel-templator": "^1.0",
+        "phpoffice/phpspreadsheet": "^1.18"
+    }
+}
