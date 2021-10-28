@@ -12,7 +12,8 @@
 		<form role="search" method="get" id="searchform" action="<?echo get_the_permalink(399)?>">
 			<input type="text" value="" name="q" id="s" />
 			<input type="hidden" value="Искать" name="do_search" />
-			<input type="submit" id="searchsubmit" value="" />
+			<a href="#callback" class="search__camera-icon _popup-link" aria-label="Открыть модальное окно"></a>
+			<input type="submit" id="searchsubmit" value="" /> 
 		</form>
 		<div class="block-menu__full-search">
 			<a href="<?echo get_the_permalink(399)?>">Расширенный поиск</a> 
