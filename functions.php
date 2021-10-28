@@ -76,7 +76,7 @@ define("ALL_VERSION", "1.0.39");
 add_action( 'wp_enqueue_scripts', 'my_assets' );
 	function my_assets() {
 
-		// Подключение стилей 
+		// Подключение стилей  
 
 		wp_enqueue_style("main-style", get_stylesheet_uri(), array(), ALL_VERSION, 'all' ); // Подключение основных стилей в самом конце
 
