@@ -30,7 +30,7 @@
       <div class="project-calc__text">
         <h3 class="project-calc__title">Есть проект на рассчет?</h3>
         <p class="project-calc__subtitle">Отправьте проект и мы постараемся сделать цену ниже.</p>
-        <a href="#callback" class="project-calc__btn _popup-link">Отправить проект…</a>
+        <a href="#project" class="project-calc__btn _popup-link">Отправить проект…</a>
       </div>
     </div>
 
