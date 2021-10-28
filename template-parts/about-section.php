@@ -16,5 +16,23 @@
         <p><span class="color-light">Приятных покупок!</span></p> -->
       </div>
     </div>
+
+    <div class="project-calc">
+      <div class="project-calc__img">
+        <img src="<?php echo get_template_directory_uri();?>/img/project-calc/01.jpg" alt="Картинка, проект на расчет">
+      </div>
+      <div class="project-calc__img">
+        <img src="<?php echo get_template_directory_uri();?>/img/project-calc/02.jpg" alt="Картинка, проект на расчет">
+      </div>
+      <div class="project-calc__img">
+        <img src="<?php echo get_template_directory_uri();?>/img/project-calc/03.jpg" alt="Картинка, проект на расчет">
+      </div>
+      <div class="project-calc__text">
+        <h3 class="project-calc__title">Есть проект на рассчет?</h3>
+        <p class="project-calc__subtitle">Отправьте проект и мы постараемся сделать цену ниже.</p>
+        <a href="#callback" class="project-calc__btn _popup-link">Отправить проект…</a>
+      </div>
+    </div>
+
   </div> 
 </section>

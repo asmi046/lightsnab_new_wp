@@ -14,7 +14,7 @@ html {
     font-family: sans-serif;
     line-height: 1.15;
     -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;  
 }
 body {
     margin: 0;
@@ -3734,6 +3734,50 @@ margin-left: 0;
 	margin: 0;
 }
 
+.project-calc {
+  display: flex;
+  border: 3px solid #D3820F;
+  margin-top: 35px;
+}
+.project-calc__img {
+  flex: 0 1 19.73%;
+  padding-left: 1px;
+  overflow: hidden;
+}
+.project-calc__img img{
+  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-calc__text {
+  flex: 1 1 auto;
+  padding: 23px;
+}
+.project-calc__text *:last-child {
+  margin-bottom: 0;
+}
+.project-calc__title {
+  font-size: 22px;
+  line-height: 27px;
+  text-transform: uppercase;
+  color: #D3820F;
+  margin: 0px 0px 11px 0px;
+}
+.project-calc__subtitle {
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0px 0px 16px 0px;
+}
+.project-calc__btn {
+  color: #D3820F;
+}
+
+
+
+
+
+
 
 
 @media screen and (max-width: 1500px) {
@@ -3882,7 +3926,12 @@ margin-left: 0;
         margin-top: 40px;
         display: block;
     }
+  .project-calc__img {
+    flex: 0 1 23%;}
+  .project-calc__text {
+    padding: 15px;}
 }
+
 @media screen and (max-width: 800px) {
     
     .footer-block {
@@ -3934,12 +3983,33 @@ margin-left: 0;
      margin: 0; 
     justify-content: flex-start;
 }
+  .project-calc__title {
+    font-size: 18px;
+    line-height: 1.2;
+    margin: 0px 0px 8px 0px;}
+  .project-calc__subtitle {
+    font-size: 12px;
+    line-height: 1;
+    margin: 0px 0px 10px 0px;}
 }
+
 @media screen and (max-width: 700px) {
     .product-slider {
         max-width: 100%;
     }
 }
+
+@media screen and (max-width: 612px) {
+  .project-calc {
+    flex-wrap: wrap;}
+  .project-calc__img {
+    flex: 0 1 33.333%;}
+  .project-calc__title {
+    font-size: 20px;}
+  .project-calc__subtitle {
+    font-size: 14px;}
+}
+
 @media screen and (max-width: 600px) {
     .return {
     padding: 20px 0;
@@ -4194,4 +4264,7 @@ margin-left: 0;
         font-size: 14px;
         text-transform:none;
     }
+
+  .project-calc__title {
+    font-size: 18px;}
 }
