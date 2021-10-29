@@ -3,6 +3,10 @@ let naviSlider = null;
 let cart = [];
 let cartCount = 0;
 
+// jQuery ======================================================================================
+
+$ = jQuery;
+
 jQuery(document).ready(function ($) {
   function top_btn() {
     var button = $('.top-btn');
@@ -10,7 +14,7 @@ jQuery(document).ready(function ($) {
       if ($(this).scrollTop() > 300) {
         button.fadeIn();
       } else {
-        button.fadeOut();
+        button.fadeOut(); 
       }
     });
     button.click(function () {
@@ -62,8 +66,8 @@ jQuery(document).ready(function ($) {
   });
 
 
-  // Отправка Popup 
-  $('.popup__form-btn').click(function (e) {
+  // Отправка Заказать звонок
+  $('.callbackBtn').click(function (e) {
 
     e.preventDefault();
     const name = $("#form-callback-name").val();
@@ -108,6 +112,100 @@ jQuery(document).ready(function ($) {
 });
 
 
+  // Отправка Проект на расчет ===============================
+jQuery('.projectBtn').click(function(e){ 
+
+  e.preventDefault();
+  var name = $("#form-project-name").val();
+  var tel = $("#form-project-tel").val();
+  var files = $("#input__file").val(); 
+  var file_path = $("#file-path-serv").val(); 
+  console.log(file_path);
+  // var file_path = $(this).siblings('.file-path').val();
+
+  if (jQuery("#form-name").val() == "") {
+    jQuery("#form-name").css("border","1px solid red");
+    return;
+  }
+
+  if (jQuery("#form-project-tel").val() == ""){
+    jQuery("#form-project-tel").css("border","1px solid red"); 
+    return;
+  }
+
+  // if (jQuery("#form-message").val() == ""){
+  //   jQuery("#form-message").css("border","1px solid red");
+  //   return;
+  // }
+
+  else {
+    
+    var  jqXHR = jQuery.post(
+      allAjax.ajaxurl,
+      {
+        action: 'sendproject',        
+        nonce: allAjax.nonce,
+        name: name,
+        tel: tel,
+        // img1:files,
+        file: file_path,
+        picture: jQuery("#file-path").html(),
+      }   
+      );
+
+        jqXHR.done(function (responce) {
+          jQuery(".headen_form_blk").hide();
+          jQuery('.SendetMsg').show();
+        });
+
+            jqXHR.fail(function (responce) {
+              alert("Произошла ошибка. Попробуйте позднее."); 
+        }); 
+
+     }
+});
+
+// Загрузчик файла ================================
+jQuery('input[type=file]').change(function(){
+      var file_data = jQuery(this).prop('files')[0];
+      var form_data = new FormData();
+      var file_span = $(this).parent().siblings('.file-path');
+      form_data.append('file', file_data);
+      form_data.append('action', "main_load_file");
+      form_data.append('nonce', allAjax.nonce);
+
+
+      var  jqXHR = jQuery.ajax({      
+          url: allAjax.ajaxurl,
+          dataType: 'text',
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data, 
+          type: 'post'    
+      });
+
+      jqXHR.done(function (responce) {
+          file_span.val(responce);
+          elems = responce.split('|');
+          console.log(elems[0].split("/").pop());
+
+      jQuery("#file-path").html(elems[0].split("/").pop());
+      jQuery("#file-path-serv").val(elems[0]);
+      });
+              
+      jqXHR.fail(function (responce) {
+          spiner.hide();
+          if (responce.responseText == "0")
+              file_span.html("<span style = 'color:red;'>Большой файл!</span>");
+          else
+              file_span.html(responce.responseText);
+      });
+  });
+// ==============================================================================================================
+
+
+// Java Script ==================================================================================================
 function number_format() {
   let elements = document.querySelectorAll('.price_formator');
   for (let elem of elements) {
@@ -357,24 +455,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // ========================================================================================================
 
-// input file
-    let inputs = document.querySelectorAll('.popup__input-file');
-    Array.prototype.forEach.call(inputs, function (input) {
-      let label = input.nextElementSibling,
-        labelVal = label.querySelector('.popup__input-file-text').innerText;
-  
-      input.addEventListener('change', function (e) {
-        let countFiles = '';
-        if (this.files && this.files.length >= 1)
-          countFiles = this.files.length;
-  
-        if (countFiles)
-          label.querySelector('.popup__input-file-text').innerText = 'Выбрано файлов: ' + countFiles;
-        else
-          label.querySelector('.popup__input-file-text').innerText = labelVal;
-      });
-    });
-// ========================================================================================================
 
 //BodyLock для Popup на JS
 function body_lock(delay) {
