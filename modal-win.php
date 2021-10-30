@@ -44,28 +44,30 @@
 					</div>
 					<div class="headen_form_blk">	
 						<p>Отправьте проект нашим специалистам и мы предложим оптимальную смету на освещение</p>
-						<form action="#" class="popup__form">
+						<form action="#" class="popup__form" enctype="multipart/form-data">
 							<input type="text" name="name" placeholder="Имя" id="form-project-name" class="popup__form-input input">
 							<input type="tel" name="tel" placeholder="Телефон*" id="form-project-tel" class="popup__form-input input">
-							<div class="popup__form-input input">
-								<input type="file" name="file" multiple="multiple" accept=".txt,image/*" id="input__file" class="file_name popup__input-file popup__input-file_hiden">  
-								<label for="input__file" class="popup__input-file-button">
-									<span id="file-path" class="popup__input-file-text file-path">Загрузите проект</span>
-								</label>
-							</div>
-							<input name = "filleserv" type="hidden" id="file-path-serv" value = "">
-							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(452);?>">политикой конфиденциальности</a></p>
-							<button type="submit" class="popup__form-btn upload_files projectBtn btn">Отправить заявку</button>
-						</form>
-					</div> 
+
+								<div class="popup__form-input input">
+									<input type="file" name="file" onchange = 'fileloadname(event)' multiple="multiple" accept=".txt,image/*" id="input__file" class="popup__input-file file_name popup__input-file_hiden"> 
+									<label for="input__file" class="popup__input-file-button">
+										<span class="file-path popup__input-file-text" id = "file-path-name">Загрузите проект</span>
+									</label>
+								</div>
+								<input name = "filleserv" type="hidden" id="file-path-serv" value = "">
+
+								<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(452);?>">политикой конфиденциальности</a></p> 
+								<button class="popup__form-btn projectBtn btn">Отправить заявку</button> 
+							</form>
+						</div> 
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<!-- ===================================================================================================================== -->
+	<!-- ===================================================================================================================== -->
 
-<!-- Поиск товара по фотографии -->
+	<!-- Поиск товара по фотографии -->
 <!-- <div class="popup popup_search-photo">
 	<div class="popup__content">
 		<div class="popup__body">

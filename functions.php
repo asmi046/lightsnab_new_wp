@@ -212,10 +212,74 @@ add_action( 'wp_ajax_nopriv_sendphone', 'sendphone' );
 
 
 // Отправка формы Проект на расчет ========================
-add_action( 'wp_ajax_sendproject', 'sendproject' );
-add_action( 'wp_ajax_nopriv_sendproject', 'sendproject' );
+// add_action( 'wp_ajax_sendproject', 'sendproject' );
+// add_action( 'wp_ajax_nopriv_sendproject', 'sendproject' );
 
-  function sendproject() {
+//   function sendproject() {
+//     if ( empty( $_REQUEST['nonce'] ) ) {
+//       wp_die( '0' );
+//     }
+    
+//     if ( check_ajax_referer( 'NEHERTUTLAZIT', 'nonce', false ) ) {
+      
+//       $headers = array(
+//         'From: Сайт '.COMPANY_NAME.' <'.MAIL_RESEND.'>', 
+//         'content-type: form/multipart',
+//         // 'content-type: text/html', 
+//       );
+
+//       if (!empty($_REQUEST["file"])){
+//         $url_img1 = get_bloginfo("template_url").'/download/'.basename($_REQUEST["file"]);
+//         //$img_id1 = media_sideload_image( $url_img1, 0, $_REQUEST["name"]."-rev-1", "id" );
+//         //add_post_meta( $post_id, "_img_1", $img_id1, true );
+//       }
+	  
+// 	  $photo[] = $_REQUEST['file'];
+    
+//       add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+//        if (wp_mail(
+// 		carbon_get_theme_option( 'mail_to_send' ), 
+// 		'«Отправить проект на расчет»', '<strong>Имя:</strong> '.$_REQUEST["name"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["tel"]. ' <br/> <strong>Файл:</strong>  <br/> <img width = "50%" src = "'.$url_img1.'"/ > <br/>', 
+// 		$headers,  
+// 		$photo ))
+//         wp_die("<span style = 'color:green;'>Мы свяжемся с Вами в ближайшее время.</span>");
+//       else wp_die("<span style = 'color:red;'>Сервис недоступен попробуйте позднее.</span>"); 
+      
+//     } else {
+//       wp_die( 'НО-НО-НО!', '', 403 );
+//     }
+//   }
+
+// // Файловый загрузчик =====================
+// add_action( 'wp_ajax_main_load_file', 'main_load_file' );
+// add_action( 'wp_ajax_nopriv_main_load_file', 'main_load_file' );
+
+// function main_load_file() {
+    
+//     if ( empty( $_REQUEST['nonce'] ) ) {
+//       wp_die( '0' );
+//     }
+    
+//     if ( check_ajax_referer( 'NEHERTUTLAZIT', 'nonce', false ) ) {
+
+//        $movrez = move_uploaded_file($_FILES['file']['tmp_name'], get_template_directory().'/download/'.$_FILES['file']['name']);
+
+//        if ($movrez)
+//        {
+//          wp_die(get_template_directory().'/download/'.$_FILES['file']['name']);
+//        }
+//        else {
+//          wp_die( 'При загрузке файла произошла ошибка', '', 403 );
+//        }
+//     } else {
+//       wp_die( 'НО-НО-НО!', '', 403 );
+//     }
+// }
+
+add_action( 'wp_ajax_sendpay', 'sendpay' );
+add_action( 'wp_ajax_nopriv_sendpay', 'sendpay' );
+
+  function sendpay() {
     if ( empty( $_REQUEST['nonce'] ) ) {
       wp_die( '0' );
     }
@@ -224,57 +288,26 @@ add_action( 'wp_ajax_nopriv_sendproject', 'sendproject' );
       
       $headers = array(
         'From: Сайт '.COMPANY_NAME.' <'.MAIL_RESEND.'>', 
-        'content-type: form/multipart',
-        // 'content-type: text/html', 
+        'content-type: text/html',
       );
-
-      if (!empty($_REQUEST["file"])){
-        $url_img1 = get_bloginfo("template_url").'/download/'.basename($_REQUEST["file"]);
-        //$img_id1 = media_sideload_image( $url_img1, 0, $_REQUEST["name"]."-rev-1", "id" );
-        //add_post_meta( $post_id, "_img_1", $img_id1, true );
-      }
-	  
-	  $photo[] = $_REQUEST['file'];
     
+	  $uploaddir = __DIR__.'/uploads/';
+	  $uploadfile = $uploaddir . basename($_FILES['design']['name']);
+	  $attach = "";	
+
+	  if (move_uploaded_file($_FILES['design']['tmp_name'], $uploadfile)) 
+			$attach = $uploadfile;
+
       add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-       if (wp_mail(
-		carbon_get_theme_option( 'mail_to_send' ), 
-		'«Отправить проект на расчет»', '<strong>Имя:</strong> '.$_REQUEST["name"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["tel"]. ' <br/> <strong>Файл:</strong>  <br/> <img width = "50%" src = "'.$url_img1.'"/ > <br/>', 
-		$headers,  
-		$photo ))
-        wp_die("<span style = 'color:green;'>Мы свяжемся с Вами в ближайшее время.</span>");
-      else wp_die("<span style = 'color:red;'>Сервис недоступен попробуйте позднее.</span>"); 
-      
+       if (wp_mail(carbon_get_theme_option( 'mail_to_send' ), 'Заявка с формы: «Проект на расчет»', '<strong>Имя:</strong> '.$_REQUEST["nameM"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["telM"]. ' <br/> <strong>Файл:</strong> '.print_r($_FILES['design'],true), $headers,$attach))
+       	wp_die(json_encode(array("send" => true,  "price" => $_REQUEST["price"], "n" => $_REQUEST["nameM"], "phone" =>$_REQUEST["telM"] , "adres" => $_REQUEST["adrrM"] , "zn" => $zak_number)));
+      else 
+	  	wp_die(json_encode(array("send" => false)));
+
     } else {
       wp_die( 'НО-НО-НО!', '', 403 );
     }
   }
-
-// Файловый загрузчик =====================
-add_action( 'wp_ajax_main_load_file', 'main_load_file' );
-add_action( 'wp_ajax_nopriv_main_load_file', 'main_load_file' );
-
-function main_load_file() {
-    
-    if ( empty( $_REQUEST['nonce'] ) ) {
-      wp_die( '0' );
-    }
-    
-    if ( check_ajax_referer( 'NEHERTUTLAZIT', 'nonce', false ) ) {
-
-       $movrez = move_uploaded_file($_FILES['file']['tmp_name'], get_template_directory().'/download/'.$_FILES['file']['name']);
-
-       if ($movrez)
-       {
-         wp_die(get_template_directory().'/download/'.$_FILES['file']['name']);
-       }
-       else {
-         wp_die( 'При загрузке файла произошла ошибка', '', 403 );
-       }
-    } else {
-      wp_die( 'НО-НО-НО!', '', 403 );
-    }
-}
 
 	// Заявка на опт =====================================
 	
