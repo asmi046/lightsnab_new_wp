@@ -167,7 +167,7 @@ jQuery('.projectBtn').click(function(e){
 
 // Загрузчик файла ================================
 jQuery('input[type=file]').change(function(){
-      var file_data = jQuery(this).prop('files')[0];
+      var file_data = jQuery(this).prop('files')[0]; 
       var form_data = new FormData();
       var file_span = $(this).parent().siblings('.file-path');
       form_data.append('file', file_data);
