@@ -49,9 +49,9 @@
 							<input type="tel" name="tel" placeholder="Телефон*" id="form-project-tel" class="popup__form-input input">
 
 								<div class="popup__form-input input">
-									<input type="file" name="file" onchange = 'fileloadname(event)' multiple="multiple" accept=".txt,image/*" id="input__file" class="popup__input-file file_name popup__input-file_hiden"> 
+									<input type="file" name="file" onchange = 'fileloadname(this)' data-lbame = "file-path-name1" multiple="multiple" accept=".txt,image/*" id="input__file" class="popup__input-file file_name popup__input-file_hiden"> 
 									<label for="input__file" class="popup__input-file-button">
-										<span class="file-path popup__input-file-text" id = "file-path-name">Загрузите проект</span>
+										<span class="file-path popup__input-file-text" id = "file-path-name1">Загрузите проект</span>
 									</label>
 								</div>
 								<input name = "filleserv" type="hidden" id="file-path-serv" value = "">

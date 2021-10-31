@@ -203,9 +203,16 @@ jQuery(document).ready(function ($) {
 //       });
 //   });
 
-$('.projectBtn').click(function(e){  
+function fileloadname(elem) {
+  let fn = jQuery(elem).prop('files')[0].name;
+  console.log(fn);
+  let name = jQuery(elem).data("lbame");
+  jQuery("#"+name).html(fn);
+}
 
+$('.projectBtn').click(function(e){  
   e.preventDefault();
+  
   var nameM = $("#form-project-name").val(); 
   var telM = $("#form-project-tel").val();  
   let prfile = jQuery('#input__file').prop('files');
