@@ -79,11 +79,6 @@ jQuery(document).ready(function ($) {
       return;
     }
 
-    // if (jQuery("#sig-inp-e").val() == ""){
-    // 	jQuery("#sig-inp-e").css("border","1px solid red");
-    // 	return;
-    // }
-
     else {
       var jqXHR = jQuery.post(
         allAjax.ajaxurl,
@@ -97,8 +92,8 @@ jQuery(document).ready(function ($) {
       );
 
       jqXHR.done(function (responce) {
-        jQuery(".headen_form_blk").hide();
-        jQuery('.SendetMsg').show();
+        jQuery(".popup-callback .headen_form_blk").hide();
+        jQuery('.popup-callback .SendetMsg').show();
       });
 
       jqXHR.fail(function (responce) {
@@ -108,101 +103,9 @@ jQuery(document).ready(function ($) {
     }
   });
 
-
 });
 
-
-  // Отправка Проект на расчет ===============================
-// jQuery('.projectBtn').click(function(e){ 
-
-//   e.preventDefault();
-//   var name = $("#form-project-name").val();
-//   var tel = $("#form-project-tel").val();
-//   var files = $("#input__file").val(); 
-//   var file_path = $("#file-path-serv").val(); 
-//   console.log(file_path);
-//   // var file_path = $(this).siblings('.file-path').val();
-
-//   if (jQuery("#form-name").val() == "") {
-//     jQuery("#form-name").css("border","1px solid red");
-//     return;
-//   }
-
-//   if (jQuery("#form-project-tel").val() == ""){
-//     jQuery("#form-project-tel").css("border","1px solid red"); 
-//     return;
-//   }
-
-//   // if (jQuery("#form-message").val() == ""){
-//   //   jQuery("#form-message").css("border","1px solid red");
-//   //   return;
-//   // }
-
-//   else {
-    
-//     var  jqXHR = jQuery.post(
-//       allAjax.ajaxurl,
-//       {
-//         action: 'sendproject',        
-//         nonce: allAjax.nonce,
-//         name: name,
-//         tel: tel,
-//         // img1:files,
-//         file: file_path,
-//         picture: jQuery("#file-path").html(),
-//       }   
-//       );
-
-//         jqXHR.done(function (responce) {
-//           jQuery(".headen_form_blk").hide();
-//           jQuery('.SendetMsg').show();
-//         });
-
-//             jqXHR.fail(function (responce) {
-//               alert("Произошла ошибка. Попробуйте позднее."); 
-//         }); 
-
-//      }
-// });
-
-// // Загрузчик файла ================================
-// jQuery('input[type=file]').change(function(){
-//       var file_data = jQuery(this).prop('files')[0]; 
-//       var form_data = new FormData();
-//       var file_span = $(this).parent().siblings('.file-path');
-//       form_data.append('file', file_data);
-//       form_data.append('action', "main_load_file");
-//       form_data.append('nonce', allAjax.nonce);
-
-
-//       var  jqXHR = jQuery.ajax({      
-//           url: allAjax.ajaxurl,
-//           dataType: 'text',
-//           cache: false,
-//           contentType: false,
-//           processData: false,
-//           data: form_data, 
-//           type: 'post'    
-//       });
-
-//       jqXHR.done(function (responce) {
-//           file_span.val(responce);
-//           elems = responce.split('|');
-//           console.log(elems[0].split("/").pop());
-
-//       jQuery("#file-path").html(elems[0].split("/").pop());
-//       jQuery("#file-path-serv").val(elems[0]);
-//       });
-              
-//       jqXHR.fail(function (responce) {
-//           spiner.hide();
-//           if (responce.responseText == "0")
-//               file_span.html("<span style = 'color:red;'>Большой файл!</span>");
-//           else
-//               file_span.html(responce.responseText);
-//       });
-//   });
-
+  // Вытаскиваем название файла
 function fileloadname(elem) {
   let fn = jQuery(elem).prop('files')[0].name;
   console.log(fn);
@@ -210,11 +113,12 @@ function fileloadname(elem) {
   jQuery("#"+name).html(fn);
 }
 
+  // Валидация + отправщик файла Проект
 $('.projectBtn').click(function(e){  
   e.preventDefault();
   
-  var nameM = $("#form-project-name").val(); 
-  var telM = $("#form-project-tel").val();  
+  var nameProject = $("#form-project-name").val(); 
+  var telProject = $("#form-project-tel").val();  
   let prfile = jQuery('#input__file').prop('files');
   console.log(prfile);
   var designFile = (prfile != undefined)?prfile[0]:"";
@@ -229,13 +133,12 @@ $('.projectBtn').click(function(e){
     return;
   }
 
-
   else {
     var params = new FormData();
-            params.append('action', 'sendpay');
-            params.append('nonce', allAjax.nonce);
-      params.append('nameM', nameM);
-      params.append('telM', telM);
+      params.append('action', 'sendpay');
+      params.append('nonce', allAjax.nonce);
+      params.append('name', nameProject);
+      params.append('tel', telProject);
       params.append('design', designFile);
 
       var  jqXHR = jQuery.ajax({      
@@ -248,14 +151,9 @@ $('.projectBtn').click(function(e){
         type: 'post'    
       });
 
-    // var  jqXHR = jQuery.post(
-    //  allAjax.ajaxurl,
-    //  params   
-    //  );
-
         jqXHR.done(function (responce) {
-          jQuery(".headen_form_blk").hide();
-          jQuery('.SendetMsg').show();
+          jQuery(".popup-project .headen_form_blk").hide();
+          jQuery('.popup-project .SendetMsg').show();
         });
 
             jqXHR.fail(function (response) {

@@ -299,8 +299,7 @@ add_action( 'wp_ajax_nopriv_sendpay', 'sendpay' );
 			$attach = $uploadfile;
 
       add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
-       if (wp_mail(carbon_get_theme_option( 'mail_to_send' ), 'Заявка с формы: «Проект на расчет»', '<strong>Имя:</strong> '.$_REQUEST["nameM"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["telM"]. ' <br/> <strong>Файл:</strong> '.print_r($_FILES['design'],true), $headers,$attach))
-       	wp_die(json_encode(array("send" => true,  "price" => $_REQUEST["price"], "n" => $_REQUEST["nameM"], "phone" =>$_REQUEST["telM"] , "adres" => $_REQUEST["adrrM"] , "zn" => $zak_number)));
+       if (wp_mail(carbon_get_theme_option( 'mail_to_send' ), 'Заявка с формы: «Проект на расчет»', '<strong>Имя:</strong> '.$_REQUEST["name"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["tel"], $headers,$attach));
       else 
 	  	wp_die(json_encode(array("send" => false)));
 
