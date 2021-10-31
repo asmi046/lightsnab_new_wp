@@ -3757,8 +3757,11 @@ margin-left: 0;
 }
 .project-calc__img {
   flex: 0 1 19.73%;
-  padding-left: 1px;
   overflow: hidden;
+  margin-right: 2px;
+}
+.project-calc__img:last-child {
+  margin-right: 0;
 }
 .project-calc__img img{
   max-width: 100%;
@@ -4047,7 +4050,8 @@ margin-left: 0;
   .project-calc {
     flex-wrap: wrap;}
   .project-calc__img {
-    flex: 0 1 33.333%;}
+    flex: 0 1 33.333%;
+    margin-right: 0;}
   .project-calc__title {
     font-size: 20px;}
   .project-calc__subtitle {
