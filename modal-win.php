@@ -66,7 +66,7 @@
 <!-- ===================================================================================================================== -->
 
 <!-- Поиск товара по фотографии -->
-<!-- <div class="popup popup_search-photo">
+<div class="popup popup-search-photo popup_search-photo">
 	<div class="popup__content">
 		<div class="popup__body">
 			<div class="popup__close"></div>
@@ -78,25 +78,26 @@
 						Ваше сообщение успешно отправлено. 
 					</div>
 					<div class="headen_form_blk">	
-						<p>Отправьте фото нам и мы найдем интересующий Вас товар  или предложим аналоги</p>
-						<form action="#" class="popup__form">
-							<input type="text" name="name" placeholder="Имя" id="form-callback-name-sp" class="input popup__form-input">
-							<input type="tel" name="tel" placeholder="Телефон*" id="form-callback-tel-sp" class="input popup__form-input">
+						<p>Отправьте проект нашим специалистам и мы предложим оптимальную смету на освещение</p>
+						<form action="#" class="popup__form" enctype="multipart/form-data">
+							<input type="text" name="name" placeholder="Имя" id="form-search-photo-name" class="popup__form-input input">
+							<input type="tel" name="tel" placeholder="Телефон*" id="form-search-photo-tel" class="popup__form-input input">
 							<div class="popup__form-input input">
-								<input type="file" name="file" multiple="multiple" accept=".txt,image/*" id="input__file-p" class="popup__input-file popup__input-file_hiden">  
-								<label for="input__file" class="popup__input-file-button">
-									<span id="file-path-p" class="popup__input-file-text file-path">Загрузите фото</span>
+								<input type="file" name="file" onchange = 'fileloadname(this)' data-lbame = "file-path-name2" multiple="multiple" accept=".txt,image/*" id="input__file-search-photo" class="popup__input-file popup__input-file_hiden"> 
+								<label for="input__file-search-photo" class="popup__input-file-button">
+									<span class="popup__input-file-text" id = "file-path-name2">Загрузите фото</span>
 								</label>
 							</div>
-							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(452);?>">политикой конфиденциальности</a></p>
-							<button class="popup__form-btn btn">Отправить заявку</button>
+							<input name = "filleserv" type="hidden" id="file-path-serv" value = "">
+							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(452);?>">политикой конфиденциальности</a></p> 
+							<button class="popup__form-btn photoBtn btn">Отправить заявку</button> 
 						</form>
-					</div> 
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div> -->
+</div>
 <!-- ===================================================================================================================== -->
 
 <div style="display: none;">

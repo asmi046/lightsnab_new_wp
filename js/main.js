@@ -123,11 +123,6 @@ $('.projectBtn').click(function(e){
   console.log(prfile);
   var designFile = (prfile != undefined)?prfile[0]:"";
 
-  if (jQuery("#form-name").val() == "") {
-    jQuery("#form-name").css("border","1px solid red");
-    return;
-  }
-
   if (jQuery("#form-project-tel").val() == ""){
     jQuery("#form-project-tel").css("border","1px solid red"); 
     return;
@@ -135,7 +130,7 @@ $('.projectBtn').click(function(e){
 
   else {
     var params = new FormData();
-      params.append('action', 'sendpay');
+      params.append('action', 'sendproject');
       params.append('nonce', allAjax.nonce);
       params.append('name', nameProject);
       params.append('tel', telProject);
@@ -154,6 +149,51 @@ $('.projectBtn').click(function(e){
         jqXHR.done(function (responce) {
           jQuery(".popup-project .headen_form_blk").hide();
           jQuery('.popup-project .SendetMsg').show();
+        });
+
+            jqXHR.fail(function (response) {
+              alert("Произошла ошибка. Попробуйте позднее."); 
+        }); 
+
+     }
+});
+
+// Валидация + отправщик файла Поиск товара по фотографии
+$('.photoBtn').click(function(e){  
+  e.preventDefault();
+  
+  var nameProject = $("#form-search-photo-name").val(); 
+  var telProject = $("#form-search-photo-tel").val();  
+  let prfile = jQuery('#input__file-search-photo').prop('files');
+  console.log(prfile);
+  var designFile = (prfile != undefined)?prfile[0]:"";
+
+  if (jQuery("#form-search-photo-tel").val() == ""){
+    jQuery("#form-search-photo-tel").css("border","1px solid red"); 
+    return;
+  }
+
+  else {
+    var params = new FormData();
+      params.append('action', 'sendphoto');
+      params.append('nonce', allAjax.nonce);
+      params.append('name', nameProject);
+      params.append('tel', telProject);
+      params.append('design', designFile);
+
+      var  jqXHR = jQuery.ajax({      
+        url: allAjax.ajaxurl,
+        dataType: 'text',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: params, 
+        type: 'post'    
+      });
+
+        jqXHR.done(function (responce) {
+          jQuery(".popup-search-photo .headen_form_blk").hide();
+          jQuery('.popup-search-photo .SendetMsg').show();
         });
 
             jqXHR.fail(function (response) {
