@@ -22,7 +22,7 @@
     "send_pars_one2": "scp -C pars/toTovarBase.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_inexcel_photo": "scp -C -r pars/inexcel/photo u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_inexcelall": "scp -C -r pars/inexcel/ u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
-    "send_inexcel_data": "scp -C  pars/inexcel/datd_27_09_2021.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
+    "send_inexcel_data": "scp -C  pars/inexcel/datd_01_11_2021.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_inexcel": "scp -C  pars/inexcel/inexcel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_kp_template": "scp -C -r excel_kp/template_kp.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/excel_kp/",
     "send_kp_one": "scp -C -r excel_kp/kp.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/excel_kp/",
