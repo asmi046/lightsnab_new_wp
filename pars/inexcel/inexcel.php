@@ -12,7 +12,7 @@
     
     require_once dirname(__FILE__) . '/Classes/PHPExcel.php';
 
-    $inputFileName = './datd_01_11_2021.xlsx';
+    $inputFileName = './datd_23_11_2021.xlsx';
 
     $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
     
@@ -116,7 +116,7 @@
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
         $tovIndex ++;
-        if ($tovIndex <1010) continue;
+        if ($tovIndex <1090) continue;
 
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
@@ -223,6 +223,9 @@
 
         wp_set_object_terms( $post_id, $postCat, "lightcat" );
         wp_set_object_terms( $post_id, explode(',', $tovarInfo["style"]), "lightstyle" );
+
+        wp_set_object_terms( $post_id, $tovarInfo["kategoria"], "lightcat", true );
+        wp_set_object_terms( $post_id, explode(',', $tovarInfo["kategoria_pop"]), "lightcat", true );
 
         $indexImg = 0;
         
