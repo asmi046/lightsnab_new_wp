@@ -51,6 +51,7 @@ if (!empty($_REQUEST["number"])) {
     
     $worksheet->setCellValue('H7', $zak[0]->klient_name);
     $worksheet->setCellValue('H8', $zak[0]->phone);
+    $worksheet->setCellValue('H9', $zak[0]->adres);
 
     $worksheet->setCellValue('C10', "Заказ ".$_REQUEST["number"]." от ".date("m.d.Y", strtotime($zak[0]->zak_data)));
 
