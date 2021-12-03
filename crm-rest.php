@@ -59,6 +59,7 @@ function user_autorization( WP_REST_Request $request) {
 				"mail" => $user_feeld[0]->mail,
 				"dolgnost" => $user_feeld[0]->dolgnost,
 				"seans_length" => $user_feeld[0]->seans_length,
+				"status" => $user_feeld[0]->status,
 				"token" => $token
 			);
 			
