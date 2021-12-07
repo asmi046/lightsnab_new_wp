@@ -552,4 +552,62 @@ function add_tov_to_base( WP_REST_Request $request ){
 	return array("file" => $rez, "lnk" => $lnk, "name" => $_REQUEST["name"], "sku" => $_REQUEST["sku"], "serch" => $_REQUEST["serch"]); 
 }
 
+//
+// Копирование заказа
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/copy_zak', array(
+		'methods'  => 'POST',
+		'callback' => 'copy_zak',
+		'args' => array(
+			'oldnumber' => array(
+				'default'           => "",
+				'required'          => true,              		
+			),
+			'newnumber' => array(
+				'default'           => "",
+				'required'          => true,              		
+			),
+			'newdata' => array(
+				'default'           => "",
+				'required'          => true,            		
+			)
+			
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/copy_zak
+function copy_zak( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	$oldZak = $serviceBase->get_results('SELECT * FROM `zakaz` WHERE `zak_numbet` = "'.$request["oldnumber"].'"');
+	$oldZak = $oldZak[0];
+
+	if (empty($oldZak)) 
+		return new WP_Error( 'no_zak_to_copy', 'Нет заказа для копирования.', [ 'status' => 403 ] );
+	
+	$oldZak->id = "";
+	$oldZak->zak_numbet = $request["newnumber"];
+	$oldZak->zak_final_data = date("Y-m-d H:i:s", strtotime($request["newdata"])); 
+
+	$newZakazRez = $serviceBase->insert('zakaz', (array)$oldZak);
+	$new_zak_id = $serviceBase->insert_id;
+
+	if (empty($newZakazRez)) 
+		return new WP_Error( 'no_zak_copy', 'При копировании заказа возникла ошибка.', [ 'status' => 403 ] );
+	
+	$oldZakTovar = $serviceBase->get_results('SELECT * FROM `zakaz_tovar` WHERE `zak_number` = "'.$request["oldnumber"].'"');
+
+	foreach ($oldZakTovar as $t) {
+		$t->id = "";
+		$t->zak_number = $request["newnumber"];
+		$t->zak_id = $new_zak_id;
+
+		$serviceBase->insert('zakaz_tovar', (array)$t);
+	}
+
+	return array( "zdata" => $oldZak, "new_id" => $new_zak_id);
+}
+
 ?>
