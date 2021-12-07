@@ -245,6 +245,7 @@ function add_zak( WP_REST_Request $request ){
 		'phone' => $zakinfo["phone"], 
 		'phone2' => $zakinfo["phone2"], 
 		'adres' => $zakinfo["adr"], 
+		'beznal' => $zakinfo["beznal"], 
 		'summa_sheta_1c' => $zakinfo["shetsumm"], 
 		'nomer_sheta_1c' => $zakinfo["shetn"], 
 		'status' => $request["status"], 
@@ -268,6 +269,7 @@ function add_zak( WP_REST_Request $request ){
 			"sale" => $zakinfo["zaktovars"][$i]["sale"],
 			"summ" => $zakinfo["zaktovars"][$i]["summ"],
 			"nal" => $zakinfo["zaktovars"][$i]["nal"],
+			"edin" => $zakinfo["zaktovars"][$i]["edin"],
 			"comment" => $zakinfo["zaktovars"][$i]["comment"]
 		));
 	}
@@ -330,6 +332,7 @@ function update_zak( WP_REST_Request $request ){
 			'phone' => $zakinfo["phone"], 
 			'phone2' => $zakinfo["phone2"], 
 			'adres' => $zakinfo["adr"], 
+			'beznal' => $zakinfo["beznal"], 
 			'summa_sheta_1c' => $zakinfo["shetsumm"], 
 			'nomer_sheta_1c' => $zakinfo["shetn"], 
 			'status' => $request["status"], 
@@ -354,6 +357,7 @@ function update_zak( WP_REST_Request $request ){
 			"price" => $zakinfo["zaktovars"][$i]["price"],
 			"sale" => $zakinfo["zaktovars"][$i]["sale"],
 			"summ" => $zakinfo["zaktovars"][$i]["summ"],
+			"edin" => $zakinfo["zaktovars"][$i]["edin"],
 			"nal" => $zakinfo["zaktovars"][$i]["nal"],
 			"comment" => $zakinfo["zaktovars"][$i]["comment"]
 		));
@@ -393,6 +397,10 @@ function get_tovar( WP_REST_Request $request ){
 		return new WP_Error( 'no_query_string', 'Нет данных для добавления', [ 'status' => 403 ] );
 	
 	$rez = $serviceBase->get_results('SELECT * FROM `tovar_base` WHERE `sku` LIKE "%'. $request["query"] .'%" OR `name` LIKE "%'. $request["query"] .'%" OR `search_str` LIKE "%'. $request["query"] .'%" LIMIT 30');
+
+	for ($i = 0; $i< count($rez); $i++) 
+		$rez[$i]->addet = false;
+
 
 	return $rez;
 }
