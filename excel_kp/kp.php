@@ -94,6 +94,7 @@ if (!empty($_REQUEST["number"])) {
     }
 
     $worksheet->setCellValue('J'.(13+$i), $zak[0]->total_summ);
+    $worksheet->setCellValue('C'.(17+$i), $zak[0]->comment);
 
 
 }

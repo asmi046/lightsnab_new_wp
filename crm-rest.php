@@ -585,7 +585,22 @@ add_action( 'rest_api_init', function () {
 			'querystr' => array(
 				'default'           => "",         		
 			)
+			
+		),
+		) );
+});
+
+
+// https://lightsnab.ru/wp-json/lscrm/v2/get_manager_info?orderid=1122
+function get_manager_info( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	
+	$rez = $serviceBase->get_results('SELECT * FROM `service_users`');
+	
+	return $rez; 
+}
+
+
 //
 // Копирование заказа
 //
@@ -612,14 +627,6 @@ add_action( 'rest_api_init', function () {
 	) );
 });
 
-// https://lightsnab.ru/wp-json/lscrm/v2/get_manager_info?orderid=1122
-function get_manager_info( WP_REST_Request $request ){
-	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
-	
-	$rez = $serviceBase->get_results('SELECT * FROM `service_users`');
-	
-	return $rez; 
-}
 
 // https://lightsnab.ru/wp-json/lscrm/v2/copy_zak
 function copy_zak( WP_REST_Request $request ){
