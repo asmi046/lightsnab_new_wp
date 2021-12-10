@@ -424,15 +424,35 @@ add_action( 'rest_api_init', function () {
 	) );
 });
 
+function get_use_info( $mail ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	$rez = $serviceBase->get_results('SELECT * FROM `service_users` WHERE `mail` = "'.$mail.'"');
+	$rez = $rez[0];
+	
+	return $rez; 
+}
+
 // https://lightsnab.ru/wp-json/lscrm/v2/get_zakaz?query=1122
 function get_zakaz( WP_REST_Request $request ){
+	$user_info = get_use_info( $request["mngmail"] );
+
+	if (empty($user_info)) 
+		return new WP_Error( 'no_access', 'Доступ запрещен', [ 'status' => 403 ] );
+
+
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	
 	$queryStr = ($request["querystr"] !== "%" )?"%".$request["querystr"]."%":$request["querystr"];
 	$ststus = ($request["status"] !== "" )?$request["status"]:"%";
+	if ($user_info->status === "admin")
+		$mngmailquery = ($request["mngmailquery"] !== "" )?$request["mngmailquery"]:"%";
+	else $mngmailquery = $request["mngmail"];
 
-	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE `status` LIKE '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')");
+	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` LIKE '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')");
 	
+	// return $user_info;
+	// return "SELECT * FROM `zakaz` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` LIKE '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')";
 	return $rez;
 }
 
@@ -551,5 +571,33 @@ function add_tov_to_base( WP_REST_Request $request ){
 
 	return array("file" => $rez, "lnk" => $lnk, "name" => $_REQUEST["name"], "sku" => $_REQUEST["sku"], "serch" => $_REQUEST["serch"]); 
 }
+
+
+//
+// Получение информации о менеджере
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/get_manager_info', array(
+		'methods'  => 'GET',
+		'callback' => 'get_manager_info',
+		'args' => array(
+			'querystr' => array(
+				'default'           => "",         		
+			)
+	
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/get_manager_info?orderid=1122
+function get_manager_info( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$rez = $serviceBase->get_results('SELECT * FROM `service_users`');
+	
+	return $rez; 
+}
+
 
 ?>

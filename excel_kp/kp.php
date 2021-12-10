@@ -73,7 +73,7 @@ if (!empty($_REQUEST["number"])) {
         $worksheet->setCellValue('G'.(13+$i), $elem->price);
         $worksheet->setCellValue('H'.(13+$i), $elem->count);
         $worksheet->setCellValue('J'.(13+$i), $elem->summ);
-        $worksheet->setCellValue('K'.(13+$i), $elem->nal." ".$elem->comment);
+        $worksheet->setCellValue('K'.(13+$i), $elem->nal." / ".$elem->comment);
 
         
         
@@ -105,7 +105,10 @@ if (!empty($_REQUEST["number"])) {
 
 $writer = new Xlsx($spreadsheet);
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+if (empty($_REQUEST["number"]))
 header('Content-Disposition: attachment; filename="kp.xlsx"');
+else
+header('Content-Disposition: attachment; filename="'.$_REQUEST["number"].' - '.$zak[0]->klient_name.'.xlsx"');
 
 $writer->save("php://output");
 
