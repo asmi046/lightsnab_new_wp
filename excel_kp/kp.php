@@ -53,7 +53,7 @@ if (!empty($_REQUEST["number"])) {
     $worksheet->setCellValue('H8', $zak[0]->phone);
     $worksheet->setCellValue('H9', $zak[0]->adres);
 
-    $worksheet->setCellValue('C10', "Заказ ".$_REQUEST["number"]." от ".date("m.d.Y", strtotime($zak[0]->zak_data)));
+    $worksheet->setCellValue('C10', "Заказ ".$_REQUEST["number"]." от ".date("d.m.Y", strtotime($zak[0]->zak_data)));
 
     
 
@@ -72,6 +72,7 @@ if (!empty($_REQUEST["number"])) {
         $worksheet->setCellValue('D'.(13+$i), $elem->name);
         $worksheet->setCellValue('G'.(13+$i), $elem->price);
         $worksheet->setCellValue('H'.(13+$i), $elem->count);
+        $worksheet->setCellValue('I'.(13+$i), $elem->edin);
         $worksheet->setCellValue('J'.(13+$i), $elem->summ);
         $worksheet->setCellValue('K'.(13+$i), $elem->nal." / ".$elem->comment);
 
