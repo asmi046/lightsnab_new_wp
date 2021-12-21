@@ -573,6 +573,166 @@ function add_tov_to_base( WP_REST_Request $request ){
 }
 
 
+
+//
+// Добавление склада в справочник
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/sklad_to_base', array(
+		'methods'  => 'POST',
+		'callback' => 'sklad_to_base',
+		'args' => array(
+			'name' => array(
+				'default'           => "",
+				'required'          => true,              		
+			),
+			'adres' => array(
+				'default'           => "",
+				'required'          => true,            		
+			),
+			'phone' => array(
+				'default'           => "",
+				'required'          => true,            		
+			),
+			'geo' => array(
+				'default'           => ""            		
+			),
+			
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/sklad_to_base
+function sklad_to_base( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	$param = array(
+		"name" => $request['name'],
+		"adres" => $request['adres'],
+		"phone" => $request['phone'],
+		"geo" => $request["geo"],
+	);
+
+	$rez = $serviceBase->insert('sklad_list', $param);
+	
+	if (empty($rez))
+	return new WP_Error( 'no_not_add', 'Склад не добавлен', [ 'status' => 403 ] );
+	$param["id"] = $serviceBase->insert_id;
+	return array("fild" => $param); 
+}
+
+//
+// Редактирование склада в справочник
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/sklad_update', array(
+		'methods'  => 'POST',
+		'callback' => 'sklad_update',
+		'args' => array(
+			'id' => array(
+				'default'           => 0,
+				'required'          => true,              		
+			),
+			'name' => array(
+				'default'           => "",
+				'required'          => true,              		
+			),
+			'adres' => array(
+				'default'           => "",
+				'required'          => true,            		
+			),
+			'phone' => array(
+				'default'           => "",
+				'required'          => true,            		
+			),
+			'geo' => array(
+				'default'           => ""            		
+			),
+			
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/sklad_update
+function sklad_update( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	$param = array(
+		"name" => $request['name'],
+		"adres" => $request['adres'],
+		"phone" => $request['phone'],
+		"geo" => $request["geo"],
+		"id" => $request["id"]
+	);
+
+	$rez = $serviceBase->update('sklad_list', $param, array("id" => $request['id']));
+	
+	if (empty($rez))
+	return new WP_Error( 'no_not_update', 'Данные не обновлены', [ 'status' => 403 ] );
+
+	return array("fild" => $param); 
+}
+
+
+//
+// Удаление склада
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/del_sklad', array(
+		'methods'  => 'DELETE',
+		'callback' => 'del_sklad',
+		'args' => array(
+			'orderid' => array(
+				'default'           => 0,
+				'required'          => true,              		
+			),
+			
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/del_sklad?orderid=1122
+function del_sklad( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	$rez = $serviceBase->delete("sklad_list", array("id" => $request['orderid']));
+	
+	return array("id" => $request['orderid'], "dellsklad" => $rez);
+}
+
+
+
+//
+// Получение информации о складах
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/get_all_sclads', array(
+		'methods'  => 'GET',
+		'callback' => 'get_all_sclads',
+		'args' => array(
+			'querystr' => array(
+				'default'           => "",         		
+			)
+			
+		),
+		) );
+});
+
+
+// https://lightsnab.ru/wp-json/lscrm/v2/get_all_sclads
+function get_all_sclads( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$rez = $serviceBase->get_results('SELECT * FROM `sklad_list`');
+	
+	return $rez; 
+}
+
+
 //
 // Получение информации о менеджере
 //
@@ -659,5 +819,48 @@ function copy_zak( WP_REST_Request $request ){
 
 	return array( "zdata" => $oldZak, "new_id" => $new_zak_id);
 }
+
+//
+// Отчет о продажах менеджеров
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/sale_report', array(
+		'methods'  => 'GET',
+		'callback' => 'sale_report',
+		'args' => array(
+			'start' => array(
+				'default'           => "",
+				'required'          => true,              		
+			),
+			'end' => array(
+				'default'           => "",
+				'required'          => true,              		
+			),
+			'manager' => array(
+				'default'           => "",            		
+			)
+			
+		),
+	) );
+});
+
+
+// https://lightsnab.ru/wp-json/lscrm/v2/sale_report?start=2021-12-17&end=2021-12-21
+function sale_report( WP_REST_Request $request ){
+	
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$manager = empty($request["manager"])?"%":$request["manager"];
+
+	$q = "SELECT `zakaz`.*, count(*) as `zakaz_count`, SUM(`summa_sheta_1c`) as `zakaz_summ_1c`, SUM(`summa_sheta_1c`) as `zakaz_summ_nal` FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$request["start"]."' AND `zak_final_data` <= '".$request["end"]."') AND `mng_mail` LIKE '".$manager."' GROUP BY `mng_mail`";
+
+	$report = $serviceBase->get_results($q);
+
+	// return array("result" => $report, "q" => $q);
+	return $report;
+
+}
+
 
 ?>
