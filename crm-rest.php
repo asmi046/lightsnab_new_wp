@@ -857,7 +857,7 @@ function sale_report( WP_REST_Request $request ){
 
 	$report = $serviceBase->get_results($q);
 
-	// return array("result" => $report, "q" => $q);
+	// return array("result" => $report, "q" => $q, "start" => $request["start"], "end" => $request["end"],);
 	return $report;
 
 }
