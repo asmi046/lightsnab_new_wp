@@ -853,14 +853,88 @@ function sale_report( WP_REST_Request $request ){
 	
 	$manager = empty($request["manager"])?"%":$request["manager"];
 
-	$q = "SELECT `zakaz`.*, count(*) as `zakaz_count`, SUM(`summa_sheta_1c`) as `zakaz_summ_1c`, SUM(`summa_sheta_1c`) as `zakaz_summ_nal` FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$request["start"]."' AND `zak_final_data` <= '".$request["end"]."') AND `mng_mail` LIKE '".$manager."' GROUP BY `mng_mail`";
+	$q = "SELECT `zakaz`.*, count(*) as `zakaz_count`, SUM(round(`summa_sheta_1c`, 2)) as `zakaz_summ_1c`, SUM( round(`summa_sheta_1c`,2)) as `zakaz_summ_nal` FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$request["start"]."' AND `zak_final_data` <= '".$request["end"]."') AND `mng_mail` LIKE '".$manager."' GROUP BY `mng_mail`";
 
 	$report = $serviceBase->get_results($q);
 
 	// return array("result" => $report, "q" => $q, "start" => $request["start"], "end" => $request["end"],);
 	return $report;
-
 }
 
+
+//
+// Добавление маршрутных листов
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/add_road_list', array(
+		'methods'  => 'POST',
+		'callback' => 'add_road_list',
+		'args' => array(
+			'data' => array(
+				'default'           => "",
+			)
+			
+		),
+	) );
+});
+
+
+// https://lightsnab.ru/wp-json/lscrm/v2/add_road_list
+function add_road_list( WP_REST_Request $request ){
+	
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$data = empty($request["data"])?date("Y-m-d"):$request["data"];
+
+	$addResult = $serviceBase->insert("road_lists", array(
+		"data" => $data,
+		"status" => "Активный",
+	));
+
+	return array("result" => $addResult);
+}
+
+//
+// Получение списка маршрутных листов
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/get_road_list', array(
+		'methods'  => 'GET',
+		'callback' => 'get_road_list',
+		'args' => array(
+			'start' => array(
+				'default'           => "",
+			),
+			'end' => array(
+				'default'           => "",
+			),
+			'status' => array(
+				'default'           => "",            		
+			)
+			
+		),
+	) );
+});
+
+
+// https://lightsnab.ru/wp-json/lscrm/v2/get_road_list?start=2021-12-17&end=2021-12-21
+function get_road_list( WP_REST_Request $request ){
+	
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+
+	$start = empty($request["start"])?date("Y-m-d"):$request["start"];
+	$end = empty($request["status"])?date("Y-m-d"):$request["end"];
+	$status = empty($request["status"])?"%":$request["status"];
+
+	$q = "SELECT * FROM `road_lists` WHERE `status` LIKE '".$status."' AND (`data` >= '".$start."' AND `data` <= '".$end."')";
+
+	$report = $serviceBase->get_results($q);
+
+	// return array("result" => $report, "q" => $q, "start" => $request["start"], "end" => $request["end"],);
+	return $report;
+}
 
 ?>
