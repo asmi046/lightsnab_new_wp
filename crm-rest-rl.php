@@ -287,4 +287,67 @@ function get_road_list_data( WP_REST_Request $request ){
 	
 }
 
+//
+// Удаление склада
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/delete_sclad_in_road_list', array(
+		'methods'  => 'DELETE',
+		'callback' => 'delete_sclad_in_road_list',
+		'args' => array(
+			'id' => array(
+				'default'           => "",
+				'required'          => true,
+			)
+		),
+	) );
+});
+
+
+// https://lightsnab.ru/wp-json/lscrm/v2/delete_sclad_in_road_list?id=5
+function delete_sclad_in_road_list( WP_REST_Request $request ){
+	
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$rez = $serviceBase->delete("road_lists_sklads", array("id" => $request['id']));
+	
+	if ($rez === false) 
+		return new WP_Error( 'no_del_faild', 'При удалении склада возникла ошибка', [ 'status' => 403 ] );
+
+	return array("result" => $rez);
+}
+
+
+//
+// Удаление доставки
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/delete_delivery_in_road_list', array(
+		'methods'  => 'DELETE',
+		'callback' => 'delete_delivery_in_road_list',
+		'args' => array(
+			'id' => array(
+				'default'           => "",
+				'required'          => true,
+			)
+		),
+	) );
+});
+
+
+// https://lightsnab.ru/wp-json/lscrm/v2/delete_delivery_in_road_list?id=5
+function delete_delivery_in_road_list( WP_REST_Request $request ){
+	
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$rez = $serviceBase->delete("road_lists_delivey", array("id" => $request['id']));
+	
+	if ($rez === false) 
+		return new WP_Error( 'no_del_faild', 'При удалении доставки возникла ошибка', [ 'status' => 403 ] );
+
+	return array("result" => $rez);
+}
+
 ?>
