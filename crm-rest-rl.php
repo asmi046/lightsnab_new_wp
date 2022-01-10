@@ -112,7 +112,7 @@ function update_road_list( WP_REST_Request $request ){
 	
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	
-	$data = empty($request["data"])?date("Y-m-d"):$request["data"];
+	$data = empty($request["data"])?date("Y-m-d"):date("Y-m-d", strtotime($request["data"]));
 
 	$addResult = $serviceBase->update("road_lists", array(
 			"data" => $data,
