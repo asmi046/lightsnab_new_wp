@@ -53,7 +53,7 @@ if (!empty($_REQUEST["number"])) {
     $worksheet->setCellValue('H8', $zak[0]->phone);
     $worksheet->setCellValue('H9', $zak[0]->adres);
 
-    $worksheet->setCellValue('C10', "Заказ ".$_REQUEST["number"]." от ".date("d.m.Y", strtotime($zak[0]->zak_final_data)));
+    $worksheet->setCellValue('C10', "Заказ ".$_REQUEST["number"]." от ".date("d.m.Y"));
 
     
 
@@ -69,12 +69,14 @@ if (!empty($_REQUEST["number"])) {
         $worksheet->setCellValue('B'.(13+$i), $elem->sku);
         $worksheet->mergeCells('D'.(13+$i).':'.'F'.(13+$i));
         $worksheet->getStyle('D'.(13+$i))->getAlignment()->setWrapText(true);
-        $worksheet->setCellValue('D'.(13+$i), $elem->name);
+        $worksheet->setCellValue('D'.(13+$i), $elem->name. "\n\r". $elem->cerecter);
         $worksheet->setCellValue('G'.(13+$i), $elem->price);
-        $worksheet->setCellValue('H'.(13+$i), $elem->count);
-        $worksheet->setCellValue('I'.(13+$i), $elem->edin);
-        $worksheet->setCellValue('J'.(13+$i), $elem->summ);
-        $worksheet->setCellValue('K'.(13+$i), $elem->nal." / ".$elem->comment);
+
+        $worksheet->setCellValue('H'.(13+$i), $elem->sale."%");
+        $worksheet->setCellValue('I'.(13+$i), $elem->count);
+        $worksheet->setCellValue('J'.(13+$i), $elem->edin);
+        $worksheet->setCellValue('K'.(13+$i), $elem->summ);
+        $worksheet->setCellValue('L'.(13+$i), $elem->nal." / ".$elem->comment);
 
         
         
@@ -94,7 +96,7 @@ if (!empty($_REQUEST["number"])) {
         $i++;
     }
 
-    $worksheet->setCellValue('J'.(13+$i), $zak[0]->total_summ);
+    $worksheet->setCellValue('K'.(13+$i), $zak[0]->total_summ);
     $worksheet->setCellValue('C'.(17+$i), $zak[0]->comment);
 
 
