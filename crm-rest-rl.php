@@ -235,6 +235,7 @@ function add_delivery_to_road_list( WP_REST_Request $request ){
 	
 	$addResult = $serviceBase->insert("road_lists_delivey", array(
 		"road_list_id" => $request['rlid'],
+		"zak_numbet" => $request['zaknumber'],
 		"klient_name" => $request['deliveryinfo']["klient_name"],
 		"klient_phone" => $request['deliveryinfo']["phone"],
 		"adres" => $request['deliveryinfo']["adres"],
@@ -332,7 +333,12 @@ add_action( 'rest_api_init', function () {
 		'callback' => 'delete_delivery_in_road_list',
 		'args' => array(
 			'id' => array(
-				'default'           => "",
+				'default'           => 0,
+				'required'          => true,
+			),
+
+			'number' => array(
+				'default'           => 0,
 				'required'          => true,
 			)
 		),
@@ -349,6 +355,8 @@ function delete_delivery_in_road_list( WP_REST_Request $request ){
 	
 	if ($rez === false) 
 		return new WP_Error( 'no_del_faild', 'При удалении доставки возникла ошибка', [ 'status' => 403 ] );
+
+		$zakResult = $serviceBase->update('zakaz', ["in_road_list" => ""], ["zak_numbet" => $request['number']]);
 
 	return array("result" => $rez);
 }

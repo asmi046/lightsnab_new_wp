@@ -263,6 +263,7 @@ function add_zak( WP_REST_Request $request ){
 			"zak_number" => $zakinfo["zaknumber"],
 			"img" => $zakinfo["zaktovars"][$i]["img"],
 			"name" => $zakinfo["zaktovars"][$i]["name"],
+			"cerecter" => $zakinfo["zaktovars"][$i]["cerecter"],
 			"sku" => $zakinfo["zaktovars"][$i]["sku"],
 			"count" => $zakinfo["zaktovars"][$i]["count"],
 			"price" => $zakinfo["zaktovars"][$i]["price"],
@@ -344,14 +345,16 @@ function update_zak( WP_REST_Request $request ){
 	
 	$serviceBase->delete('zakaz_tovar', array("zak_number" => $request["zaknumber"]));
 
+	$chengeTovar = false;
 
 	for ($i = 0; $i<count($zakinfo["zaktovars"]); $i++)
 	{
-		$serviceBase->insert('zakaz_tovar', array(
+		$result = $serviceBase->insert('zakaz_tovar', array(
 			"zak_id" => $zakinfo["zak_id"],
 			"zak_number" => $request["zaknumber"],
 			"img" => $zakinfo["zaktovars"][$i]["img"],
 			"name" => $zakinfo["zaktovars"][$i]["name"],
+			"cerecter" => $zakinfo["zaktovars"][$i]["cerecter"],
 			"sku" => $zakinfo["zaktovars"][$i]["sku"],
 			"count" => $zakinfo["zaktovars"][$i]["count"],
 			"price" => $zakinfo["zaktovars"][$i]["price"],
@@ -361,9 +364,11 @@ function update_zak( WP_REST_Request $request ){
 			"nal" => $zakinfo["zaktovars"][$i]["nal"],
 			"comment" => $zakinfo["zaktovars"][$i]["comment"]
 		));
+
+		if (!empty($result)) $chengeTovar = true;
 	}
 
-	if (empty($updateRez)) {
+	if (empty($updateRez) && empty($result)) {
 		return new WP_Error( 'no_edit_zak', 'Заказ не изменен', [ 'status' => 403 ] );
 	} else {
 		return array("result" => true, "zinfo" => $zakinfo );
@@ -450,10 +455,12 @@ function get_zakaz( WP_REST_Request $request ){
 		$mngmailquery = ($request["mngmailquery"] !== "" )?$request["mngmailquery"]:"%";
 	else $mngmailquery = $request["mngmail"];
 
-	$rez = $serviceBase->get_results("SELECT * FROM `zakaz` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` LIKE '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')");
+	$q = "SELECT `zakaz`.*, `zakaz_tovar`.`sku` FROM `zakaz` LEFT JOIN `zakaz_tovar` ON `zakaz`.`zak_numbet` = `zakaz_tovar`.`zak_number` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` LIKE '".$ststus."' AND (`sku` LIKE '".$queryStr."' OR  `phone` LIKE '".$queryStr."' OR `klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."') group BY `zak_numbet`";
+	// $q = "SELECT * FROM `zakaz` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` LIKE '".$ststus."' AND (`phone` LIKE '".$queryStr."' OR `klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')";
 	
-	// return $user_info;
-	// return "SELECT * FROM `zakaz` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` LIKE '".$ststus."' AND (`klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')";
+	$rez = $serviceBase->get_results($q);
+	
+	// return $q;
 	return $rez;
 }
 
