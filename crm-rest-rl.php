@@ -192,6 +192,7 @@ function add_sclad_to_road_list( WP_REST_Request $request ){
 		"sklad_name" => $request['scladinfo']["skladname"],
 		"sklad_id" => $request['scladinfo']["skladid"],
 		"pay" => $request['scladinfo']["pay"],
+		"price" => $request['scladinfo']["price"],
 		"document" => $request['scladinfo']["document"],
 		"commen" => $request['scladinfo']["comment"],
 	));
@@ -235,6 +236,7 @@ function add_delivery_to_road_list( WP_REST_Request $request ){
 	$addResult = $serviceBase->insert("road_lists_delivey", array(
 		"road_list_id" => $request['rlid'],
 		"klient_name" => $request['deliveryinfo']["klient_name"],
+		"klient_phone" => $request['deliveryinfo']["phone"],
 		"adres" => $request['deliveryinfo']["adres"],
 		"comment" => $request['deliveryinfo']["comment"],
 	));
@@ -271,7 +273,6 @@ function get_road_list_data( WP_REST_Request $request ){
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	
 	$q = "SELECT * FROM `road_lists_sklads` WHERE `road_list_id` = ".$request['mlid'];
-
 	$lists_sklad = $serviceBase->get_results($q);
 
 	$sklad_result = [];
@@ -280,10 +281,12 @@ function get_road_list_data( WP_REST_Request $request ){
 	}
 
 	$q = "SELECT * FROM `road_lists_delivey` WHERE `road_list_id` = ".$request['mlid'];
-
 	$lists_delivery = $serviceBase->get_results($q);
 
-	return array("sklads" => $sklad_result, "delivery" => $lists_delivery, "q" =>$q);
+	$q = "SELECT * FROM `road_lists` WHERE `id` = ".$request['mlid'];
+	$road_list = $serviceBase->get_results($q);
+
+	return array("sklads" => $sklad_result, "roadlist" => $road_list, "delivery" => $lists_delivery, "q" =>$q);
 	
 }
 
