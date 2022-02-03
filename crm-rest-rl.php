@@ -288,8 +288,8 @@ function get_road_list_data( WP_REST_Request $request ){
 	$road_list = $serviceBase->get_results($q);
 
 	
-	$start = date("Y-m-d", strtotime($road_list[0]->data));
-	$end = date("Y-m-d", strtotime("+10 day"));
+	$start = date("Y-m-d", strtotime("-3 day", strtotime($road_list[0]->data)));
+	$end = date("Y-m-d", strtotime("+5 day"));
 	
 	$q = "SELECT * FROM `road_lists` WHERE (`data` >= '".$start."' AND `data` <= '".$end."')";
 	$road_list_next = $serviceBase->get_results($q);
@@ -359,6 +359,44 @@ function delete_delivery_in_road_list( WP_REST_Request $request ){
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	
 	$rez = $serviceBase->delete("road_lists_delivey", array("id" => $request['id']));
+	
+	if ($rez === false) 
+		return new WP_Error( 'no_del_faild', 'При удалении доставки возникла ошибка', [ 'status' => 403 ] );
+
+		$zakResult = $serviceBase->update('zakaz', ["in_road_list" => ""], ["zak_numbet" => $request['number']]);
+
+	return array("result" => $rez);
+}
+
+//
+// Удаление доставки по заказу
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/delete_delivery_in_road_list_by_zak', array(
+		'methods'  => 'DELETE',
+		'callback' => 'delete_delivery_in_road_list_by_zak',
+		'args' => array(
+			'mlid' => array(
+				'default'           => 0,
+				'required'          => true,
+			),
+
+			'number' => array(
+				'default'           => 0,
+				'required'          => true,
+			)
+		),
+	) );
+});
+
+
+// https://lightsnab.ru/wp-json/lscrm/v2/delete_delivery_in_road_list_by_zak?id=5
+function delete_delivery_in_road_list_by_zak( WP_REST_Request $request ){
+	
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+	
+	$rez = $serviceBase->delete("road_lists_delivey", array("road_list_id" => $request['mlid'], "zak_numbet" => $request['number']));
 	
 	if ($rez === false) 
 		return new WP_Error( 'no_del_faild', 'При удалении доставки возникла ошибка', [ 'status' => 403 ] );
