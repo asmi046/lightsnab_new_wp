@@ -287,7 +287,14 @@ function get_road_list_data( WP_REST_Request $request ){
 	$q = "SELECT * FROM `road_lists` WHERE `id` = ".$request['mlid'];
 	$road_list = $serviceBase->get_results($q);
 
-	return array("sklads" => $sklad_result, "roadlist" => $road_list, "delivery" => $lists_delivery, "q" =>$q);
+	
+	$start = date("Y-m-d", strtotime($road_list[0]->data));
+	$end = date("Y-m-d", strtotime("+10 day"));
+	
+	$q = "SELECT * FROM `road_lists` WHERE (`data` >= '".$start."' AND `data` <= '".$end."')";
+	$road_list_next = $serviceBase->get_results($q);
+
+	return array("sklads" => $sklad_result, "roadlist" => $road_list, "roadlist_next" => $road_list_next, "delivery" => $lists_delivery, "q" =>$q);
 	
 }
 

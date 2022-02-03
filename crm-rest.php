@@ -438,6 +438,36 @@ function get_use_info( $mail ){
 	return $rez; 
 }
 
+//
+// Получение информации по заказу
+//
+
+add_action( 'rest_api_init', function () {
+	register_rest_route( 'lscrm/v2', '/get_zakaz_info', array(
+		'methods'  => 'GET',
+		'callback' => 'get_zakaz_info',
+		'args' => array(
+			'number' => array(
+				'default'           => "",
+				'required'          => true,   		
+			),
+			
+		),
+	) );
+});
+
+// https://lightsnab.ru/wp-json/lscrm/v2/get_zakaz_info?number=ZN_31_0_443_863
+function get_zakaz_info( WP_REST_Request $request ){
+	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
+
+	if (empty($request["number"])) 
+		return new WP_Error( 'no_access', 'Номер заказа отсутствует', [ 'status' => 403 ] );
+
+	$rez = $serviceBase->get_results('SELECT * FROM `zakaz` WHERE `zak_numbet` = "'.$request["number"].'"');
+	$rez = $rez[0];
+	
+	return $rez; 
+}
 
 // https://lightsnab.ru/wp-json/lscrm/v2/get_zakaz?query=1122
 function get_zakaz( WP_REST_Request $request ){
