@@ -100,7 +100,7 @@ if (!empty($_REQUEST["rlid"])) {
         );
 
         $spreadsheet->getActiveSheet()->getRowDimension($cell_index, $key)->setRowHeight(40);
-        $worksheet->setCellValue('A'.$cell_index, $element->adres);
+        $worksheet->setCellValue('A'.$cell_index, $element->adres . " (".$element->zak_numbet.")");
 
         $worksheet->insertNewRowBefore($cell_index+1);
         $cell_index++;
@@ -119,6 +119,11 @@ if (!empty($_REQUEST["rlid"])) {
         $cell_index+=1;
         $worksheet->mergeCells('A'.$cell_index.':'.'I'.$cell_index);
         $worksheet->setCellValue('A'.$cell_index, "Комментарий: ".$element->comment);
+
+        $worksheet->insertNewRowBefore($cell_index+1);
+        $cell_index+=1;
+        $worksheet->mergeCells('A'.$cell_index.':'.'I'.$cell_index);
+        $worksheet->setCellValue('A'.$cell_index, "Телефон: ".$element->klient_phone);
         
         $cell_index++;
     }
