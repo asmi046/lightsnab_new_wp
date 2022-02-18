@@ -923,12 +923,14 @@ function sale_report( WP_REST_Request $request ){
 	$start = empty($request["start"])?date("Y-m-d"):date("Y-m-d", strtotime($request["start"]));
 	$end = empty($request["end"])?date("Y-m-d"):date("Y-m-d", strtotime($request["end"]));
 	
-	$q = "SELECT `zakaz`.*, count(*) as `zakaz_count`, SUM(round(`summa_sheta_1c`, 2)) as `zakaz_summ_1c`, SUM( round(`summa_sheta_1c`,2)) as `zakaz_summ_nal` FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$start."' AND `zak_final_data` <= '".$end."') AND `mng_mail` LIKE '".$manager."' GROUP BY `mng_mail`";
-
+	$q = "SELECT `zakaz`.*, count(*) as `zakaz_count`, SUM(round(`summa_sheta_1c`, 2)) as `zakaz_summ_1c`, SUM( round(`total_summ`,2)) as `zakaz_summ_nal` FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$start."' AND `zak_final_data` <= '".$end."') AND `mng_mail` LIKE '".$manager."' GROUP BY `mng_mail`";
 	$report = $serviceBase->get_results($q);
 
-	// return array("result" => $report, "q" => $q, "start" => $request["start"], "end" => $request["end"],);
-	return $report;
+	$q = "SELECT `zakaz`.* FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$start."' AND `zak_final_data` <= '".$end."') AND `mng_mail` LIKE '".$manager."'";
+	$detail = $serviceBase->get_results($q);
+
+	return array("result" => $report, "detail" => $detail, "start" => $request["start"], "end" => $request["end"], "q" => $q);
+	// return $report;
 }
 
 include "crm-rest-rl.php"
