@@ -1,5 +1,27 @@
 <?
 
+function translit_sef($value)
+{
+	$converter = array(
+		'а' => 'a',    'б' => 'b',    'в' => 'v',    'г' => 'g',    'д' => 'd',
+		'е' => 'e',    'ё' => 'e',    'ж' => 'zh',   'з' => 'z',    'и' => 'i',
+		'й' => 'y',    'к' => 'k',    'л' => 'l',    'м' => 'm',    'н' => 'n',
+		'о' => 'o',    'п' => 'p',    'р' => 'r',    'с' => 's',    'т' => 't',
+		'у' => 'u',    'ф' => 'f',    'х' => 'h',    'ц' => 'c',    'ч' => 'ch',
+		'ш' => 'sh',   'щ' => 'sch',  'ь' => '',     'ы' => 'y',    'ъ' => '',
+		'э' => 'e',    'ю' => 'yu',   'я' => 'ya',
+	);
+ 
+	$value = mb_strtolower($value);
+	$value = strtr($value, $converter);
+	$value = mb_ereg_replace('[^-0-9a-z]', '-', $value);
+	$value = mb_ereg_replace('[-]+', '-', $value);
+	$value = trim($value, '-');	
+ 
+	return $value;
+}
+
+
 define("BI_SERVICE_DB_NAME", "u0743099_lscrm");
 define("BI_SERVICE_USER_NAME", "u0743099__lscrm");
 define("BI_SERVICE_USER_PASS", "2V4o5H6o");
@@ -619,12 +641,14 @@ add_action( 'rest_api_init', function () {
 function add_tov_to_base( WP_REST_Request $request ){
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	$rez = $request->get_file_params();
-
-	if (!move_uploaded_file($rez["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/img_crm_base/".$rez["image"]["name"])) {
+	
+	$img_new_name = translit_sef($_REQUEST["sku"]."-".$rez["image"]["name"]);
+	
+	if (!move_uploaded_file($rez["image"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/img_crm_base/".$img_new_name)) {
 		return new WP_Error( 'no_copy_img', 'Не скопировано изображение.', [ 'status' => 403 ] );
 	} 
 
-	$lnk = get_bloginfo("url")."/img_crm_base/".$rez["image"]["name"];
+	$lnk = get_bloginfo("url")."/img_crm_base/".$img_new_name;
 
 	$serviceBase->insert('tovar_base', array(
 		"sku" => $_REQUEST["sku"],
