@@ -502,12 +502,12 @@ function get_zakaz( WP_REST_Request $request ){
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	
 	$queryStr = ($request["querystr"] !== "%" )?"%".$request["querystr"]."%":$request["querystr"];
-	$ststus = ($request["status"] !== "" )?$request["status"]:"%";
+	$ststus = ($request["status"] !== "" )?"('".$request["status"]."')":"('Новый','Черновик','В работе')";
 	if ($user_info->status === "admin")
 		$mngmailquery = ($request["mngmailquery"] !== "" )?$request["mngmailquery"]:"%";
 	else $mngmailquery = $request["mngmail"];
 
-	$q = "SELECT `zakaz`.*, `zakaz_tovar`.`sku` FROM `zakaz` LEFT JOIN `zakaz_tovar` ON `zakaz`.`zak_numbet` = `zakaz_tovar`.`zak_number` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` LIKE '".$ststus."' AND (`sku` LIKE '".$queryStr."' OR  `phone` LIKE '".$queryStr."' OR `klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."') group BY `zak_numbet`";
+	$q = "SELECT `zakaz`.*, `zakaz_tovar`.`sku` FROM `zakaz` LEFT JOIN `zakaz_tovar` ON `zakaz`.`zak_numbet` = `zakaz_tovar`.`zak_number` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` in ".$ststus." AND (`sku` LIKE '".$queryStr."' OR  `phone` LIKE '".$queryStr."' OR `klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."') group BY `zak_numbet`";
 	// $q = "SELECT * FROM `zakaz` WHERE  `mng_mail` LIKE '".$mngmailquery."' AND `status` LIKE '".$ststus."' AND (`phone` LIKE '".$queryStr."' OR `klient_name` LIKE '".$queryStr."' OR `zak_numbet` LIKE '".$queryStr."')";
 	
 	$rez = $serviceBase->get_results($q);

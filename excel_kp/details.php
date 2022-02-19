@@ -27,10 +27,9 @@ $serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_D
 
 
 if (!empty($_REQUEST["start"])&&!empty($_REQUEST["end"])) {
-    $q = "SELECT `zakaz`.* FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$_REQUEST["start"]."' AND `zak_final_data` <= '".$_REQUEST["end"]."') AND `mng_mail` LIKE '".$_REQUEST["manager"]."'";
+    $q = "SELECT `zakaz`.* FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".date("Y-m-d", strtotime($_REQUEST["start"]))."' AND `zak_final_data` <= '".date("Y-m-d", strtotime($_REQUEST["end"]))."') AND `mng_mail` LIKE '".$_REQUEST["manager"]."'";
     $rl = $serviceBase->get_results($q); 
     
-
 
     $cell_index = 2;
     foreach ($rl as $key => $value) { 
@@ -41,8 +40,9 @@ if (!empty($_REQUEST["start"])&&!empty($_REQUEST["end"])) {
         $worksheet->setCellValue('C'.$cell_index, $value->mng_name );
         $worksheet->setCellValue('D'.$cell_index, $value->zak_final_data );
         $worksheet->setCellValue('E'.$cell_index, $value->klient_name );
-        $worksheet->setCellValue('F'.$cell_index, $value->summa_sheta_1c );
-        $worksheet->setCellValue('G'.$cell_index, $value->total_summ );
+        $worksheet->setCellValue('F'.$cell_index, $value->nomer_sheta_1c );
+        $worksheet->setCellValue('G'.$cell_index, $value->summa_sheta_1c );
+        $worksheet->setCellValue('H'.$cell_index, $value->total_summ );
 
         $cell_index++;
     }
@@ -56,7 +56,7 @@ header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetm
 if (empty($_REQUEST["start"])||empty($_REQUEST["end"]))
 header('Content-Disposition: attachment; filename="details.xlsx"');
 else
-header('Content-Disposition: attachment; filename="Детали продаж - '.$_REQUEST["manager"].' - '.date("d.m.Y",strtotime($rl[0]->data)).'.xlsx"');
+header('Content-Disposition: attachment; filename="Детали продаж - '.$_REQUEST["manager"].' - '.date("d.m.Y").'.xlsx"');
 
 $writer->save("php://output");
 
