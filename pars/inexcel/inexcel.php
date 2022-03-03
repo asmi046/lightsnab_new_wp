@@ -24,7 +24,7 @@
     echo "Начато добавление в БД из Excel\n\r";
     $wpdb->show_errors(); // включит показ ошибок
     $wpdb->query( "TRUNCATE `transfer_main`" );
-    while (!empty($objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue()))
+    while (!empty($objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue()) && !empty($objPHPExcel->getSheet(0)->getCell('A'.($i+1))->getValue())&& !empty($objPHPExcel->getSheet(0)->getCell('A'.($i+2))->getValue()) )
     {
         // echo $objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue()."\n\r";
         $wpdb->insert( 'transfer_main', array (
@@ -42,16 +42,19 @@
                 "seotext" => !empty($objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue():""
             ) );
 
-        
+            // echo $objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue();
+
+            // echo "\n\r";
+
         $i++;
     } 
  
-    
+
     echo "Добавлена основная таблица\n\r";
 
     $i = 2;
     $wpdb->query( "TRUNCATE `transfer_cerecter`" );
-    while (!empty($objPHPExcel->getSheet(1)->getCell('A'.$i)->getValue()))
+    while (!empty($objPHPExcel->getSheet(1)->getCell('A'.$i)->getValue()) && !empty($objPHPExcel->getSheet(1)->getCell('A'.($i+1))->getValue()) && !empty($objPHPExcel->getSheet(1)->getCell('A'.($i+2))->getValue()))
     {
         $wpdb->insert( 'transfer_cerecter', array (
                 "articulbase" => !empty($objPHPExcel->getSheet(1)->getCell('A'.$i)->getValue())?$objPHPExcel->getSheet(1)->getCell('A'.$i)->getValue():"",
@@ -68,7 +71,7 @@
 
     $i = 2;
     $wpdb->query( "TRUNCATE `transfer_mod`" );
-    while (!empty($objPHPExcel->getSheet(2)->getCell('A'.$i)->getValue()))
+    while (!empty($objPHPExcel->getSheet(2)->getCell('A'.$i)->getValue()) && !empty($objPHPExcel->getSheet(2)->getCell('A'.($i+1))->getValue()) && !empty($objPHPExcel->getSheet(2)->getCell('A'.($i+2))->getValue()))
     {
         if (empty($objPHPExcel->getSheet(2)->getCell('C'.$i)->getValue())) {
             $i++;
@@ -95,7 +98,7 @@
    
     $i = 2;
     $wpdb->query( "TRUNCATE `transfer_galery`" );
-    while (!empty($objPHPExcel->getSheet(3)->getCell('A'.$i)->getValue()))
+    while (!empty($objPHPExcel->getSheet(3)->getCell('A'.$i)->getValue()) && !empty($objPHPExcel->getSheet(3)->getCell('A'.($i+2))->getValue()) && !empty($objPHPExcel->getSheet(3)->getCell('A'.($i+2))->getValue()))
     {
         $wpdb->insert( 'transfer_galery', array (
                 "basearticle" => !empty($objPHPExcel->getSheet(3)->getCell('A'.$i)->getValue())?$objPHPExcel->getSheet(3)->getCell('A'.$i)->getValue():"",
@@ -116,7 +119,7 @@
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
         $tovIndex ++;
-        if ($tovIndex <1090) continue;
+        if ($tovIndex <1145) continue;
 
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
