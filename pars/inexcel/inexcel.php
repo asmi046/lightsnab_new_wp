@@ -12,7 +12,7 @@
     
     require_once dirname(__FILE__) . '/Classes/PHPExcel.php';
 
-    $inputFileName = './datd_23_11_2021.xlsx';
+    $inputFileName = './datd_19_01_2022.xlsx';
 
     $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
     
@@ -24,7 +24,7 @@
     echo "Начато добавление в БД из Excel\n\r";
     $wpdb->show_errors(); // включит показ ошибок
     $wpdb->query( "TRUNCATE `transfer_main`" );
-    while (!empty($objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue()) && !empty($objPHPExcel->getSheet(0)->getCell('A'.($i+1))->getValue())&& !empty($objPHPExcel->getSheet(0)->getCell('A'.($i+2))->getValue()) )
+    while (!empty($objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue()) || !empty($objPHPExcel->getSheet(0)->getCell('A'.($i+1))->getValue()) || !empty($objPHPExcel->getSheet(0)->getCell('A'.($i+2))->getValue()) )
     {
         // echo $objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue()."\n\r";
         $wpdb->insert( 'transfer_main', array (
@@ -42,19 +42,29 @@
                 "seotext" => !empty($objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue())?$objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue():""
             ) );
 
-            // echo $objPHPExcel->getSheet(0)->getCell('L'.$i)->getValue();
+            // echo $i;
+            // echo "\n\r";
 
+            // echo $objPHPExcel->getSheet(0)->getCell('A'.$i)->getValue();
+            // echo "\n\r";
+
+            // echo $objPHPExcel->getSheet(0)->getCell('A'.($i+1))->getValue();
+            // echo "\n\r";
+
+            // echo $objPHPExcel->getSheet(0)->getCell('A'.($i+2))->getValue();
+            // echo "\n\r";
             // echo "\n\r";
 
         $i++;
     } 
  
+    // die();
 
     echo "Добавлена основная таблица\n\r";
 
     $i = 2;
     $wpdb->query( "TRUNCATE `transfer_cerecter`" );
-    while (!empty($objPHPExcel->getSheet(1)->getCell('A'.$i)->getValue()) && !empty($objPHPExcel->getSheet(1)->getCell('A'.($i+1))->getValue()) && !empty($objPHPExcel->getSheet(1)->getCell('A'.($i+2))->getValue()))
+    while (!empty($objPHPExcel->getSheet(1)->getCell('A'.$i)->getValue()) || !empty($objPHPExcel->getSheet(1)->getCell('A'.($i+1))->getValue()) || !empty($objPHPExcel->getSheet(1)->getCell('A'.($i+2))->getValue()))
     {
         $wpdb->insert( 'transfer_cerecter', array (
                 "articulbase" => !empty($objPHPExcel->getSheet(1)->getCell('A'.$i)->getValue())?$objPHPExcel->getSheet(1)->getCell('A'.$i)->getValue():"",
@@ -71,7 +81,7 @@
 
     $i = 2;
     $wpdb->query( "TRUNCATE `transfer_mod`" );
-    while (!empty($objPHPExcel->getSheet(2)->getCell('A'.$i)->getValue()) && !empty($objPHPExcel->getSheet(2)->getCell('A'.($i+1))->getValue()) && !empty($objPHPExcel->getSheet(2)->getCell('A'.($i+2))->getValue()))
+    while (!empty($objPHPExcel->getSheet(2)->getCell('A'.$i)->getValue()) || !empty($objPHPExcel->getSheet(2)->getCell('A'.($i+1))->getValue()) || !empty($objPHPExcel->getSheet(2)->getCell('A'.($i+2))->getValue()))
     {
         if (empty($objPHPExcel->getSheet(2)->getCell('C'.$i)->getValue())) {
             $i++;
@@ -98,7 +108,7 @@
    
     $i = 2;
     $wpdb->query( "TRUNCATE `transfer_galery`" );
-    while (!empty($objPHPExcel->getSheet(3)->getCell('A'.$i)->getValue()) && !empty($objPHPExcel->getSheet(3)->getCell('A'.($i+2))->getValue()) && !empty($objPHPExcel->getSheet(3)->getCell('A'.($i+2))->getValue()))
+    while (!empty($objPHPExcel->getSheet(3)->getCell('A'.$i)->getValue()) || !empty($objPHPExcel->getSheet(3)->getCell('A'.($i+2))->getValue()) || !empty($objPHPExcel->getSheet(3)->getCell('A'.($i+2))->getValue()))
     {
         $wpdb->insert( 'transfer_galery', array (
                 "basearticle" => !empty($objPHPExcel->getSheet(3)->getCell('A'.$i)->getValue())?$objPHPExcel->getSheet(3)->getCell('A'.$i)->getValue():"",
