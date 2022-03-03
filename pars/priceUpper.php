@@ -6,7 +6,7 @@
     $posts = get_posts( array(
         'numberposts' => 1000,
         'post_type' => "light",
-        'offset' => 8000,
+        'offset' => 9000,
 
         // 'tax_query' => array(
         //     array(
@@ -24,7 +24,7 @@
         // if ($post->ID != 27063) continue;
 
         $curPrice = carbon_get_post_meta($post->ID,"offer_price");
-        $curPriceNew = round($curPrice * 1.15);
+        $curPriceNew = round($curPrice * 1.25);
         update_post_meta( $post->ID, '_offer_price', $curPriceNew);    
         
         echo $post->post_title . " -> " . $curPrice . " - " . $curPriceNew."\n\r";
