@@ -47,7 +47,7 @@
 				</div>
 				
 				<div class="soc-block">
-					<a class = "soc_btn_insta" href="<?echo INSTA_LNK;?>"></a>
+					
 					<a class = "soc_btn_fb" href="<?echo FB_LNK;?>"></a>
 				</div>
 			</div>

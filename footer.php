@@ -24,10 +24,9 @@
       <!-- <div class="">Телефон: <? echo SITE_PHONE_DOP; ?></div> -->
       <div class="">E-mail: <? echo SITE_MAIL; ?></div>
       <div class="soc-block">
-        <a class="soc_btn_insta" href="<? echo INSTA_LNK; ?>"></a>
         <a class="soc_btn_fb" href="<? echo FB_LNK; ?>"></a>
         <a class="soc_btn_telegram" href="<?php echo carbon_get_theme_option('as_telegr'); ?>"></a>
-        <a class="soc_btn_facebook" href="<?php echo carbon_get_theme_option('as_face'); ?>"></a>
+        
       </div>
       <div class="soc-block soc-block-bottom">
         <a class="soc_btn_twitter" href="<?php echo carbon_get_theme_option('as_twiter'); ?>"></a>
