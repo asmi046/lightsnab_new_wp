@@ -3831,10 +3831,12 @@ margin-left: 0;
 }
 
 .project-block__text {
-	flex: 0 1 30%;
-	padding: 20px 0;
+	flex: 1 1 auto;
 }
 
+.project-block__img {
+  flex: 0 1 70%;
+}
 .project-block__img img {
 	max-width: 100%;
 	width: 100%;
@@ -4077,6 +4079,12 @@ margin-left: 0;
     font-size: 20px;}
   .project-calc__subtitle {
     font-size: 14px;}
+	.project-block {
+		flex-wrap: wrap;}
+	.project-block__img {
+		flex: 0 1 100%;}
+	.project-calc__text {
+		padding: 25px;}
 }
 
 @media screen and (max-width: 600px) {
