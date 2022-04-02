@@ -529,6 +529,12 @@ add_action( 'rest_api_init', function () {
 		'args' => array(
 			'data' => array(
 				'required'          => true,         		
+			),
+			'status' => array(
+				'required'          => true,         		
+			),
+			'mail' => array(
+				'required'          => true,         		
 			)
 		),
 	) );
@@ -539,7 +545,11 @@ add_action( 'rest_api_init', function () {
 function get_zakaz_for_ml( WP_REST_Request $request ){
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 
-	$q = 'SELECT * FROM `zakaz` WHERE `zak_final_data` = "'.date("Y-m-d", strtotime($request['data'])).'" AND `in_road_list` = 0 AND `status` = "Новый"';
+	if ($request['status'] == "admin")
+		$q = 'SELECT * FROM `zakaz` WHERE `zak_final_data` = "'.date("Y-m-d", strtotime($request['data'])).'" AND `in_road_list` = 0 AND `status` = "Новый" ';
+	else
+		$q = 'SELECT * FROM `zakaz` WHERE `zak_final_data` = "'.date("Y-m-d", strtotime($request['data'])).'" AND `in_road_list` = 0 AND `status` = "Новый" AND `mng_mail` = "'.$request['mail'].'"';
+
 	$rez = $serviceBase->get_results($q);
 	return $rez; 
 }

@@ -189,6 +189,7 @@ function add_sclad_to_road_list( WP_REST_Request $request ){
 	
 	$addResult = $serviceBase->insert("road_lists_sklads", array(
 		"road_list_id" => $request['rlid'],
+		"manager_mail" => $request['mail'],
 		"sklad_name" => $request['scladinfo']["skladname"],
 		"sklad_id" => $request['scladinfo']["skladid"],
 		"pay" => $request['scladinfo']["pay"],
@@ -235,6 +236,7 @@ function add_delivery_to_road_list( WP_REST_Request $request ){
 	
 	$addResult = $serviceBase->insert("road_lists_delivey", array(
 		"road_list_id" => $request['rlid'],
+		"manager_mail" => $request['mail'],
 		"zak_numbet" => $request['zaknumber'],
 		"klient_name" => $request['deliveryinfo']["klient_name"],
 		"klient_phone" => $request['deliveryinfo']["phone"],
@@ -262,6 +264,12 @@ add_action( 'rest_api_init', function () {
 			'mlid' => array(
 				'default'           => "",
 				'required'          => true,
+			),
+			'status' => array(
+				'required'          => true,         		
+			),
+			'mail' => array(
+				'required'          => true,         		
 			)
 		),
 	) );
@@ -273,7 +281,11 @@ function get_road_list_data( WP_REST_Request $request ){
 	
 	$serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_DB_NAME, BI_SERVICE_DB_HOST);
 	
-	$q = "SELECT * FROM `road_lists_sklads` WHERE `road_list_id` = ".$request['mlid'];
+	if ($request['status'] == "admin")
+		$q = "SELECT * FROM `road_lists_sklads` WHERE `road_list_id` = ".$request['mlid'];
+	else 
+		$q = "SELECT * FROM `road_lists_sklads` WHERE `road_list_id` = ".$request['mlid']." AND `manager_mail` = '".$request['mail']."'";
+	
 	$lists_sklad = $serviceBase->get_results($q);
 
 	$sklad_result = [];
@@ -281,9 +293,14 @@ function get_road_list_data( WP_REST_Request $request ){
 		$sklad_result[$sk->sklad_name][] =  $sk;
 	}
 
-	$q = "SELECT * FROM `road_lists_delivey` WHERE `road_list_id` = ".$request['mlid'];
+	if ($request['status'] == "admin")
+		$q = "SELECT * FROM `road_lists_delivey` WHERE `road_list_id` = ".$request['mlid'];
+	else
+		$q = "SELECT * FROM `road_lists_delivey` WHERE `road_list_id` = ".$request['mlid']." AND `manager_mail` = '".$request['mail']."'";
+
 	$lists_delivery = $serviceBase->get_results($q);
 
+	
 	$q = "SELECT * FROM `road_lists` WHERE `id` = ".$request['mlid'];
 	$road_list = $serviceBase->get_results($q);
 
