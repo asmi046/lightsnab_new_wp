@@ -24,7 +24,7 @@
         // if ($post->ID != 27063) continue;
 
         $curPrice = carbon_get_post_meta($post->ID,"offer_price");
-        $curPriceNew = round($curPrice * 1.15);
+        $curPriceNew = round($curPrice * 0.90);
         update_post_meta( $post->ID, '_offer_price', $curPriceNew);    
         
         echo $post->post_title . " -> " . $curPrice . " - " . $curPriceNew."\n\r";
@@ -38,7 +38,7 @@
                 
 
                 $curPrice = $item["mod_price"];
-                $curPriceNew = round($curPrice * 1.15);
+                $curPriceNew = round($curPrice * 0.90);
                 
                 carbon_set_post_meta( $post->ID, 'offer_modification['.$i.']/mod_price', $curPriceNew );
 
