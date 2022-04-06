@@ -4336,9 +4336,20 @@ hr {
 }
 
 .project-calc__btn {
-    border: none;
-    color: #D3820F;
-    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #d3820f;
+    border: 1px solid #d3820f;
+}
+
+.project-calc__btn:hover {
+    color: #fff;
+    background-color: #d3820f;
 }
 
 .camera-icon {
@@ -4964,6 +4975,10 @@ hr {
 
     .header-phone {
         font-size: 18px;
+    }
+
+    .project-calc__btn {
+        width: 100%;
     }
 }
 
