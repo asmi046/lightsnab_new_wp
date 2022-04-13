@@ -957,7 +957,7 @@ function sale_report( WP_REST_Request $request ){
 	$start = empty($request["start"])?date("Y-m-d"):date("Y-m-d", strtotime($request["start"]));
 	$end = empty($request["end"])?date("Y-m-d"):date("Y-m-d", strtotime($request["end"]));
 	
-	$q = "SELECT `zakaz`.*, count(*) as `zakaz_count`, SUM(round(`summa_sheta_1c`, 2)) as `zakaz_summ_1c`, SUM( round(`total_summ`,2)) as `zakaz_summ_nal` FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$start."' AND `zak_final_data` <= '".$end."') AND `mng_mail` LIKE '".$manager."' GROUP BY `mng_mail`";
+	$q = "SELECT `zakaz`.*, count(*) as `zakaz_count`, SUM(round(`summa_sheta_1c`, 2)) as `zakaz_summ_1c`, SUM( round(`total_summ`,2)) as `zakaz_summ_nal` FROM `zakaz` WHERE (`status` = 'Новый' OR `status` = 'Архив') AND (`zak_final_data` >= '".$start."' AND `zak_final_data` <= '".$end."') AND `mng_mail` LIKE '".$manager."' GROUP BY `mng_mail`";
 	$report = $serviceBase->get_results($q);
 
 	$q = "SELECT `zakaz`.* FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".$start."' AND `zak_final_data` <= '".$end."') AND `mng_mail` LIKE '".$manager."'";

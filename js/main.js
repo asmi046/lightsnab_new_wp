@@ -80,6 +80,9 @@ jQuery(document).ready(function ($) {
     }
 
     else {
+      jQuery(this).prop('disabled', true);
+      jQuery(".loaderMain").show();
+
       var jqXHR = jQuery.post(
         allAjax.ajaxurl,
         {
@@ -94,10 +97,14 @@ jQuery(document).ready(function ($) {
       jqXHR.done(function (responce) {
         jQuery(".popup-callback .headen_form_blk").hide();
         jQuery('.popup-callback .SendetMsg').show();
+        jQuery(this).prop('disabled', false);
+        jQuery(".loaderMain").hide();
       });
 
       jqXHR.fail(function (responce) {
+        jQuery(this).prop('disabled', false);
         alert("Произошла ошибка. Попробуйте позднее.");
+        jQuery(".loaderMain").hide();
       });
 
     }
@@ -136,6 +143,10 @@ $('.projectBtn').click(function(e){
       params.append('tel', telProject);
       params.append('design', designFile);
 
+
+      jQuery(this).prop('disabled', true);
+      jQuery(".loaderMain").show();
+
       var  jqXHR = jQuery.ajax({      
         url: allAjax.ajaxurl,
         dataType: 'text',
@@ -149,10 +160,14 @@ $('.projectBtn').click(function(e){
         jqXHR.done(function (responce) {
           jQuery(".popup-project .headen_form_blk").hide();
           jQuery('.popup-project .SendetMsg').show();
+          jQuery(this).prop('disabled', false);
+          jQuery(".loaderMain").hide();
         });
 
             jqXHR.fail(function (response) {
-              alert("Произошла ошибка. Попробуйте позднее."); 
+              alert("Произошла ошибка. Попробуйте позднее.");
+              jQuery(this).prop('disabled', false);
+              jQuery(".loaderMain").hide(); 
         }); 
 
      }
@@ -181,6 +196,9 @@ $('.photoBtn').click(function(e){
       params.append('tel', telProject);
       params.append('design', designFile);
 
+      jQuery(this).prop('disabled', true);
+          jQuery(".loaderMain").show();
+
       var  jqXHR = jQuery.ajax({      
         url: allAjax.ajaxurl,
         dataType: 'text',
@@ -194,10 +212,14 @@ $('.photoBtn').click(function(e){
         jqXHR.done(function (responce) {
           jQuery(".popup-search-photo .headen_form_blk").hide();
           jQuery('.popup-search-photo .SendetMsg').show();
+          jQuery(this).prop('disabled', false);
+          jQuery(".loaderMain").hide();
         });
 
-            jqXHR.fail(function (response) {
-              alert("Произошла ошибка. Попробуйте позднее."); 
+          jqXHR.fail(function (response) {
+          alert("Произошла ошибка. Попробуйте позднее.");
+          jQuery(this).prop('disabled', false);
+          jQuery(".loaderMain").hide(); 
         }); 
 
      }

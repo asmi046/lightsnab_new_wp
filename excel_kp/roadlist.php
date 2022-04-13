@@ -32,7 +32,8 @@ if (!empty($_REQUEST["rlid"])) {
     $worksheet->setCellValue('A1', "Маршрутный лист №".$rl[0]->id." от ". date("d.m.Y",strtotime($rl[0]->data)));
     $worksheet->setCellValue('A3', "Комментарий: ". $rl[0]->comment);
 
-    $q = "SELECT * FROM `road_lists_sklads` WHERE `road_list_id` = ".$_REQUEST["rlid"];
+    // $q = "SELECT * FROM `road_lists_sklads` WHERE `road_list_id` = ".$_REQUEST["rlid"];
+    $q = "SELECT `road_lists_sklads`.*, `sklad_list`.`adres` as 'skladadress' FROM `road_lists_sklads` LEFT JOIN `sklad_list` ON `road_lists_sklads`.`sklad_id` = `sklad_list`.`id` WHERE `road_list_id` = ".$_REQUEST["rlid"];
 	$lists_sklad = $serviceBase->get_results($q);
 
     $sklad_result = [];
@@ -55,7 +56,7 @@ if (!empty($_REQUEST["rlid"])) {
             \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
         );
         $spreadsheet->getActiveSheet()->getRowDimension($cell_index, $key)->setRowHeight(40);
-        $worksheet->setCellValue('A'.$cell_index, $key);
+        $worksheet->setCellValue('A'.$cell_index, $key." (".$value[0]->skladadress.")");
 
         for ($i=0; $i<count($value); $i++) {
             $worksheet->insertNewRowBefore($cell_index+1);
