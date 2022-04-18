@@ -148,12 +148,18 @@
             }
           ?>
         </div>
-        <div class="product-single__price"><span data-real-price = "<?echo carbon_get_post_meta(get_the_ID(),"offer_price"); ?>" class = "price_formator" id = "product_current_price"><?echo carbon_get_post_meta(get_the_ID(),"offer_price"); ?></span> P</div>
-        <a href="<? echo get_the_permalink(447); ?>" class="product-single__opt">Узнать оптовую цену</a>
+
         <?
            $modif = carbon_get_the_post_meta('offer_modification');
-          
+
+           $mainPrice = carbon_get_post_meta(get_the_ID(),"offer_price");
+           if (!empty($modif))
+            $mainPrice = $modif[0]["mod_price"]; 
         ?>
+
+        <div class="product-single__price"><span data-real-price = "<?echo $mainPrice;  ?>" class = "price_formator" id = "product_current_price"><?echo $mainPrice;  ?></span> P</div>
+        <a href="<? echo get_the_permalink(447); ?>" class="product-single__opt">Узнать оптовую цену</a>
+
             <div class="product-single__choice-wrap">
               <div class="product-single__choice-title">Выберите комлектацию:</div>
               <select class="product-single__choice" id = "mod_product_selector">
