@@ -12,7 +12,7 @@
     
     require_once dirname(__FILE__) . '/Classes/PHPExcel.php';
 
-    $inputFileName = './datd_19_01_2022.xlsx';
+    $inputFileName = './datd_28_04_2022_1.xlsx';
 
     $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
     
@@ -124,12 +124,13 @@
     
     echo "Добавлена таблица галереи\n\r";
 
+
     $results = $wpdb->get_results("SELECT * FROM `transfer_main`", ARRAY_A);
 
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
         $tovIndex ++;
-        if ($tovIndex <1145) continue;
+        if ($tovIndex <1320) continue;
 
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
