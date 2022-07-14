@@ -10,7 +10,8 @@
 				yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
 			}
 		?> 
-    <div class="product-wrapper">
+    <div class="product-wrapper" itemscope itemtype="http://schema.org/Product">
+      <p style = "display:none" itemprop="name"><?the_title();?></p>
       <div class="product-slider">
         <? 
           $label = carbon_get_post_meta(get_the_ID(),"offer_label");
@@ -27,6 +28,9 @@
           ?>
               <picture>
                 <img 
+                  <?
+                    if ($pictIndex == 0) echo 'itemprop="image"';
+                  ?>
                   class="slider-for__item"
                   id = "pict-<? echo empty($item['gal_img_sku'])?$pictIndex:$item['gal_img_sku']; ?>" 
                   alt = "<? echo $item['gal_img_alt']; ?>"
@@ -130,7 +134,7 @@
 
       </div>
       <div class="product-info">
-        <div class="product-descr"><?echo carbon_get_post_meta(get_the_ID(),"offer_smile_descr"); ?></div>
+        <div class="product-descr" itemprop="description"><?echo carbon_get_post_meta(get_the_ID(),"offer_smile_descr"); ?></div>
         <div class="product-sku">Артикул: <span id = "product_current_sku"><?echo carbon_get_post_meta(get_the_ID(),"offer_sku"); ?></span></div>
         <div class="product-stock">Наличие: <span><?echo carbon_get_post_meta(get_the_ID(),"offer_nal"); ?></span></div>
         <div class="product-attrs">
@@ -157,7 +161,14 @@
             $mainPrice = $modif[0]["mod_price"]; 
         ?>
 
-        <div class="product-single__price"><span data-real-price = "<?echo $mainPrice;  ?>" class = "price_formator" id = "product_current_price"><?echo $mainPrice;  ?></span> P</div>
+        <div class="product-single__price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          <span data-real-price = "<? echo $mainPrice; ?>" class = "price_formator" id = "product_current_price" itemprop="price">
+          <?echo $mainPrice;  ?></span> P
+
+          <span style = "display:none" itemprop="priceCurrency">RUB</span>
+          <link style = "display:none" itemprop="availability" href="http://schema.org/InStock">
+        </div>
+        
         <a href="<? echo get_the_permalink(447); ?>" class="product-single__opt">Узнать оптовую цену</a>
 
             <div class="product-single__choice-wrap">

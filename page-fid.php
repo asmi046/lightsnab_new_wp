@@ -1,9 +1,8 @@
 <?
     header('Content-Type: text/xml');
     echo '<?xml version="1.0" encoding="UTF-8"?>';
-    echo '<yml_catalog date="2020-11-22T14:37:38+03:00">';
+    echo '<yml_catalog date="'.date("Y-m-d\TH:i:sP").'">';
 ?>
-
 
     <shop>
         <name>LightSnab</name>
