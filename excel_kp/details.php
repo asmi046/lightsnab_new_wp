@@ -27,7 +27,7 @@ $serviceBase = new wpdb(BI_SERVICE_USER_NAME, BI_SERVICE_USER_PASS, BI_SERVICE_D
 
 
 if (!empty($_REQUEST["start"])&&!empty($_REQUEST["end"])) {
-    $q = "SELECT `zakaz`.* FROM `zakaz` WHERE `status` = 'Новый' AND (`zak_final_data` >= '".date("Y-m-d", strtotime($_REQUEST["start"]))."' AND `zak_final_data` <= '".date("Y-m-d", strtotime($_REQUEST["end"]))."') AND `mng_mail` LIKE '".$_REQUEST["manager"]."'";
+    $q = "SELECT `zakaz`.* FROM `zakaz` WHERE (`status` = 'Новый' OR `status` = 'Архив') AND (`zak_final_data` >= '".date("Y-m-d", strtotime($_REQUEST["start"]))."' AND `zak_final_data` <= '".date("Y-m-d", strtotime($_REQUEST["end"]))."') AND `mng_mail` LIKE '".$_REQUEST["manager"]."'";
     $rl = $serviceBase->get_results($q); 
     
 
