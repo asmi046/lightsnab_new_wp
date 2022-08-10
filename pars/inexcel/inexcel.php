@@ -12,7 +12,7 @@
     
     require_once dirname(__FILE__) . '/Classes/PHPExcel.php';
 
-    $inputFileName = './datd_28_04_2022_1.xlsx';
+    $inputFileName = './datd_10_08_2022_1.xlsx';
 
     $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
     
@@ -130,7 +130,7 @@
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
         $tovIndex ++;
-        if ($tovIndex <1320) continue;
+        if ($tovIndex <1427) continue;
 
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
@@ -158,12 +158,12 @@
         }
 
         if (empty($galery)) {
-            echo "#" . $tovIndex . " " . $tovarInfo["naimenovanie"]." - Нет фото в базе! \n\r";
+            echo "#" . $tovIndex . " " . $tovarInfo["naimenovanie"]." ".$tovarInfo["naimenovanie"]." - Нет фото в базе! \n\r";
             continue;
         }
 
         if (!file_exists(__DIR__.'/photo/'.$galery[0]["filename"])) {
-            echo "#" . $tovIndex . " " . $galery[0]["filename"]." - Нет фото в папке! \n\r";
+            echo "#" . $tovIndex . " " . $galery[0]["filename"]." ".$tovarInfo["naimenovanie"]." - Нет фото в папке! \n\r";
             continue;
         }
 
