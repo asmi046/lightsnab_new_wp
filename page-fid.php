@@ -42,10 +42,28 @@
         <offers>
 
             <?
-                $my_posts = get_posts( array(
+                $param = array(
                     'numberposts' => -1,
                     'post_type'   => 'light',
-                ) );
+                );
+
+                if (!empty($_REQUEST["cat"])) {
+            
+                    $tax = array(
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'lightcat',
+                                'field'    => 'slug',
+                                'terms'    => $_REQUEST["cat"]
+                            )
+                        )
+                    );
+
+                    $param = array_merge($param, $tax);
+                    // var_dump($param);
+                }
+
+                $my_posts = get_posts( $param );
                 
                 foreach( $my_posts as $post ){
                     setup_postdata( $post );
