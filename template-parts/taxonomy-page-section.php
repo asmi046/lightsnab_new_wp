@@ -1,6 +1,11 @@
 <?
-$categoryID = get_queried_object()->term_id;
-$ancestors = get_ancestors( $categoryID, 'lightcat' );
+$cat_obj = get_queried_object();
+
+if (isset($cat_obj->term_id))
+	{
+		$categoryID = $cat_obj->term_id;
+		$ancestors = get_ancestors( $categoryID, 'lightcat' );
+	}
 ?>
 <section class="category-page">
     <div class="container">
