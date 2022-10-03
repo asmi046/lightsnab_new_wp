@@ -130,7 +130,7 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 				'content-type: text/html',
 			);
 		
-			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+			// add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 			
 			$adr_to_send = carbon_get_theme_option("mail_to_send");
 			$adr_to_send = (empty($adr_to_send))?"asmi046@gmail.com":$adr_to_send;
@@ -200,7 +200,8 @@ add_action( 'wp_ajax_nopriv_sendphone', 'sendphone' );
         'content-type: text/html',
       );
     
-      add_filter('wp_mail_content_type', create_function('', 'return "text/html";')); 
+    //   add_filter('wp_mail_content_type', create_function('', 'return "text/html";')); 
+
        if (wp_mail(carbon_get_theme_option( 'mail_to_send' ), 'Заявка на обратный звонок', '<strong>Имя:</strong> '.$_REQUEST["name"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["tel"]. ' <br/> <strong>Email:</strong> '.$_REQUEST["email"], $headers))
         wp_die("<span style = 'color:green;'>Мы свяжемся с Вами в ближайшее время.</span>");
       else wp_die("<span style = 'color:red;'>Сервис недоступен попробуйте позднее.</span>"); 
@@ -234,7 +235,8 @@ add_action( 'wp_ajax_nopriv_sendproject', 'sendproject' );
 	  if (move_uploaded_file($_FILES['design']['tmp_name'], $uploadfile)) 
 			$attach = $uploadfile;
 
-      add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+    //   add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+
        if (wp_mail(carbon_get_theme_option( 'mail_to_send' ), 'Заявка с формы: «Проект на расчет»', '<strong>Имя:</strong> '.$_REQUEST["name"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["tel"], $headers,$attach));
       else 
 	  	wp_die(json_encode(array("send" => false)));
@@ -267,7 +269,8 @@ add_action( 'wp_ajax_nopriv_sendphoto', 'sendphoto' );
 	  if (move_uploaded_file($_FILES['design']['tmp_name'], $uploadfile)) 
 			$attach = $uploadfile;
 
-      add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+    //   add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+
        if (wp_mail(carbon_get_theme_option( 'mail_to_send' ), 'Заявка с формы: «Поиск товара по фотографии»', '<strong>Имя:</strong> '.$_REQUEST["name"]. ' <br/> <strong>Телефон:</strong> '.$_REQUEST["tel"], $headers,$attach));
       else 
 	  	wp_die(json_encode(array("send" => false)));
@@ -293,7 +296,7 @@ add_action( 'wp_ajax_nopriv_sendphoto', 'sendphoto' );
 				'content-type: text/html',
 			);
 		
-			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+			// add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 			
 			$adr_to_send = carbon_get_theme_option("mail_to_send");
 			$adr_to_send = (empty($adr_to_send))?"asmi046@gmail.com":$adr_to_send;
@@ -335,7 +338,7 @@ add_action( 'wp_ajax_nopriv_sendphoto', 'sendphoto' );
 				'content-type: text/html',
 			);
 		
-			add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
+			// add_filter('wp_mail_content_type', create_function('', 'return "text/html";'));
 			
 			$adr_to_send = carbon_get_theme_option("mail_to_send");
 			$adr_to_send = (empty($adr_to_send))?"asmi046@gmail.com":$adr_to_send;
@@ -413,6 +416,29 @@ add_action( 'wp_ajax_nopriv_sendphoto', 'sendphoto' );
 add_action( 'init', 'create_light_taxonomies' );
 
 function create_light_taxonomies(){
+
+	register_taxonomy('lightbrand', array('light'), array(
+		'hierarchical'  => true,
+		'labels'        => array(
+			'name'              => "Бренды",
+			'singular_name'     => "Бренды",
+			'search_items'      => "Найти Бренд ",
+			'all_items'         => __( 'Все бренды' ),
+			'parent_item'       => __( 'Дочерние бренды' ),
+			'parent_item_colon' => __( 'Дочерние бренды:' ),
+			'edit_item'         => __( 'Редактировать бренд' ),
+			'update_item'       => __( 'Обновить бренд' ),
+			'add_new_item'      => __( 'Добавить новый бренд' ),
+			'new_item_name'     => __( 'Имя нового бренда' ),
+			'menu_name'         => __( 'Бренды' ),
+		),
+		'description' => "Бренды товаров для магазина",
+		'public' => true,
+		'show_ui'       => true,
+		'query_var'     => true,
+		'show_in_rest'  => true,
+		'show_admin_column'     => true,
+	));
 
 	register_taxonomy('lightcat', array('light'), array(
 		'hierarchical'  => true,

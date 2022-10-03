@@ -146,9 +146,7 @@ Vue.component('bascetform', {
                 localStorage.removeItem("cartsumm");
                 window.location.href = thencs_page;
               })
-              .catch(function (error) {
-                alert(error);
-              });
+              .catch(error => console.log(error));
         }
     }
 });

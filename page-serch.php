@@ -17,9 +17,9 @@ get_header(); ?>
 
 		<form action="" method="get" class="search-sec__form">
 		<div class="search-sec__inputs d-flex">
-			<input class="se-input se-50" id="id_q" maxlength="100" name="q" placeholder=" Что ищем " type="text" value = "<?echo $_REQUEST["q"]?>" />
-			<input class="se-input se-25" id="id_price_from" name="price_from" placeholder=" Цена от " type="number" value = "<?echo $_REQUEST["price_from"]?>" />
-			<input class="se-input se-25" id="id_price_to" name="price_to" placeholder=" Цена до " type="number" value = "<?echo $_REQUEST["price_to"]?>" />
+			<input class="se-input se-50" id="id_q" maxlength="100" name="q" placeholder=" Что ищем " type="text" value = "<?echo (!empty($_REQUEST["q"]))?$_REQUEST["q"]:"" ?>" />
+			<input class="se-input se-25" id="id_price_from" name="price_from" placeholder=" Цена от " type="number" value = "<?echo (!empty($_REQUEST["price_from"]))?$_REQUEST["price_from"]:""?>" />
+			<input class="se-input se-25" id="id_price_to" name="price_to" placeholder=" Цена до " type="number" value = "<?echo (!empty($_REQUEST["price_to"]))?$_REQUEST["price_to"]:""?>" />
 		</div>
 
 		<div class="search-sec__column d-flex">
