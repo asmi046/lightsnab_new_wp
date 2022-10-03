@@ -17,9 +17,9 @@ get_header(); ?>
 
 		<form action="" method="get" class="search-sec__form">
 		<div class="search-sec__inputs d-flex">
-			<input class="se-input se-50" id="id_q" maxlength="100" name="q" placeholder=" Что ищем " type="text" value = "<?echo $_REQUEST["q"]?>" />
-			<input class="se-input se-25" id="id_price_from" name="price_from" placeholder=" Цена от " type="number" value = "<?echo $_REQUEST["price_from"]?>" />
-			<input class="se-input se-25" id="id_price_to" name="price_to" placeholder=" Цена до " type="number" value = "<?echo $_REQUEST["price_to"]?>" />
+			<input class="se-input se-50" id="id_q" maxlength="100" name="q" placeholder=" Что ищем " type="text" value = "<?echo (!empty($_REQUEST["q"]))?$_REQUEST["q"]:"" ?>" />
+			<input class="se-input se-25" id="id_price_from" name="price_from" placeholder=" Цена от " type="number" value = "<?echo (!empty($_REQUEST["price_from"]))?$_REQUEST["price_from"]:""?>" />
+			<input class="se-input se-25" id="id_price_to" name="price_to" placeholder=" Цена до " type="number" value = "<?echo (!empty($_REQUEST["price_to"]))?$_REQUEST["price_to"]:""?>" />
 		</div>
 
 		<div class="search-sec__column d-flex">
@@ -33,7 +33,7 @@ get_header(); ?>
 
 						foreach ( $mainCat as $catM ) {
 							?>
-										<option <? echo ($_REQUEST["prod_type"] === $catM->term_id)?"selected":""; ?> value = "<?echo $catM->term_id?>"><?echo $catM->name?></option>
+										<option <? echo (!empty($_REQUEST["prod_type"])&&$_REQUEST["prod_type"] === $catM->term_id)?"selected":""; ?> value = "<?echo $catM->term_id?>"><?echo $catM->name?></option>
 							<?
 						}
 					?>
@@ -50,7 +50,7 @@ get_header(); ?>
 							$mainCat =  $wpdb->get_results('SELECT `lshop_term_taxonomy`.*,  `lshop_terms`.`name`  FROM `lshop_term_taxonomy` LEFT JOIN `lshop_terms` ON `lshop_terms`.`term_id`=`lshop_term_taxonomy`.`term_id` WHERE `lshop_term_taxonomy`.`parent` = '.$_REQUEST["prod_type"].' AND `lshop_term_taxonomy`.`taxonomy` = "lightcat" ');
 
 							foreach ( $mainCat as $catM ) {
-								$sel = ($_REQUEST["sub_type"] === $catM->term_id)?"selected":"";
+								$sel = (!empty($_REQUEST["sub_type"])&&$_REQUEST["sub_type"] === $catM->term_id)?"selected":"";
 								echo '<option '.$sel.' value = "'.$catM->term_id.'">'. $catM->name.'</option>';
 								
 							}
@@ -64,8 +64,8 @@ get_header(); ?>
 			<div class="search-sec__option search-sec__option_l">
 				<select  id="id_cap" name="cap">
 					<option value="0">- Тип светильника -</option>
-					<option <? echo ($_REQUEST["cap"] === "Светодиодный (LED)")?"selected":""; ?> value="Светодиодный (LED)">Светодиодный (LED)</option>
-					<option <? echo ($_REQUEST["cap"] === "Цокольный (Со сменными лампами)")?"selected":""; ?> value="Цокольный (Со сменными лампами)">Цокольный (Со сменными лампами)</option>
+					<option <? echo (!empty($_REQUEST["cap"])&&$_REQUEST["cap"] === "Светодиодный (LED)")?"selected":""; ?> value="Светодиодный (LED)">Светодиодный (LED)</option>
+					<option <? echo (!empty($_REQUEST["cap"])&&$_REQUEST["cap"] === "Цокольный (Со сменными лампами)")?"selected":""; ?> value="Цокольный (Со сменными лампами)">Цокольный (Со сменными лампами)</option>
 				</select>
 			</div>
 
