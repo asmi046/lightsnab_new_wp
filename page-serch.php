@@ -33,7 +33,7 @@ get_header(); ?>
 
 						foreach ( $mainCat as $catM ) {
 							?>
-										<option <? echo ($_REQUEST["prod_type"] === $catM->term_id)?"selected":""; ?> value = "<?echo $catM->term_id?>"><?echo $catM->name?></option>
+										<option <? echo (!empty($_REQUEST["prod_type"])&&$_REQUEST["prod_type"] === $catM->term_id)?"selected":""; ?> value = "<?echo $catM->term_id?>"><?echo $catM->name?></option>
 							<?
 						}
 					?>
@@ -50,7 +50,7 @@ get_header(); ?>
 							$mainCat =  $wpdb->get_results('SELECT `lshop_term_taxonomy`.*,  `lshop_terms`.`name`  FROM `lshop_term_taxonomy` LEFT JOIN `lshop_terms` ON `lshop_terms`.`term_id`=`lshop_term_taxonomy`.`term_id` WHERE `lshop_term_taxonomy`.`parent` = '.$_REQUEST["prod_type"].' AND `lshop_term_taxonomy`.`taxonomy` = "lightcat" ');
 
 							foreach ( $mainCat as $catM ) {
-								$sel = ($_REQUEST["sub_type"] === $catM->term_id)?"selected":"";
+								$sel = (!empty($_REQUEST["sub_type"])&&$_REQUEST["sub_type"] === $catM->term_id)?"selected":"";
 								echo '<option '.$sel.' value = "'.$catM->term_id.'">'. $catM->name.'</option>';
 								
 							}
@@ -64,8 +64,8 @@ get_header(); ?>
 			<div class="search-sec__option search-sec__option_l">
 				<select  id="id_cap" name="cap">
 					<option value="0">- Тип светильника -</option>
-					<option <? echo ($_REQUEST["cap"] === "Светодиодный (LED)")?"selected":""; ?> value="Светодиодный (LED)">Светодиодный (LED)</option>
-					<option <? echo ($_REQUEST["cap"] === "Цокольный (Со сменными лампами)")?"selected":""; ?> value="Цокольный (Со сменными лампами)">Цокольный (Со сменными лампами)</option>
+					<option <? echo (!empty($_REQUEST["cap"])&&$_REQUEST["cap"] === "Светодиодный (LED)")?"selected":""; ?> value="Светодиодный (LED)">Светодиодный (LED)</option>
+					<option <? echo (!empty($_REQUEST["cap"])&&$_REQUEST["cap"] === "Цокольный (Со сменными лампами)")?"selected":""; ?> value="Цокольный (Со сменными лампами)">Цокольный (Со сменными лампами)</option>
 				</select>
 			</div>
 
