@@ -1,0 +1,291 @@
+<yml_catalog date="2022-09-25 08:45">
+<shop>
+<name>Интернет-магазин "Дивайн Лайт"</name>
+<company>Интернет-магазин "Дивайн Лайт"</company>
+<currencies>
+<currency id="RUB" rate="1"/>
+</currencies>
+<categories>
+<category id="2861" urlXml="category/2861.xml"><![CDATA[Свет для дома]]></category>
+<category id="2862" parentId="2861" urlXml="category/2862.xml"><![CDATA[Светильники для картин и зеркал]]></category>
+<category id="2863" parentId="2861" urlXml="category/2863.xml"><![CDATA[Мебельные светильники]]></category>
+<category id="2864" parentId="2861" urlXml="category/2864.xml"><![CDATA[Настенные бра]]></category>
+<category id="2865" parentId="2861" urlXml="category/2865.xml"><![CDATA[Настольные лампы]]></category>
+<category id="2866" parentId="2861" urlXml="category/2866.xml"><![CDATA[Ночники]]></category>
+<category id="2867" parentId="2861" urlXml="category/2867.xml"><![CDATA[Подсветка стен и ступеней]]></category>
+<category id="2868" parentId="2861" urlXml="category/2868.xml"><![CDATA[Потолочные люстры]]></category>
+<category id="2869" parentId="2868" urlXml="category/2869.xml"><![CDATA[Люстры на штанге]]></category>
+<category id="2870" parentId="2868" urlXml="category/2870.xml"><![CDATA[Люстры накладные]]></category>
+<category id="2871" parentId="2868" urlXml="category/2871.xml"><![CDATA[Люстры подвесные]]></category>
+<category id="13902" parentId="2868" urlXml="category/13902.xml"><![CDATA[Люстры каскадные]]></category>
+<category id="2872" parentId="2861" urlXml="category/2872.xml"><![CDATA[Потолочные светильники]]></category>
+<category id="2874" parentId="2872" urlXml="category/2874.xml"><![CDATA[Накладные светильники]]></category>
+<category id="2875" parentId="2872" urlXml="category/2875.xml"><![CDATA[Подвесные светильники]]></category>
+<category id="14597" parentId="2872" urlXml="category/14597.xml"><![CDATA[Линейные светильники]]></category>
+<category id="2876" parentId="2861" urlXml="category/2876.xml"><![CDATA[Детские светильники]]></category>
+<category id="2877" parentId="2876" urlXml="category/2877.xml"><![CDATA[Детские люстры]]></category>
+<category id="2878" parentId="2876" urlXml="category/2878.xml"><![CDATA[Детские бра]]></category>
+<category id="2879" parentId="2876" urlXml="category/2879.xml"><![CDATA[Детские настольные лампы]]></category>
+<category id="2880" parentId="2876" urlXml="category/2880.xml"><![CDATA[Детские ночники]]></category>
+<category id="2881" parentId="2876" urlXml="category/2881.xml"><![CDATA[Детские светильники]]></category>
+<category id="2882" parentId="2876" urlXml="category/2882.xml"><![CDATA[Детские споты]]></category>
+<category id="2883" parentId="2876" urlXml="category/2883.xml"><![CDATA[Детские торшеры]]></category>
+<category id="9930" parentId="2876" urlXml="category/9930.xml"><![CDATA[Детские точечные светильники]]></category>
+<category id="2884" parentId="2861" urlXml="category/2884.xml"><![CDATA[Светодиодные ленты]]></category>
+<category id="2885" parentId="2884" urlXml="category/2885.xml"><![CDATA[Светодиодные ленты]]></category>
+<category id="2886" parentId="2884" urlXml="category/2886.xml"><![CDATA[Драйверы для светодиодных лент]]></category>
+<category id="2887" parentId="2884" urlXml="category/2887.xml"><![CDATA[Усилители для светодиодных лент]]></category>
+<category id="2888" parentId="2884" urlXml="category/2888.xml"><![CDATA[Контроллеры для светодиодных лент]]></category>
+<category id="2889" parentId="2884" urlXml="category/2889.xml"><![CDATA[Блоки питания для светодиодных лент]]></category>
+<category id="2890" parentId="2884" urlXml="category/2890.xml"><![CDATA[Экраны для светодиодных лент]]></category>
+<category id="2891" parentId="2884" urlXml="category/2891.xml"><![CDATA[Профили для светодиодных лент]]></category>
+<category id="2892" parentId="2884" urlXml="category/2892.xml"><![CDATA[Комплектующие для светодиодных лент]]></category>
+<category id="14107" parentId="2892" urlXml="category/14107.xml"><![CDATA[Декодеры]]></category>
+<category id="14108" parentId="2892" urlXml="category/14108.xml"><![CDATA[Заглушки для лент]]></category>
+<category id="14109" parentId="2892" urlXml="category/14109.xml"><![CDATA[Соединители для лент]]></category>
+<category id="14110" parentId="2892" urlXml="category/14110.xml"><![CDATA[Пульты управления]]></category>
+<category id="14111" parentId="2892" urlXml="category/14111.xml"><![CDATA[Панели управления]]></category>
+<category id="14114" parentId="2892" urlXml="category/14114.xml"><![CDATA[Крепежные элементы для лент]]></category>
+<category id="14115" parentId="2892" urlXml="category/14115.xml"><![CDATA[Датчики]]></category>
+<category id="14116" parentId="2892" urlXml="category/14116.xml"><![CDATA[Конвертеры]]></category>
+<category id="11043" parentId="2884" urlXml="category/11043.xml"><![CDATA[Комплектующие для профилей]]></category>
+<category id="14091" parentId="11043" urlXml="category/14091.xml"><![CDATA[Заглушки для профилей]]></category>
+<category id="14092" parentId="11043" urlXml="category/14092.xml"><![CDATA[Крепежные элементы для профилей]]></category>
+<category id="14093" parentId="11043" urlXml="category/14093.xml"><![CDATA[Соединители для профилей]]></category>
+<category id="14094" parentId="11043" urlXml="category/14094.xml"><![CDATA[Подвесные комплекты для профилей]]></category>
+<category id="14095" parentId="11043" urlXml="category/14095.xml"><![CDATA[Тубусы для упаковки профилей]]></category>
+<category id="14096" parentId="11043" urlXml="category/14096.xml"><![CDATA[Рамки к профилю]]></category>
+<category id="14097" parentId="11043" urlXml="category/14097.xml"><![CDATA[Сальники для профилей]]></category>
+<category id="14098" parentId="11043" urlXml="category/14098.xml"><![CDATA[Диммеры встраиваемые в профиль]]></category>
+<category id="14099" parentId="11043" urlXml="category/14099.xml"><![CDATA[Прокладки для профилей]]></category>
+<category id="14100" parentId="11043" urlXml="category/14100.xml"><![CDATA[Микровыключатели]]></category>
+<category id="14101" parentId="11043" urlXml="category/14101.xml"><![CDATA[Тросики для профилей]]></category>
+<category id="14102" parentId="11043" urlXml="category/14102.xml"><![CDATA[Приспособления для монтажа прокладок]]></category>
+<category id="14103" parentId="11043" urlXml="category/14103.xml"><![CDATA[Подложки для фиксации лент]]></category>
+<category id="14104" parentId="11043" urlXml="category/14104.xml"><![CDATA[Перфорированные сетки]]></category>
+<category id="14105" parentId="11043" urlXml="category/14105.xml"><![CDATA[Противоскользящие резиновые вставки]]></category>
+<category id="14106" parentId="11043" urlXml="category/14106.xml"><![CDATA[Муфты]]></category>
+<category id="11628" parentId="2884" urlXml="category/11628.xml"><![CDATA[Диммеры]]></category>
+<category id="2893" parentId="2861" urlXml="category/2893.xml"><![CDATA[Споты]]></category>
+<category id="2894" parentId="2861" urlXml="category/2894.xml"><![CDATA[Торшеры и напольные светильники]]></category>
+<category id="2895" parentId="2861" urlXml="category/2895.xml"><![CDATA[Точечные светильники]]></category>
+<category id="2896" parentId="2895" urlXml="category/2896.xml"><![CDATA[Влагозащищенные точечные светильники]]></category>
+<category id="2897" parentId="2895" urlXml="category/2897.xml"><![CDATA[Встраиваемые точечные светильники]]></category>
+<category id="2898" parentId="2895" urlXml="category/2898.xml"><![CDATA[Накладные точечные светильники]]></category>
+<category id="2899" parentId="2861" urlXml="category/2899.xml"><![CDATA[Шинные и струнные системы]]></category>
+<category id="2900" parentId="2899" urlXml="category/2900.xml"><![CDATA[Комплектующие]]></category>
+<category id="2901" parentId="2899" urlXml="category/2901.xml"><![CDATA[Трековые светильники]]></category>
+<category id="10205" parentId="2899" urlXml="category/10205.xml"><![CDATA[Готовые решения]]></category>
+<category id="10389" parentId="2899" urlXml="category/10389.xml"><![CDATA[Шинопроводы]]></category>
+<category id="14065" parentId="2899" urlXml="category/14065.xml"><![CDATA[Комплектующие для трековых светильников]]></category>
+<category id="14074" parentId="14065" urlXml="category/14074.xml"><![CDATA[Линзы]]></category>
+<category id="14078" parentId="14065" urlXml="category/14078.xml"><![CDATA[Кольца]]></category>
+<category id="14079" parentId="14065" urlXml="category/14079.xml"><![CDATA[Плафоны]]></category>
+<category id="14083" parentId="14065" urlXml="category/14083.xml"><![CDATA[Основания для трековых светильников]]></category>
+<category id="14953" parentId="14065" urlXml="category/14953.xml"><![CDATA[Шторки]]></category>
+<category id="14066" parentId="2899" urlXml="category/14066.xml"><![CDATA[Комплектующие для шинопроводов]]></category>
+<category id="14067" parentId="14066" urlXml="category/14067.xml"><![CDATA[Коннекторы]]></category>
+<category id="14068" parentId="14066" urlXml="category/14068.xml"><![CDATA[Крепежные элементы]]></category>
+<category id="14069" parentId="14066" urlXml="category/14069.xml"><![CDATA[Подвесные комплекты]]></category>
+<category id="14070" parentId="14066" urlXml="category/14070.xml"><![CDATA[Заглушки]]></category>
+<category id="14071" parentId="14066" urlXml="category/14071.xml"><![CDATA[Тросики]]></category>
+<category id="14072" parentId="14066" urlXml="category/14072.xml"><![CDATA[Адаптеры]]></category>
+<category id="14073" parentId="14066" urlXml="category/14073.xml"><![CDATA[Подводы питания]]></category>
+<category id="14075" parentId="14066" urlXml="category/14075.xml"><![CDATA[Стойки]]></category>
+<category id="14076" parentId="14066" urlXml="category/14076.xml"><![CDATA[Накладки]]></category>
+<category id="14077" parentId="14066" urlXml="category/14077.xml"><![CDATA[Усилители стыков]]></category>
+<category id="14081" parentId="14066" urlXml="category/14081.xml"><![CDATA[Коробки для драйверов]]></category>
+<category id="14085" parentId="14066" urlXml="category/14085.xml"><![CDATA[Розетки для шинопроводов]]></category>
+<category id="14086" parentId="14066" urlXml="category/14086.xml"><![CDATA[Пульты управления для шинопроводов]]></category>
+<category id="14087" parentId="14066" urlXml="category/14087.xml"><![CDATA[Выключатели для шинопроводов]]></category>
+<category id="14088" parentId="14066" urlXml="category/14088.xml"><![CDATA[Профили для шинопроводов]]></category>
+<category id="14089" parentId="14066" urlXml="category/14089.xml"><![CDATA[Соединители профилей для шинопроводов]]></category>
+<category id="14090" parentId="14066" urlXml="category/14090.xml"><![CDATA[Гибочные устройства]]></category>
+<category id="14559" parentId="14066" urlXml="category/14559.xml"><![CDATA[Настенные панели управления]]></category>
+<category id="14560" parentId="14066" urlXml="category/14560.xml"><![CDATA[WI-FI конвертеры]]></category>
+<category id="14620" parentId="14066" urlXml="category/14620.xml"><![CDATA[Углы профиля]]></category>
+<category id="14957" parentId="14066" urlXml="category/14957.xml"><![CDATA[Кабели питания]]></category>
+<category id="14994" parentId="14066" urlXml="category/14994.xml"><![CDATA[Соединители для шинопроводов]]></category>
+<category id="14995" parentId="14066" urlXml="category/14995.xml"><![CDATA[Экраны для шинопроводов]]></category>
+<category id="14080" parentId="2899" urlXml="category/14080.xml"><![CDATA[Драйверы для шинопроводов]]></category>
+<category id="14082" parentId="2899" urlXml="category/14082.xml"><![CDATA[Диммеры для шинопроводов]]></category>
+<category id="14084" parentId="2899" urlXml="category/14084.xml"><![CDATA[Датчики движения для шинопроводов]]></category>
+<category id="14589" parentId="2899" urlXml="category/14589.xml"><![CDATA[Струнные светильники]]></category>
+<category id="14592" parentId="2899" urlXml="category/14592.xml"><![CDATA[Струнные шинопроводы]]></category>
+<category id="2902" parentId="2861" urlXml="category/2902.xml"><![CDATA[Комплектующие]]></category>
+<category id="2903" parentId="2902" urlXml="category/2903.xml"><![CDATA[Аксессуары]]></category>
+<category id="2905" parentId="2902" urlXml="category/2905.xml"><![CDATA[Блоки защиты]]></category>
+<category id="2906" parentId="2902" urlXml="category/2906.xml"><![CDATA[Блоки питания AC]]></category>
+<category id="14117" parentId="2902" urlXml="category/14117.xml"><![CDATA[Подвесы]]></category>
+<category id="14118" parentId="2902" urlXml="category/14118.xml"><![CDATA[Рамки декоративные]]></category>
+<category id="14119" parentId="2902" urlXml="category/14119.xml"><![CDATA[Модули]]></category>
+<category id="14120" parentId="2902" urlXml="category/14120.xml"><![CDATA[Корпусы светильников]]></category>
+<category id="14121" parentId="2902" urlXml="category/14121.xml"><![CDATA[Вставки декоративные]]></category>
+<category id="14122" parentId="2902" urlXml="category/14122.xml"><![CDATA[Коннекторы модульных светильников]]></category>
+<category id="14123" parentId="2902" urlXml="category/14123.xml"><![CDATA[Базы встраиваемые]]></category>
+<category id="14124" parentId="2902" urlXml="category/14124.xml"><![CDATA[Базы накладные]]></category>
+<category id="14125" parentId="2902" urlXml="category/14125.xml"><![CDATA[Линзы для светильников]]></category>
+<category id="14126" parentId="2902" urlXml="category/14126.xml"><![CDATA[Крепежные элементы для светильников]]></category>
+<category id="14127" parentId="2902" urlXml="category/14127.xml"><![CDATA[Драйверы для модульных светильников]]></category>
+<category id="14128" parentId="2902" urlXml="category/14128.xml"><![CDATA[Стойки для светильников]]></category>
+<category id="14129" parentId="2902" urlXml="category/14129.xml"><![CDATA[Рефлекторы]]></category>
+<category id="14130" parentId="2902" urlXml="category/14130.xml"><![CDATA[Монтажные коробки]]></category>
+<category id="14131" parentId="2902" urlXml="category/14131.xml"><![CDATA[Платы для светодиодов]]></category>
+<category id="14132" parentId="2902" urlXml="category/14132.xml"><![CDATA[Разветвители]]></category>
+<category id="14133" parentId="2902" urlXml="category/14133.xml"><![CDATA[Клеммы]]></category>
+<category id="14134" parentId="2902" urlXml="category/14134.xml"><![CDATA[Удлинители кабелей]]></category>
+<category id="14135" parentId="2902" urlXml="category/14135.xml"><![CDATA[Стекла с наклейками]]></category>
+<category id="14596" parentId="2902" urlXml="category/14596.xml"><![CDATA[Тубусы картонные]]></category>
+<category id="14619" parentId="2902" urlXml="category/14619.xml"><![CDATA[Wi-Fi реле]]></category>
+<category id="14951" parentId="2902" urlXml="category/14951.xml"><![CDATA[Накладки на базу]]></category>
+<category id="14998" parentId="2902" urlXml="category/14998.xml"><![CDATA[Отражатели]]></category>
+<category id="2908" parentId="2861" urlXml="category/2908.xml"><![CDATA[Лампы]]></category>
+<category id="2909" parentId="2908" urlXml="category/2909.xml"><![CDATA[Галогеновые лампы]]></category>
+<category id="2911" parentId="2908" urlXml="category/2911.xml"><![CDATA[Металлогалогеновые лампы]]></category>
+<category id="2912" parentId="2908" urlXml="category/2912.xml"><![CDATA[Лампы накаливания]]></category>
+<category id="2913" parentId="2908" urlXml="category/2913.xml"><![CDATA[Светодиодные лампы]]></category>
+<category id="2914" parentId="2908" urlXml="category/2914.xml"><![CDATA[Ретро лампы]]></category>
+<category id="13905" parentId="2908" urlXml="category/13905.xml"><![CDATA[Люминесцентные лампы]]></category>
+<category id="14588" parentId="2908" urlXml="category/14588.xml"><![CDATA[Светодиодные модули]]></category>
+<category id="9794" parentId="2861" urlXml="category/9794.xml"><![CDATA[Лайтбоксы]]></category>
+<category id="2915" urlXml="category/2915.xml"><![CDATA[Свет для улицы]]></category>
+<category id="2916" parentId="2915" urlXml="category/2916.xml"><![CDATA[Грунтовые светильники]]></category>
+<category id="2917" parentId="2915" urlXml="category/2917.xml"><![CDATA[Светильники для стен и ступеней]]></category>
+<category id="2918" parentId="2915" urlXml="category/2918.xml"><![CDATA[Светильники для фонтанов и бассейнов]]></category>
+<category id="2920" parentId="2915" urlXml="category/2920.xml"><![CDATA[Уличные настенные светильники]]></category>
+<category id="2921" parentId="2915" urlXml="category/2921.xml"><![CDATA[Уличные потолочные светильники]]></category>
+<category id="2922" parentId="2921" urlXml="category/2922.xml"><![CDATA[Встраиваемые уличные светильники]]></category>
+<category id="2923" parentId="2921" urlXml="category/2923.xml"><![CDATA[Накладные уличные светильники]]></category>
+<category id="2924" parentId="2921" urlXml="category/2924.xml"><![CDATA[Подвесные уличные светильники]]></category>
+<category id="2925" parentId="2915" urlXml="category/2925.xml"><![CDATA[Прожекторы]]></category>
+<category id="2926" parentId="2915" urlXml="category/2926.xml"><![CDATA[Садово-парковые светильники]]></category>
+<category id="11682" parentId="2926" urlXml="category/11682.xml"><![CDATA[Низкие уличные фонари]]></category>
+<category id="11683" parentId="2926" urlXml="category/11683.xml"><![CDATA[Высокие уличные фонари]]></category>
+<category id="11684" parentId="2926" urlXml="category/11684.xml"><![CDATA[Средние уличные фонари]]></category>
+<category id="2927" parentId="2915" urlXml="category/2927.xml"><![CDATA[Садовые фигуры]]></category>
+<category id="2928" parentId="2915" urlXml="category/2928.xml"><![CDATA[Праздничное освещение]]></category>
+<category id="2929" parentId="2928" urlXml="category/2929.xml"><![CDATA[Светодиодная бахрома]]></category>
+<category id="2930" parentId="2928" urlXml="category/2930.xml"><![CDATA[Светодиодные гирлянды]]></category>
+<category id="2931" parentId="2928" urlXml="category/2931.xml"><![CDATA[LED гирлянды на деревья]]></category>
+<category id="2932" parentId="2928" urlXml="category/2932.xml"><![CDATA[Светодиодные деревья]]></category>
+<category id="2933" parentId="2928" urlXml="category/2933.xml"><![CDATA[Светодиодные нити]]></category>
+<category id="2934" parentId="2928" urlXml="category/2934.xml"><![CDATA[Светодиодные занавесы]]></category>
+<category id="2935" parentId="2928" urlXml="category/2935.xml"><![CDATA[Светодиодные фигуры]]></category>
+<category id="9761" parentId="2928" urlXml="category/9761.xml"><![CDATA[Светодиодные сети]]></category>
+<category id="11029" parentId="2928" urlXml="category/11029.xml"><![CDATA[Дюралайт]]></category>
+<category id="11676" parentId="2928" urlXml="category/11676.xml"><![CDATA[Комплектующие]]></category>
+<category id="14136" parentId="11676" urlXml="category/14136.xml"><![CDATA[Трансформаторы]]></category>
+<category id="14137" parentId="11676" urlXml="category/14137.xml"><![CDATA[Контроллеры]]></category>
+<category id="14138" parentId="11676" urlXml="category/14138.xml"><![CDATA[Силовые провода]]></category>
+<category id="14139" parentId="11676" urlXml="category/14139.xml"><![CDATA[Шнуры питания]]></category>
+<category id="14140" parentId="11676" urlXml="category/14140.xml"><![CDATA[Провода питания]]></category>
+<category id="14141" parentId="11676" urlXml="category/14141.xml"><![CDATA[Выпрямители для гирлянд]]></category>
+<category id="14142" parentId="11676" urlXml="category/14142.xml"><![CDATA[Разветвители для нитей]]></category>
+<category id="14143" parentId="11676" urlXml="category/14143.xml"><![CDATA[Удлинители для гирлянд]]></category>
+<category id="14144" parentId="11676" urlXml="category/14144.xml"><![CDATA[Соединители для гирлянд]]></category>
+<category id="14145" parentId="11676" urlXml="category/14145.xml"><![CDATA[Заглушки для дюралайта]]></category>
+<category id="14146" parentId="11676" urlXml="category/14146.xml"><![CDATA[Крепеж для дюралайта]]></category>
+<category id="14147" parentId="11676" urlXml="category/14147.xml"><![CDATA[Соединители для дюралайта]]></category>
+<category id="14148" parentId="11676" urlXml="category/14148.xml"><![CDATA[Комплекты подключения для дюралайта]]></category>
+<category id="14149" parentId="11676" urlXml="category/14149.xml"><![CDATA[Заглушки для гирлянд]]></category>
+<category id="14150" parentId="11676" urlXml="category/14150.xml"><![CDATA[Комплекты подключения для гирлянд]]></category>
+<category id="14151" parentId="11676" urlXml="category/14151.xml"><![CDATA[Батареечные блоки]]></category>
+<category id="14949" parentId="11676" urlXml="category/14949.xml"><![CDATA[Коннектор]]></category>
+<category id="14950" parentId="11676" urlXml="category/14950.xml"><![CDATA[Крепеж для гирлянд]]></category>
+<category id="14954" parentId="11676" urlXml="category/14954.xml"><![CDATA[Блоки]]></category>
+<category id="14955" parentId="11676" urlXml="category/14955.xml"><![CDATA[Переходники для дюралайта]]></category>
+<category id="14956" parentId="11676" urlXml="category/14956.xml"><![CDATA[Шины для занавесов]]></category>
+<category id="3064" parentId="2915" urlXml="category/3064.xml"><![CDATA[Уличные настольные светильники]]></category>
+<category id="9351" parentId="2915" urlXml="category/9351.xml"><![CDATA[Уличные блоки розеток]]></category>
+<category id="9677" parentId="2915" urlXml="category/9677.xml"><![CDATA[Тротуарные светильники]]></category>
+<category id="10238" parentId="2915" urlXml="category/10238.xml"><![CDATA[Фонари]]></category>
+<category id="15000" parentId="2915" urlXml="category/15000.xml"><![CDATA[Штативы]]></category>
+<category id="3201" urlXml="category/3201.xml"><![CDATA[Электроустановка]]></category>
+<category id="3385" parentId="3201" urlXml="category/3385.xml"><![CDATA[Выключатели]]></category>
+<category id="3386" parentId="3201" urlXml="category/3386.xml"><![CDATA[Клавиши. Накладки]]></category>
+<category id="3387" parentId="3201" urlXml="category/3387.xml"><![CDATA[Рамки]]></category>
+<category id="3388" parentId="3201" urlXml="category/3388.xml"><![CDATA[Розетки]]></category>
+<category id="10447" parentId="3201" urlXml="category/10447.xml"><![CDATA[Радиовыключатели]]></category>
+<category id="11637" parentId="3201" urlXml="category/11637.xml"><![CDATA[Терморегулятор]]></category>
+<category id="13675" parentId="3201" urlXml="category/13675.xml"><![CDATA[Комплектующие]]></category>
+<category id="2904" parentId="13675" urlXml="category/2904.xml"><![CDATA[Пульты управления]]></category>
+<category id="2907" parentId="13675" urlXml="category/2907.xml"><![CDATA[Датчики движения]]></category>
+<category id="13676" parentId="13675" urlXml="category/13676.xml"><![CDATA[Патроны]]></category>
+<category id="13677" parentId="13675" urlXml="category/13677.xml"><![CDATA[Шнур с выключателем]]></category>
+<category id="13760" parentId="13675" urlXml="category/13760.xml"><![CDATA[Диммеры]]></category>
+<category id="13878" parentId="13675" urlXml="category/13878.xml"><![CDATA[Ваттметры]]></category>
+<category id="13879" parentId="13675" urlXml="category/13879.xml"><![CDATA[Реле напряжения]]></category>
+<category id="14997" parentId="13675" urlXml="category/14997.xml"><![CDATA[Контроллеры]]></category>
+<category id="13683" parentId="3201" urlXml="category/13683.xml"><![CDATA[Стабилизаторы напряжения]]></category>
+<category id="10207" urlXml="category/10207.xml"><![CDATA[Технический свет]]></category>
+<category id="6059" parentId="10207" urlXml="category/6059.xml"><![CDATA[Консольные светильники]]></category>
+<category id="10208" parentId="10207" urlXml="category/10208.xml"><![CDATA[Светильники Downlight]]></category>
+<category id="10209" parentId="10207" urlXml="category/10209.xml"><![CDATA[Светодиодные панели]]></category>
+<category id="10210" parentId="10207" urlXml="category/10210.xml"><![CDATA[Пылевлагозащищенные светильники]]></category>
+<category id="10211" parentId="10207" urlXml="category/10211.xml"><![CDATA[Световые указатели]]></category>
+<category id="10220" parentId="10207" urlXml="category/10220.xml"><![CDATA[Аварийные светильники]]></category>
+<category id="10221" parentId="10207" urlXml="category/10221.xml"><![CDATA[Потолочные светильники]]></category>
+<category id="10222" parentId="10207" urlXml="category/10222.xml"><![CDATA[Купольные светильники]]></category>
+<category id="10223" parentId="10207" urlXml="category/10223.xml"><![CDATA[Светильники офисные накладные]]></category>
+<category id="10224" parentId="10207" urlXml="category/10224.xml"><![CDATA[Светильники подвесные промышленные]]></category>
+<category id="10225" parentId="10207" urlXml="category/10225.xml"><![CDATA[Cветильники потолочные встраиваемые]]></category>
+<category id="10226" parentId="10207" urlXml="category/10226.xml"><![CDATA[Светильники для потолка грильято]]></category>
+<category id="10230" parentId="10207" urlXml="category/10230.xml"><![CDATA[Светильники Армстронг]]></category>
+<category id="10231" parentId="10207" urlXml="category/10231.xml"><![CDATA[Светильники настенно-потолочные]]></category>
+<category id="10232" parentId="10207" urlXml="category/10232.xml"><![CDATA[Комплектующие]]></category>
+<category id="14999" parentId="10232" urlXml="category/14999.xml"><![CDATA[Кронштейны для светильников]]></category>
+<category id="10250" parentId="10207" urlXml="category/10250.xml"><![CDATA[Светильники модульные]]></category>
+</categories>
+<offers><offer id="1006518" type="vendor.model">
+<url>https://divine-light.ru/catalog/nastennye_i_bra/293-1-nastennyy-svetilnik_458394/</url>
+<categoryId>2864</categoryId>
+<picture>https://img.divine-light.ru/0/724/000724131_800_800.jpg</picture>
+<picture>https://img.divine-light.ru/0/724/000724132_800_800.jpg</picture>
+<picture>https://img.divine-light.ru/0/724/000724133_800_800.jpg</picture>
+<picture>https://img.divine-light.ru/0/724/000724134_800_800.jpg</picture>
+<picture>https://img.divine-light.ru/0/724/000724135_800_800.jpg</picture>
+<typePrefix><![CDATA[Бра]]></typePrefix>
+<name><![CDATA[Бра Bogate's 293/1]]></name>
+<vendor><![CDATA[Bogate's]]></vendor>
+<vendorCode><![CDATA[293/1]]></vendorCode>
+<model><![CDATA[293/1]]></model>
+<description><![CDATA[]]></description>
+<quantity>11</quantity>
+<param name="Бренд">Bogate&apos;s</param>
+<param name="стиль">современный</param>
+<param name="Форма">овал</param>
+<param name="цвет арматуры">бронзовый</param>
+<param name="материал арматуры">металл</param>
+<param name="цвет плафона">бронзовый</param>
+<param name="материал плафона">металл</param>
+<param name="ширина/диаметр">160</param>
+<param name="длина">260</param>
+<param name="высота">250</param>
+<param name="тип лампы">накаливания или LED</param>
+<param name="мощность лампы">60</param>
+<param name="мощность общая">60</param>
+<param name="напряжение">220</param>
+<param name="количество ламп">1</param>
+<param name="тип цоколя">E14</param>
+<param name="степень защиты ip">20</param>
+<param name="пульт управления">Нет</param>
+<param name="выключатель">Да</param>
+<param name="Страна происхождения">Китай</param>
+<param name="форма плафона">Цилиндр</param>
+<param name="лампы в комплекте">Нет</param>
+<param name="Артикул">293/1</param>
+<param name="вид выключателя">тумблер</param>
+<param name="диапазон рабочих температур">от -10 до +40</param>
+<param name="количество грузовых мест">1</param>
+<param name="объем коробки">0.006</param>
+<param name="площадь освещения">3</param>
+<param name="поворотный">Нет</param>
+<param name="подсветка">Нет</param>
+<param name="размер коробки (ДхШхВ)">269х172х131</param>
+<param name="КодТовара">458394</param>
+<delivery>true</delivery>
+<pickup>true</pickup>
+</offer>
+</offers>
+</shop>
+</yml_catalog>

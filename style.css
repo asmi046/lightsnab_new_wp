@@ -4181,6 +4181,9 @@ hr {
 }
 
 
+
+
+
 @media (max-width: 460px) {
     .block__map {
         height: 300px;
@@ -4195,6 +4198,8 @@ hr {
 }
 
 /* Карта End */
+
+
 
 .contacts {
     padding-bottom: 30px;
@@ -4418,10 +4423,41 @@ hr {
     height: 100%;
 }
 
+/* Бренды */
 
+.brand_area {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
+.brand_area .brand_blk {
+    display: block;
+    text-align: center;
+    width:21%;
+    padding: 10px 2%;
+}
 
+.brand_area .brand_blk h2{ 
+    font-size: 18px;
+}
 
+.brand_area .brand_blk:hover h2{
+    text-decoration: underline;
+}
+
+.brand_area .brand_blk:hover img{ 
+    filter: grayscale(0%);
+}
+
+.brand_area .brand_blk img{ 
+    width:100%;
+    height: auto;
+    filter: grayscale(100%);
+}
+
+/* Бренды End*/
 
 
 
@@ -4832,6 +4868,11 @@ hr {
 
     .popup__form-btn {
         width: 100%;
+    }
+
+    .brand_area .brand_blk {
+        width: 46%;
+        padding: 10px 2%;
     }
 }
 

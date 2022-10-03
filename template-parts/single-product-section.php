@@ -76,7 +76,7 @@
             <?
               $posts = get_posts( array(
                 'numberposts' => 4,
-                'category'    =>  $category[0]->term_id,
+                'category'    =>  isset($category[0]->term_id)?$category[0]->term_id:"",
                 'post_type'   => 'light',
                 'orderby' => "rand" 
               ));
@@ -112,7 +112,7 @@
                   $query->the_post();
           ?>
               <a href="<?echo get_the_permalink(get_the_ID());?>" class="uppsells-item">
-                <img class="uppsells-item__img" src="<?php  $imgTm = get_the_post_thumbnail_url( get_the_ID(), "tominiatyre" ); echo empty($imgTm)?get_bloginfo("template_url")."/img/no-photo.jpg":$imgTm; ?>" alt="<? echo $mp->post_title;?>">
+                <img class="uppsells-item__img" src="<?php  $imgTm = get_the_post_thumbnail_url( get_the_ID(), "tominiatyre" ); echo empty($imgTm)?get_bloginfo("template_url")."/img/no-photo.jpg":$imgTm; ?>" alt="<? echo $query->post_title;?>">
                 <div class="uppsells-item__title"><? the_title();?></div>
               </a>
           <?

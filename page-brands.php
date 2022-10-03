@@ -20,6 +20,20 @@ get_header(); ?>
         ?> 
 
         <h1><? the_title();?></h1> 
+
+        <div class="brand_area">
+            <?php
+                $term = get_terms( ['taxonomy' => 'lightbrand', 'hide_empty'    => false,]);
+                foreach ( $term as $item ) {
+            ?>
+                <a class="brand_blk" href="">
+                    <img src="<?php echo bloginfo("template_url")?>/img/brands/<? echo $item->slug; ?>.jpg" alt="">
+                    <h2><? echo $item->name; ?></h2>
+                </a>
+            <?php 
+                }
+            ?>
+        </div>
     </div>
 </section>
 

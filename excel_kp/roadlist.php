@@ -5,10 +5,6 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-define("BI_SERVICE_DB_NAME", "u0743099_lscrm");
-define("BI_SERVICE_USER_NAME", "u0743099__lscrm");
-define("BI_SERVICE_USER_PASS", "2V4o5H6o");
-define("BI_SERVICE_DB_HOST", "localhost");
 
 require_once("../../../../wp-config.php");
 

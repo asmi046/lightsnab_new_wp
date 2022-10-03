@@ -22,11 +22,6 @@ function translit_sef($value)
 }
 
 
-define("BI_SERVICE_DB_NAME", "u0743099_lscrm");
-define("BI_SERVICE_USER_NAME", "u0743099__lscrm");
-define("BI_SERVICE_USER_PASS", "2V4o5H6o");
-define("BI_SERVICE_DB_HOST", "localhost");
-
 add_action( 'rest_api_init', function () {
 register_rest_route( 'lscrm/v2', '/userautorization', array(
 		'methods'  => 'GET',
