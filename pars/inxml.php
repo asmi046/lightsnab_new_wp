@@ -174,6 +174,19 @@ function first_upper($str, $encoding='UTF-8') {
                 
                 if (count($catArray) == 1) $catArray[] = "Другие продукты EGLO";
             }
+
+            if ($brand === "Lightstar") {
+                $catArray[] = "Lightstar";
+
+                if (mb_stripos($elem->name, "Люстр") !== false) $catArray[] = "Люстры Lightstar";
+                if (mb_stripos($elem->name, "Светиль") !== false) $catArray[] = "Светильники Lightstar";
+                if (mb_stripos($elem->name, "Бра") !== false) $catArray[] = "Бра Lightstar";
+                if (mb_stripos($elem->name, "Торш") !== false) $catArray[] = "Торшеры Lightstar";
+                if (mb_stripos($elem->name, "Встраив") !== false) $catArray[] = "Встраиваемые светильники Lightstar";
+                if (mb_stripos($elem->name, "Магнитная") !== false) $catArray[] = "Магнитная система Lightstar";
+                
+                if (count($catArray) == 1) $catArray[] = "Другие продукты Lightstar";
+            }
             
             wp_set_object_terms( $post_id, $catArray, "lightbrand" );   
            
