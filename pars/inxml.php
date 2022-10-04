@@ -5,7 +5,7 @@
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
 
-ini_set('max_execution_time', 900);
+ini_set('max_execution_time', 5500);
 ini_set('memory_limit','-1');
 ini_set('post_max_size','256M');
 ini_set('upload_max_filesize','256M');
@@ -45,6 +45,10 @@ function first_upper($str, $encoding='UTF-8') {
         foreach ($xml->shop->offers->children() as $elem)
         { 
 
+            if ($i<2407) {
+                $i++;
+                continue;
+            }
             
 
             echo "#: ".$i;
@@ -152,10 +156,25 @@ function first_upper($str, $encoding='UTF-8') {
                 if (mb_stripos($elem->name, "Светиль") !== false) $catArray[] = "Светильники ST-Luce";
                 if (mb_stripos($elem->name, "Бра") !== false) $catArray[] = "Бра ST-Luce";
                 if (mb_stripos($elem->name, "Торш") !== false) $catArray[] = "Торшеры ST-Luce";
+                if (mb_stripos($elem->name, "Встраив") !== false) $catArray[] = "Встраиваемые светильники ST-Luce";
+                if (mb_stripos($elem->name, "Магнитная") !== false) $catArray[] = "Магнитная система ST-Luce";
                 
                 if (count($catArray) == 1) $catArray[] = "Другие продукты ST-Luce";
             }
-            var_dump($catArray);
+
+            if ($brand === "EGLO") {
+                $catArray[] = "EGLO";
+
+                if (mb_stripos($elem->name, "Люстр") !== false) $catArray[] = "Люстры EGLO";
+                if (mb_stripos($elem->name, "Светиль") !== false) $catArray[] = "Светильники EGLO";
+                if (mb_stripos($elem->name, "Бра") !== false) $catArray[] = "Бра EGLO";
+                if (mb_stripos($elem->name, "Торш") !== false) $catArray[] = "Торшеры EGLO";
+                if (mb_stripos($elem->name, "Встраив") !== false) $catArray[] = "Встраиваемые светильники EGLO";
+                if (mb_stripos($elem->name, "Магнитная") !== false) $catArray[] = "Магнитная система EGLO";
+                
+                if (count($catArray) == 1) $catArray[] = "Другие продукты EGLO";
+            }
+            
             wp_set_object_terms( $post_id, $catArray, "lightbrand" );   
            
             echo "Удаление старых вложений: \n\r";
