@@ -26,7 +26,7 @@ get_header(); ?>
                 $term = get_terms( ['taxonomy' => 'lightbrand', 'hide_empty'    => false,]);
                 foreach ( $term as $item ) {
             ?>
-                <a class="brand_blk" href="">
+                <a class="brand_blk" href="<?php echo get_term_link($item->slug, 'lightbrand')?>">
                     <img src="<?php echo bloginfo("template_url")?>/img/brands/<? echo $item->slug; ?>.jpg" alt="">
                     <h2><? echo $item->name; ?></h2>
                 </a>
