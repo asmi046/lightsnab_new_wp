@@ -137,12 +137,22 @@ function first_upper($str, $encoding='UTF-8') {
             // $ancestors = get_ancestors( $term->term_id,  'lightcat' );
             
             $catArray = array();
+            
             // foreach ($ancestors as $as)
             //     $catArray[] = $as; 
             // $catArray[] = $term->term_id; 
 
             if ($brand === "ST-Luce") {
                 $catArray[] = "ST-Luce";
+
+                echo mb_strtoupper($elem->name)."\n\r";
+
+                if (mb_strpos(mb_strtoupper($elem->name), "ЛЮСТР")>0) $catArray[] = "Люстры ST-Luce";
+                if (mb_strpos(mb_strtoupper($elem->name), "СВЕТИЛЬ")>0) $catArray[] = "Светильники ST-Luce";
+                if (mb_strpos(mb_strtoupper($elem->name), "БРА")>0) $catArray[] = "Бра ST-Luce";
+                if (mb_strpos(mb_strtoupper($elem->name), "ТОРШ")>0) $catArray[] = "Торшеры ST-Luce";
+                
+                if (count($catArray) == 1) $catArray[] = "Другие продукты ST-Luce";
             }
             wp_set_object_terms( $post_id, $catArray, "lightbrand" );   
            
@@ -180,7 +190,7 @@ function first_upper($str, $encoding='UTF-8') {
                 $indexImg++;
             }
 
-            break;
+            if ($i == 1) break;
 
             echo "\n\r";
             echo "\n\r";
