@@ -46,6 +46,9 @@
             if($pict) {
               $pictIndex = 0;
               foreach($pict as $item) {
+
+                $pict_el = wp_get_attachment_image_src($item['gal_img'], 'full');
+                if (empty($pict_el)) continue;
           ?>
               <picture>
                 <img 
@@ -56,7 +59,7 @@
                   id = "pict-<? echo empty($item['gal_img_sku'])?$pictIndex:$item['gal_img_sku']; ?>" 
                   alt = "<? echo $item['gal_img_alt']; ?>"
                   title = "<? echo $item['gal_img_alt']; ?>"
-                  src = "<?php echo wp_get_attachment_image_src($item['gal_img'], 'full')[0];?>" />
+                  src = "<?php echo $pict_el[0];?>" />
               </picture>
           <?
                 $pictIndex++;
@@ -70,6 +73,8 @@
             if($pict) {
               $i = 0;
               foreach($pict as $item) {
+                $pict_el = wp_get_attachment_image_src($item['gal_img'], 'thumbnail');
+                if (empty($pict_el)) continue;
           ?>
               <picture>
                 <img 
@@ -78,7 +83,7 @@
                   id = "<? echo $item['gal_img_sku']; ?>" 
                   alt = "<? echo $item['gal_img_alt']; ?>"
                   title = "<? echo $item['gal_img_alt']; ?>"
-                  src = "<?php echo wp_get_attachment_image_src($item['gal_img'], 'thumbnail')[0];?>" />
+                  src = "<?php echo $pict_el[0];?>" />
               </picture>
           <?
           $i++;
