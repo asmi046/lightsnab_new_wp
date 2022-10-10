@@ -23,7 +23,12 @@ get_header(); ?>
 
         <div class="brand_area">
             <?php
-                $term = get_terms( ['taxonomy' => 'lightbrand', 'hide_empty'    => false,]);
+                $term = get_terms( [
+                    'taxonomy' => 'lightbrand', 
+                    'hide_empty'    => false,
+                    'hierarchical'  => true,
+                    'parent' => 0,
+                ]);
                 foreach ( $term as $item ) {
             ?>
                 <a class="brand_blk" href="<?php echo get_term_link($item->slug, 'lightbrand')?>">

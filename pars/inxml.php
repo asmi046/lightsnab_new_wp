@@ -28,7 +28,7 @@ function first_upper($str, $encoding='UTF-8') {
     global $wpdb;
 
 
-    $filename = "ST-Luce.xml";
+    $filename = "freya.xml";
     
     echo  "Файл: ".$filename."\n\r";
    
@@ -45,7 +45,7 @@ function first_upper($str, $encoding='UTF-8') {
         foreach ($xml->shop->offers->children() as $elem)
         { 
 
-            if ($i<2407) {
+            if ($i<1097) {
                 $i++;
                 continue;
             }
@@ -78,11 +78,14 @@ function first_upper($str, $encoding='UTF-8') {
                 $p_name = (string)$param->attributes()["name"];
                 
                 if ($p_name === "Бренд") $brand = $p_value;
-                if ($p_name === "коллекция") $to_post_meta["_offer_siries"] = $p_value;
+                if ($p_name === "Серия") $to_post_meta["_offer_siries"] = $p_value;
                 
                 $ignore_array = ["Бренд", "стиль" , "Форма", "мощность общая", "степень защиты ip", "пульт управления",
                 "выключатель", "цвет свечения", "диммируемость", "Место установки", "солнечная батарея", "датчик движения", "Артикул", "количество грузовых мест",
-                "объем коробки", "площадь освещения", "поворотный", "подсветка", "регулировка по высоте", "КодТовара"];
+                "объем коробки", "площадь освещения", "поворотный", "подсветка", "регулировка по высоте", "КодТовара",
+                "Остаток", "Участник телепрограммы", "Два в одном", "Подвесные крепления", "Технологии", "Типы помещении", "Код ТН ВЭД", "Клас защиты", "Описание для каталога", "Маркер", "Индекс цветопередачи (Ra)", "ДатаПрихода",
+                "Вес нетто", "Объем коробки, м3", "Ширина коробки, мм", "Длина коробки, мм", "Высота коробки, мм", "Вес брутто", "Страна происхождения",
+                ];
 
                 if (in_array($p_name, $ignore_array)) continue;
 
@@ -149,44 +152,17 @@ function first_upper($str, $encoding='UTF-8') {
             //     $catArray[] = $as; 
             // $catArray[] = $term->term_id; 
 
-            if ($brand === "ST-Luce") {
-                $catArray[] = "ST-Luce";
+            
+                $catArray[] = $brand;
 
-                if (mb_stripos($elem->name, "Люстр") !== false) $catArray[] = "Люстры ST-Luce";
-                if (mb_stripos($elem->name, "Светиль") !== false) $catArray[] = "Светильники ST-Luce";
-                if (mb_stripos($elem->name, "Бра") !== false) $catArray[] = "Бра ST-Luce";
-                if (mb_stripos($elem->name, "Торш") !== false) $catArray[] = "Торшеры ST-Luce";
-                if (mb_stripos($elem->name, "Встраив") !== false) $catArray[] = "Встраиваемые светильники ST-Luce";
-                if (mb_stripos($elem->name, "Магнитная") !== false) $catArray[] = "Магнитная система ST-Luce";
+                if (mb_stripos($elem->name, "Люстр") !== false) $catArray[] = "Люстры ".$brand;
+                if (mb_stripos($elem->name, "Светиль") !== false) $catArray[] = "Светильники ".$brand;
+                if (mb_stripos($elem->name, "Бра") !== false) $catArray[] = "Бра ".$brand;
+                if (mb_stripos($elem->name, "Торш") !== false) $catArray[] = "Торшеры ".$brand;
+                if (mb_stripos($elem->name, "Встраив") !== false) $catArray[] = "Встраиваемые светильники ".$brand;
+                if (mb_stripos($elem->name, "Трек") !== false) $catArray[] = "Магнитная система ".$brand;
                 
-                if (count($catArray) == 1) $catArray[] = "Другие продукты ST-Luce";
-            }
-
-            if ($brand === "EGLO") {
-                $catArray[] = "EGLO";
-
-                if (mb_stripos($elem->name, "Люстр") !== false) $catArray[] = "Люстры EGLO";
-                if (mb_stripos($elem->name, "Светиль") !== false) $catArray[] = "Светильники EGLO";
-                if (mb_stripos($elem->name, "Бра") !== false) $catArray[] = "Бра EGLO";
-                if (mb_stripos($elem->name, "Торш") !== false) $catArray[] = "Торшеры EGLO";
-                if (mb_stripos($elem->name, "Встраив") !== false) $catArray[] = "Встраиваемые светильники EGLO";
-                if (mb_stripos($elem->name, "Магнитная") !== false) $catArray[] = "Магнитная система EGLO";
-                
-                if (count($catArray) == 1) $catArray[] = "Другие продукты EGLO";
-            }
-
-            if ($brand === "Lightstar") {
-                $catArray[] = "Lightstar";
-
-                if (mb_stripos($elem->name, "Люстр") !== false) $catArray[] = "Люстры Lightstar";
-                if (mb_stripos($elem->name, "Светиль") !== false) $catArray[] = "Светильники Lightstar";
-                if (mb_stripos($elem->name, "Бра") !== false) $catArray[] = "Бра Lightstar";
-                if (mb_stripos($elem->name, "Торш") !== false) $catArray[] = "Торшеры Lightstar";
-                if (mb_stripos($elem->name, "Встраив") !== false) $catArray[] = "Встраиваемые светильники Lightstar";
-                if (mb_stripos($elem->name, "Магнитная") !== false) $catArray[] = "Магнитная система Lightstar";
-                
-                if (count($catArray) == 1) $catArray[] = "Другие продукты Lightstar";
-            }
+                if (count($catArray) == 1) $catArray[] = "Другие продукты ".$brand;
             
             wp_set_object_terms( $post_id, $catArray, "lightbrand" );   
            

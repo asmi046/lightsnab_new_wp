@@ -1,14 +1,35 @@
 <?
   $categoryID = get_queried_object()->term_id;
   $category = get_the_category(); 
+
+  $cur_terms = get_the_terms( $post->ID, 'lightbrand' );
 ?>
 <section class="single-product">
   <div class="container">
     <h1 class="category-title" id = "tovar_title"><?the_title();?></h1>
     <?php
-			if ( function_exists('yoast_breadcrumb') ) {
-				yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
-			}
+			if (empty($cur_terms)) {
+        if ( function_exists('yoast_breadcrumb') ) {
+          yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
+        }
+      } else {
+    ?>
+    	  <p id="breadcrumbs">
+            
+            <a href="https://lightsnab.ru/">Главная</a> / 
+            <span><a href="<?echo get_the_permalink(74434) ?>">Все бренды</a></span> / 
+            <?
+               foreach ($cur_terms as $elem) {
+            ?>
+              <span><a href="<?echo get_category_link($elem->term_id); ?>"><?echo $elem->name; ?></a></span> /
+            <?
+              }
+            ?>
+            <span class="breadcrumb_last" aria-current="page"><?the_title();?></span> 	
+            
+        </p>
+    <?
+      }
 		?> 
     <div class="product-wrapper" itemscope itemtype="http://schema.org/Product">
       <p style = "display:none" itemprop="name"><?the_title();?></p>

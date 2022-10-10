@@ -5,11 +5,20 @@ $ancestors = get_ancestors( $categoryID, 'lightbrand' );
 <section class="category-page">
     <div class="container">
       <h1 class="category-title"><?echo single_cat_title();?></h1>
-	  	<?php
-			if ( function_exists('yoast_breadcrumb') ) {
-				yoast_breadcrumb( '<p id="breadcrumbs">','</p>' );
-			}
-		?> 
+	  <p id="breadcrumbs">
+		
+				<a href="https://lightsnab.ru/">Главная</a> / 
+				<span><a href="<?echo get_the_permalink(74434) ?>">Все бренды</a></span> / 
+				<?
+					if (!empty($ancestors)) {
+				?>
+					<span><a href="<?echo get_category_link($ancestors[0]); ?>"><?echo get_term( $ancestors[0] )->name; ?></a></span> /
+				<?
+					}
+				?>
+				<span class="breadcrumb_last" aria-current="page"><?echo single_cat_title();?></span> 	
+				
+		</p>
 	  
       <ul class="category-menu category-menu-2 ul-clean">
             <?
