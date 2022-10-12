@@ -159,10 +159,21 @@
 
 
       </div>
+      
+      <?
+        global $wpdb;
+        $base_price = $wpdb->get_results("SELECT * FROM `lshop_loadprice` WHERE `sku` = '".carbon_get_post_meta(get_the_ID(),"offer_sku")."'");
+
+        if (!empty($base_price))
+          $nal_final=  empty($base_price[0]->count)?"Под заказ":$base_price[0]->count." шт.";
+        else 
+          $nal_final =  carbon_get_post_meta(get_the_ID(),"offer_nal");
+      ?>
+
       <div class="product-info">
         <div class="product-descr" itemprop="description"><?echo carbon_get_post_meta(get_the_ID(),"offer_smile_descr"); ?></div>
         <div class="product-sku">Артикул: <span id = "product_current_sku"><?echo carbon_get_post_meta(get_the_ID(),"offer_sku"); ?></span></div>
-        <div class="product-stock">Наличие: <span><?echo carbon_get_post_meta(get_the_ID(),"offer_nal"); ?></span></div>
+        <div class="product-stock">Наличие: <span><?echo $nal_final; ?></span></div>
         <div class="product-attrs">
           <?
             $cerecter = carbon_get_the_post_meta('offer_cherecter');
@@ -180,11 +191,18 @@
         </div>
 
         <?
-           $modif = carbon_get_the_post_meta('offer_modification');
 
-           $mainPrice = carbon_get_post_meta(get_the_ID(),"offer_price");
-           if (!empty($modif))
-            $mainPrice = $modif[0]["mod_price"]; 
+          
+          if (!empty($base_price))
+            $mainPrice =  $base_price[0]->price;
+          else {
+            $modif = carbon_get_the_post_meta('offer_modification');
+
+            $mainPrice = carbon_get_post_meta(get_the_ID(),"offer_price");
+            if (!empty($modif))
+              $mainPrice = $modif[0]["mod_price"];
+          }
+            
         ?>
 
         <div class="product-single__price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
