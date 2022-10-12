@@ -228,7 +228,13 @@ get_header(); ?>
 			<div class = "products-wrapper">
 				<?php if ( $query->have_posts() ) : ?>
 					<?php  while ( $query->have_posts() ) : $query->the_post(); ?>
-							<?php get_template_part('template-parts/product-elem');?>
+							<?php 
+								if( has_term('', 'lightbrand') ) {
+									get_template_part('template-parts/product-elem-brand');
+								} else {
+									get_template_part('template-parts/product-elem');
+								}
+							?>
 					<?php endwhile;?>
 				<?php else: ?>
 					<h2>По Вашему запросу ничего не найдено.</h2>

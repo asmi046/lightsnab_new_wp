@@ -1,6 +1,8 @@
 <?
 $categoryID = get_queried_object()->term_id;
 $ancestors = get_ancestors( $categoryID, 'lightbrand' );
+global $isbrand;
+$isbrand = "true";
 ?>
 <section class="category-page">
     <div class="container">

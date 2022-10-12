@@ -2,9 +2,15 @@
   <div class="container">
     <div class="products-wrapper">
       <?php
+        global $isbrand;
+
         while(have_posts()):
           the_post();
-          get_template_part('template-parts/product-elem');
+          
+          if (isset($isbrand) && !empty($isbrand))
+            get_template_part('template-parts/product-elem-brand');
+          else
+            get_template_part('template-parts/product-elem');
         endwhile;
       ?>
     </div>
