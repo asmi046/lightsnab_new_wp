@@ -953,6 +953,10 @@ body.compensate-for-scrollbar {
     display: none;
 }
 
+.cat_description {
+    margin: 0 0 40px 0;
+}
+
 @media (max-height: 576px) {
     .fancybox-slide {
         padding-left: 6px;

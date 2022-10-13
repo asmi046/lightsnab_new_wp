@@ -17,7 +17,7 @@
   </div>
 </section>
 
-<section class = "pagination">
+<section class = "pagination"> 
   <div class="container">
     <?php 
     the_posts_pagination( array(
@@ -27,4 +27,10 @@
     ) ); 
     ?>
   </div>
+</section>
+
+<section class = "cat_description">
+    <div class="container">
+      <?php echo category_description();?>
+    </div>
 </section>
