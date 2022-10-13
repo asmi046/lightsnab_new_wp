@@ -53,21 +53,21 @@ function first_upper($str, $encoding='UTF-8') {
 
             echo "#: ".$i;
             echo "\n\r";
-            echo (string)$elem->model;
+            echo (string)$elem->name;
             echo "\n\r";
 
             $brand = (string)$elem->vendor;
 
             $to_post_meta  = [ 
-                '_offer_smile_descr' => empty((string)$elem->description)?(string)$elem->model:(string)$elem->description, 
+                '_offer_smile_descr' => empty((string)$elem->description)?(string)$elem->name:(string)$elem->description, 
                 '_offer_type' => "Цокольный (Со сменными лампами)",
                 '_offer_sku' => (string)$elem->vendorCode, 
                 '_offer_nal' => ((int)$elem->quantity > 0)?"В наличии":"Под заказ",
-                '_offer_name' => (string)$elem->model,
+                '_offer_name' => (string)$elem->name,
                 '_offer_label' => "",
-                '_offer_allsearch' => (string)$elem->model.", ".(string)$elem->vendorCode,
+                '_offer_allsearch' => (string)$elem->name.", ".(string)$elem->vendorCode,
                 '_offer_siries' => "",
-                '_offer_fulltext' => (string)$elem->model.", ".(string)$elem->vendorCode,
+                '_offer_fulltext' => (string)$elem->name.", ".(string)$elem->vendorCode,
                 '_offer_price'     => 1000,
             ];
 
@@ -86,7 +86,6 @@ function first_upper($str, $encoding='UTF-8') {
                 "объем коробки", "площадь освещения", "поворотный", "подсветка", "регулировка по высоте", "КодТовара",
                 "Остаток", "Участник телепрограммы", "Два в одном", "Подвесные крепления", "Технологии", "Типы помещении", "Код ТН ВЭД", "Клас защиты", "Описание для каталога", "Маркер", "Индекс цветопередачи (Ra)", "ДатаПрихода",
                 "Вес нетто", "Объем коробки, м3", "Ширина коробки, мм", "Длина коробки, мм", "Высота коробки, мм", "Вес брутто", "Страна происхождения",
-                "Stock", "Штрихкод",
                 ];
 
                 if (in_array($p_name, $ignore_array)) continue;
@@ -122,9 +121,9 @@ function first_upper($str, $encoding='UTF-8') {
                     'post_type'     => 'light',
                     'post_author'    => 1,
                     'post_status'    => 'publish',
-                    'post_title' => (string)$elem->model,
-                    'post_excerpt'  => empty((string)$elem->description)?(string)$elem->model:(string)$elem->description,
-                    'post_content'  => empty((string)$elem->description)?(string)$elem->model:(string)$elem->description,
+                    'post_title' => (string)$elem->name,
+                    'post_excerpt'  => empty((string)$elem->description)?(string)$elem->name:(string)$elem->description,
+                    'post_content'  => empty((string)$elem->description)?(string)$elem->name:(string)$elem->description,
                     'meta_input'     => $to_post_meta,
                     
                     
@@ -137,9 +136,9 @@ function first_upper($str, $encoding='UTF-8') {
                     'post_type'     => 'light',
                     'post_author'    => 1,
                     'post_status'    => 'publish',
-                    'post_title' => (string)$elem->model,
-                    'post_excerpt'  => empty((string)$elem->description)?(string)$elem->model:(string)$elem->description,
-                    'post_content'  => empty((string)$elem->description)?(string)$elem->model:(string)$elem->description,
+                    'post_title' => (string)$elem->name,
+                    'post_excerpt'  => empty((string)$elem->description)?(string)$elem->name:(string)$elem->description,
+                    'post_content'  => empty((string)$elem->description)?(string)$elem->name:(string)$elem->description,
                     'meta_input'     => $to_post_meta,
                     
                 ) ) );
@@ -160,12 +159,12 @@ function first_upper($str, $encoding='UTF-8') {
             
                 $catArray[] = $brand;
 
-                if (mb_stripos($elem->model, "Люстр") !== false) $catArray[] = "Люстры ".$brand;
-                if (mb_stripos($elem->model, "Светиль") !== false) $catArray[] = "Светильники ".$brand;
-                if (mb_stripos($elem->model, "Бра") !== false) $catArray[] = "Бра ".$brand;
-                if (mb_stripos($elem->model, "Торш") !== false) $catArray[] = "Торшеры ".$brand;
-                if (mb_stripos($elem->model, "Встраив") !== false) $catArray[] = "Встраиваемые светильники ".$brand;
-                if (mb_stripos($elem->model, "Трек") !== false) $catArray[] = "Магнитная система ".$brand;
+                if (mb_stripos($elem->name, "Люстр") !== false) $catArray[] = "Люстры ".$brand;
+                if (mb_stripos($elem->name, "Светиль") !== false) $catArray[] = "Светильники ".$brand;
+                if (mb_stripos($elem->name, "Бра") !== false) $catArray[] = "Бра ".$brand;
+                if (mb_stripos($elem->name, "Торш") !== false) $catArray[] = "Торшеры ".$brand;
+                if (mb_stripos($elem->name, "Встраив") !== false) $catArray[] = "Встраиваемые светильники ".$brand;
+                if (mb_stripos($elem->name, "Трек") !== false) $catArray[] = "Магнитная система ".$brand;
                 
                 if (count($catArray) == 1) $catArray[] = "Другие продукты ".$brand;
             
@@ -188,7 +187,7 @@ function first_upper($str, $encoding='UTF-8') {
             
                 echo $img1 = (string)$galery;
                 echo "\n\r";
-                $ttl = (string)$elem->vendor." ".(string)$elem->model." ".(string)$elem->vendorCode;
+                $ttl = (string)$elem->vendor." ".(string)$elem->name." ".(string)$elem->vendorCode;
                 $img_id = media_sideload_image( $img1, $post_id, $ttl, "id" );
             
             
@@ -205,7 +204,7 @@ function first_upper($str, $encoding='UTF-8') {
                 $indexImg++;
             }
 
-            //  if ($i == 1) break;
+             if ($i == 1) break;
 
             echo "\n\r";
             echo "\n\r";

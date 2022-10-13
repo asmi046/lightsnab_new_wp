@@ -15,7 +15,7 @@
 
             <?
                 $categories = get_categories( [
-                    'taxonomy'     => 'lightcat',
+                    'taxonomy'     => 'lightbrand',
                     'orderby'      => 'name',
 	                'parent'  => 0
                     
@@ -26,7 +26,7 @@
                   <category id="<?echo $cat->term_id?>"><?echo $cat->name?></category>  
             <?
                     $sub_categories = get_categories( [
-                        'taxonomy'     => 'lightcat',
+                        'taxonomy'     => 'lightbrand',
                         'orderby'      => 'name',
                         'parent'  => $cat->term_id   
                     ] );
@@ -52,7 +52,7 @@
                     $tax = array(
                         'tax_query' => array(
                             array(
-                                'taxonomy' => 'lightcat',
+                                'taxonomy' => 'lightbrand',
                                 'field'    => 'slug',
                                 'terms'    => $_REQUEST["cat"]
                             )
