@@ -45,10 +45,10 @@ function first_upper($str, $encoding='UTF-8') {
         foreach ($xml->shop->offers->children() as $elem)
         { 
 
-            if ($i<1097) {
-                $i++;
-                continue;
-            }
+            // if ($i<1097) {
+            //     $i++;
+            //     continue;
+            // }
             
 
             echo "#: ".$i;

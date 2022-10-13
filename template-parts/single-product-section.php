@@ -47,7 +47,8 @@
               $pictIndex = 0;
               foreach($pict as $item) {
 
-                $pict_el = wp_get_attachment_image_src($item['gal_img'], 'full');
+                // $pict_el = wp_get_attachment_image_src($item['gal_img'], 'full');
+                $pict_el = wp_get_attachment_image_src($item['gal_img'], array(748,748));
                 if (empty($pict_el)) continue;
           ?>
               <picture>
@@ -162,7 +163,9 @@
       
       <?
         global $wpdb;
-        $base_price = $wpdb->get_results("SELECT * FROM `lshop_loadprice` WHERE `sku` = '".carbon_get_post_meta(get_the_ID(),"offer_sku")."'");
+
+        if( has_term('', 'lightbrand') )
+          $base_price = $wpdb->get_results("SELECT * FROM `lshop_loadprice` WHERE `sku` = '".carbon_get_post_meta(get_the_ID(),"offer_sku")."'");
 
         if (!empty($base_price))
           $nal_final=  empty($base_price[0]->count)?"Под заказ":$base_price[0]->count." шт.";
@@ -192,11 +195,12 @@
 
         <?
 
+          $modif = carbon_get_the_post_meta('offer_modification');
           
           if (!empty($base_price))
             $mainPrice =  $base_price[0]->price;
           else {
-            $modif = carbon_get_the_post_meta('offer_modification');
+            
 
             $mainPrice = carbon_get_post_meta(get_the_ID(),"offer_price");
             if (!empty($modif))
