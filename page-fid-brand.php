@@ -69,9 +69,11 @@
                     setup_postdata( $post );
 
                     $modif = carbon_get_the_post_meta('offer_modification');
-                    $mainPrice = carbon_get_post_meta(get_the_ID(),"offer_price");
-                    if (!empty($modif))
-                    $mainPrice = $modif[0]["mod_price"]; 
+                    
+                    global $wpdb;
+                    $mainPrice = $wpdb->get_results("SELECT * FROM `lshop_loadprice` WHERE `sku` = '".carbon_get_post_meta(get_the_ID(),"offer_sku")."'");
+                    $mainPrice = $mainPrice[0]->price;
+
                     $sku = carbon_get_post_meta(get_the_ID(),"offer_sku");
                     if (empty($sku)) continue;
                     if (empty($mainPrice)) continue;

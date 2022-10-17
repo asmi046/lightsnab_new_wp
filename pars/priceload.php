@@ -14,12 +14,17 @@ global $wpdb;
 print_r($files);
 
 global $wpdb;
+$wpdb->get_results("TRUNCATE `lshop_loadprice` ");
+
+// $wpdb->show_errors(); // включит показ ошибок
+// $wpdb->print_error(); // включит показ ошибок на экран
+// $wpdb->hide_errors(); // выключит показ ошибок
+
+// return;
 
 for ($i = 0; $i<count($files); $i++)
 if (($files[$i] !== ".")&&($files[$i] !== "..")&&(!empty($files[$i]))) {
     $row = 0;
-    
-    $wpdb->query("TRUNCATE ` lshop_loadprice `");
 
     if (($handle = fopen($dir."/".$files[$i], "r")) !== FALSE) {
         echo  $files[$i]."\n\r"; 
@@ -61,7 +66,7 @@ if (($files[$i] !== ".")&&($files[$i] !== "..")&&(!empty($files[$i]))) {
         }
 
     fclose($handle);
-    // unlink($dir."/".$files[0]); 
+    unlink($dir."/".$files[$i]); 
     }    
 }
 
