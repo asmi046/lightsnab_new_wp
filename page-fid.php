@@ -82,7 +82,7 @@
                 <url><? the_permalink();?></url>
                 <picture><?php  $imgTm = get_the_post_thumbnail_url( get_the_ID(), "tominiatyre" ); echo empty($imgTm)?get_bloginfo("template_url")."/img/no-photo.jpg":$imgTm; ?></picture>
                 <price><?echo $mainPrice; ?></price>
-                <description><?php echo  str_replace(array("&nbsp;", "&"), "", strip_tags (carbon_get_the_post_meta('offer_fulltext')));?></description>
+                <description><?php echo  str_replace(array("&nbsp;", "&"), "", strip_tags (empty(carbon_get_the_post_meta('offer_fulltext'))?get_the_title():carbon_get_the_post_meta('offer_fulltext')));?></description>
                 <currencyId>RUR</currencyId>
                 <categoryId><? $cc = get_the_terms(get_the_ID(), "lightcat"); if (!empty($cc) ) echo $cc[0]->term_id;?></categoryId>
                 <delivery>false</delivery>
