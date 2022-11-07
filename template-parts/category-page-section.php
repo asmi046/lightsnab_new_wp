@@ -24,7 +24,7 @@ $ancestors = get_ancestors( $categoryID, 'lightcat' );
 
 				$categories = get_categories($sparam);
 
-				if (empty($categories)) {
+				if (empty($categories) && !empty($ancestors)) {
 					$sparam["parent"] = $ancestors[0];
 					$categories = get_categories( $sparam );
 				}	

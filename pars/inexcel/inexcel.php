@@ -130,7 +130,7 @@
     $tovIndex = 0;
     foreach ($results as $tovarInfo){
         $tovIndex ++;
-        if ($tovIndex <1678) continue;
+        if ($tovIndex < 1720) continue;
 
         $galery = $wpdb->get_results("SELECT * FROM `transfer_galery` WHERE `basearticle` = '".$tovarInfo["articulbase"]."'", ARRAY_A);
 
