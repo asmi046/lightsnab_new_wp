@@ -29,7 +29,7 @@
     "send_inexcel_photo": "scp -C -r pars/inexcel/photo u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     
     "send_inexcelall": "scp -C -r pars/inexcel/ u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
-    "send_inexcel_data": "scp -C  pars/inexcel/datd_03_11_2022.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
+    "send_inexcel_data": "scp -C  pars/inexcel/datd_07_11_2022.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_inexcel": "scp -C  pars/inexcel/inexcel.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_inexcel2": "scp -C  pars/inexcel/inexcel_cat.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
     "send_kp_template": "scp -C -r excel_kp/template_kp.xlsx u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/excel_kp/",
