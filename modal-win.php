@@ -19,7 +19,7 @@
 							<input type="text" name="name" placeholder="Имя" id="form-callback-name" class="popup__form-input input">
 							<input type="tel" name="tel" placeholder="Телефон*" id="form-callback-tel" class="popup__form-input input">
 							<input type="text" name="email" placeholder="Email" id="form-callback-email" class="popup__form-input input">
-							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(452);?>">политикой конфиденциальности</a></p>
+							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(3);?>">политикой конфиденциальности</a></p>
 							<button class="popup__form-btn callbackBtn btn">Отправить заявку</button> <div class="loaderMain"></div>
 						</form> 
 					</div> 
@@ -54,7 +54,7 @@
 								</label>
 							</div>
 							<input name = "filleserv" type="hidden" id="file-path-serv" value = "">
-							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(452);?>">политикой конфиденциальности</a></p> 
+							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(3);?>">политикой конфиденциальности</a></p> 
 							<button class="popup__form-btn projectBtn btn">Отправить заявку</button> <div class="loaderMain"></div>
 						</form>
 					</div> 
@@ -89,7 +89,7 @@
 								</label>
 							</div>
 							<input name = "filleserv" type="hidden" id="file-path-serv" value = "">
-							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(452);?>">политикой конфиденциальности</a></p> 
+							<p>Заполняя данную форму вы соглашаетесь с <a href="<?php echo get_permalink(3);?>">политикой конфиденциальности</a></p> 
 							<button class="popup__form-btn photoBtn btn">Отправить заявку</button> <div class="loaderMain"></div>
 						</form>
 					</div>
