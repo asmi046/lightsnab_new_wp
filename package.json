@@ -23,7 +23,7 @@
     "send_pars_inxml": "scp -C pars/inxml-list.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_pl": "scp -C pars/priceload.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_xml": "scp -C -r pars/xml/ u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
-    "send_pars_one": "scp -C pars/priceUpper.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
+    "send_pars_one": "scp -C pars/price_update_from_xml.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_one1": "scp -C pars/pages-mebel2.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_pars_one2": "scp -C pars/toTovarBase.php u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/",
     "send_inexcel_photo": "scp -C -r pars/inexcel/photo u0743099@ftp.light-snab.ru:www/lightsnab.ru/wp-content/themes/light-shop/pars/inexcel/",
