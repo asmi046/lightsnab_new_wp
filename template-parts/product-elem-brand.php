@@ -13,7 +13,11 @@
             $base_price = $wpdb->get_results("SELECT * FROM `lshop_loadprice` WHERE `sku` = '".carbon_get_post_meta(get_the_ID(),"offer_sku")."'"); 
             
         ?>
-        <div class="products-loop__price"><span class = "price_formator"><? echo $base_price[0]->price ?></span> P</div>
+        <? if (empty($base_price[0]->count)) {?>
+            <div class="products-loop__price">Цена по запросу</div>
+        <?} else {?>
+            <div class="products-loop__price"><span class = "price_formator"><? echo $base_price[0]->price ?></span> P</div>
+        <?}?>  
     </div>
     <div class="products-loop__btn">Подробнее...</div>
 </a>  

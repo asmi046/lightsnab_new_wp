@@ -168,15 +168,19 @@
           $base_price = $wpdb->get_results("SELECT * FROM `lshop_loadprice` WHERE `sku` = '".carbon_get_post_meta(get_the_ID(),"offer_sku")."'");
 
         if (!empty($base_price))
-          $nal_final=  empty($base_price[0]->count)?"Под заказ":$base_price[0]->count." шт.";
+          $nal_final =  empty($base_price[0]->count)?"Под заказ":$base_price[0]->count." шт.";
         else 
-          $nal_final =  carbon_get_post_meta(get_the_ID(),"offer_nal");
+          $nal_final =  carbon_get_post_meta(get_the_ID(), "offer_nal");
       ?>
 
       <div class="product-info">
         <div class="product-descr" itemprop="description"><?echo carbon_get_post_meta(get_the_ID(),"offer_smile_descr"); ?></div>
         <div class="product-sku">Артикул: <span id = "product_current_sku"><?echo carbon_get_post_meta(get_the_ID(),"offer_sku"); ?></span></div>
-        <div class="product-stock">Наличие: <span><?echo $nal_final; ?></span></div>
+        <?  if (!empty($cur_terms) && ($nal_final === "Под заказ")) {?>
+          <div class="product-stock">Наличие: уточняйте у менеджера</div>
+        <?} else {?>
+          <div class="product-stock">Наличие: <span><?echo $nal_final; ?></span></div>
+        <?}?>
         <div class="product-attrs">
           <?
             $cerecter = carbon_get_the_post_meta('offer_cherecter');
@@ -209,6 +213,15 @@
             
         ?>
 
+  <?if (!empty($cur_terms) && ($nal_final === "Под заказ")) {?>
+    <div class="u_menedgera">
+      Наличие данного товара уточняйте у менеджера:
+      <br/>
+      <a class="phone_lnk" href="tel:<?echo preg_replace('![^0-9]+!', '', SITE_PHONE)?>"><?echo SITE_PHONE;?></a>
+			<a href="mailto:<?echo SITE_MAIL;?>"><?echo SITE_MAIL;?></a>
+    
+    </div>
+  <? } else { ?>
         <div class="product-single__price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
           <span data-real-price = "<? echo $mainPrice; ?>" class = "price_formator" id = "product_current_price" itemprop="price">
           <?echo $mainPrice;  ?></span> P
@@ -255,7 +268,7 @@
         <div class = "to_bascet_msg" id = "to_bascet_msg">
           Товар добавлен в корзину. В принципе, можно <a href = "<?echo get_the_permalink(79);?>">оформить заказ</a>.
         </div>    
-
+        <?}?>
         
 
         <noindex>

@@ -4463,6 +4463,11 @@ hr {
 
 /* Бренды End*/
 
+.u_menedgera .phone_lnk{
+    font-size: 22px;
+    margin: 1em 0;
+    display: block;
+}
 
 
 @media screen and (max-width: 1500px) {
