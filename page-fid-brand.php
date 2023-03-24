@@ -71,15 +71,26 @@
                     $modif = carbon_get_the_post_meta('offer_modification');
                     
                     global $wpdb;
+
+                    $available = "true"; 
+
                     $mainPrice = $wpdb->get_results("SELECT * FROM `lshop_loadprice` WHERE `sku` = '".carbon_get_post_meta(get_the_ID(),"offer_sku")."'");
-                    $mainPrice = $mainPrice[0]->price;
+                    if (!empty($mainPrice))
+                        if (empty($mainPrice[0]->count)) $available = "false";
+
+                    if (!empty($mainPrice))
+                        $mainPrice = $mainPrice[0]->price;
+                    else $mainPrice = 0;
+
+                    
 
                     $sku = carbon_get_post_meta(get_the_ID(),"offer_sku");
                     if (empty($sku)) continue;
                     if (empty($mainPrice)) continue;
+                    
             ?>
 
-            <offer id="<?echo $sku; ?>">
+            <offer id="<?echo $sku; ?>"  available="<?php echo $available;?>">
                 <name><? the_title();?></name>
                 <url><? the_permalink();?></url>
                 <picture><?php  $imgTm = get_the_post_thumbnail_url( get_the_ID(), "tominiatyre" ); echo empty($imgTm)?get_bloginfo("template_url")."/img/no-photo.jpg":$imgTm; ?></picture>
@@ -87,8 +98,11 @@
                 <description><?php echo  str_replace(array("&nbsp;", "&"), "", strip_tags (empty(carbon_get_the_post_meta('offer_fulltext'))?get_the_title():carbon_get_the_post_meta('offer_fulltext')));?></description>
                 <currencyId>RUR</currencyId>
                 <categoryId><? $cc = get_the_terms(get_the_ID(), "lightbrand"); if (!empty($cc) ) echo $cc[0]->term_id;?></categoryId>
+                <store>false</store>
+                <pickup>true</pickup>
                 <delivery>false</delivery>
                 <vendor>LightSnab</vendor>
+                
             </offer>
 
             <?
