@@ -35,8 +35,33 @@
       </div>
       <!-- <a class = "workerlnk" href = "https://asmi-studio.ru/">Разработка сайта <span>Asmi-Studio</span></a> -->
     </div>
+
+
+
   </div>
 </footer>
+
+<section class="footer">
+  <div class="container">
+  <div class="summery">
+      <p>Просим учесть Указание товара "в наличии" или в "Корзине" не означает фактическое наличие товара и что данный товар предназначен для реализации. Просим наличие товара, актуальные цены уточнять у менеджеров. Выставление счета на оплату является основанием для совершения платежа</p>
+      <p>Предложенный товар на сайте не является публичной офертой.</p>
+    </div>
+
+    <style>
+      .summery {
+        font-size:10px;
+        width:100%;
+        padding:10px 0;
+        border-top:1px solid lightgray;
+      } 
+
+      .summery p{ 
+        font-size:10px;
+      }
+    </style>  
+  </div>
+  </section>
 <!-- </div> -->
 
 <div class="top-btn"></div>
