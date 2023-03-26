@@ -1,4 +1,6 @@
 <?php
+include_once('SmsaeroApiV2.class.php');
+
 
 // ini_set('error_reporting', E_ALL);
 // ini_set('display_errors', 1);
