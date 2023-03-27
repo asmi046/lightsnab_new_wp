@@ -1,5 +1,4 @@
 <?
-
 function translit_sef($value)
 {
 	$converter = array(
