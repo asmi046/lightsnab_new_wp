@@ -227,7 +227,7 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 
 			
 			if (wp_mail($adr_to_send, $mail_them, $mail_content, $headers)) {
-				$sms_result = send_sms([$_REQUEST["phone"]], "Заказ №".$zak_number." принят. Мы с Вами свяжемся после его обработки.");
+				$sms_result = send_sms([$_REQUEST["phone"]], "Интернет-магазин LIGHT-SNAB Заказ №".$zak_number." принят. Мы с Вами свяжемся после его обработки. lightsnab.ru");
 				wp_die(json_encode(array("send" => true, "sms_result" => $sms_result )));
 			}
 			else {
