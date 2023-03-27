@@ -1,5 +1,5 @@
 <?php
-// include_once('SmsaeroApiV2.class.php');
+//include_once('SmsaeroApiV2.class.php');
 
 
 // ini_set('error_reporting', E_ALL);
@@ -37,6 +37,59 @@ function crb_load() {
 	require_once( 'carbon-fields/vendor/autoload.php' );
 	\Carbon_Fields\Carbon_Fields::boot();
 } 
+
+
+
+/**
+     * Формирование curl запроса
+     * @param $url
+     * @param $post
+     * @param $options
+     * @return mixed
+     */
+    function curl_post($url, array $post = [], array $options = array()){
+        $defaults = array(
+            CURLOPT_POST => 1,
+            CURLOPT_HEADER => 0,
+            CURLOPT_URL => $url,
+            CURLOPT_FRESH_CONNECT => 1,
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_FORBID_REUSE => 1,
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_POSTFIELDS => http_build_query($post),
+            CURLOPT_SSL_VERIFYPEER => 0,
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_USERPWD => "info@light-snab.ru:6u0XtK3167GmhmwtWP2ghN_oxWqLC0Ds",
+            CURLOPT_HTTPAUTH => CURLAUTH_BASIC,
+        );
+
+        $ch = curl_init();
+        curl_setopt_array($ch, ($options + $defaults));
+        if (!$result = curl_exec($ch)) {
+            return curl_error($ch);
+        }
+        curl_close($ch);
+        return $result;
+    }
+
+/**
+     * Отправка сообщения
+     * @param $number string|array  - Номер телефона(ов)
+     * @param $text string          - Текст сообщения
+     * @param $dateSend integer     - Дата для отложенной отправки сообщения (в формате unixtime)
+     * @param $callbackUrl string   - url для отправки статуса сообщения в формате http://your.site или https://your.site (в ответ система ждет статус 200)
+     * @return array
+     */
+    function send_sms($number, $text, $dateSend = null, $callbackUrl = null){
+        return json_decode(curl_post('https://gate.smsaero.ru/v2/sms/send/', [
+            is_array($number) ? 'numbers' : 'number' => $number,
+            'sign' => "Light-Snab",
+            'text' => $text,
+            'dateSend' => $dateSend,
+            'callbackUrl' => $callbackUrl
+        ]), true);
+    }
+
 
 //-----Блок описания вывода меню
 // 1. Осмысленные названия для алиаса и для описания на русском.
@@ -174,7 +227,8 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 
 			
 			if (wp_mail($adr_to_send, $mail_them, $mail_content, $headers)) {
-				wp_die(json_encode(array("send" => true )));
+				$sms_result = send_sms([$_REQUEST["phone"], '+79036330801'],"Ваш заказ принят!");
+				wp_die(json_encode(array("send" => true, "sms_result" => $sms_result )));
 			}
 			else {
 				wp_die( 'Ошибка отправки!', '', 403 );
@@ -598,5 +652,6 @@ function filter_wpseo_sitemap_urlimages( $images, $post_id ) {
   }
 
   add_filter( 'wpseo_sitemap_urlimages', 'filter_wpseo_sitemap_urlimages', 10, 2 );
+
 
   include "crm-rest.php";
