@@ -227,7 +227,7 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 
 			
 			if (wp_mail($adr_to_send, $mail_them, $mail_content, $headers)) {
-				$sms_result = send_sms([$_REQUEST["phone"], '+79036330801'],"Ваш заказ принят!");
+				$sms_result = send_sms([$_REQUEST["phone"]], "Заказ №".$zak_number." принят. Мы с Вами свяжемся после его обработки.");
 				wp_die(json_encode(array("send" => true, "sms_result" => $sms_result )));
 			}
 			else {
