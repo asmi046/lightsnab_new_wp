@@ -190,7 +190,7 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 			$adr_to_send = carbon_get_theme_option("mail_to_send");
 			$adr_to_send = (empty($adr_to_send))?"asmi046@gmail.com":$adr_to_send;
 			
-			$zak_number = "LS-".date("H").date("s").date("s")."-".rand(100,999);
+			$zak_number = "LS-".date("H").date("s")."-".rand(100,999);
 
 			$mail_content = "<h1>Заказ на сате №".$zak_number."</h1>";
 			
@@ -227,7 +227,7 @@ add_action( 'wp_enqueue_scripts', 'my_assets' );
 
 			
 			if (wp_mail($adr_to_send, $mail_them, $mail_content, $headers)) {
-				$sms_result = send_sms([$_REQUEST["phone"]], "Интернет-магазин LIGHT-SNAB Заказ №".$zak_number." принят. Мы с Вами свяжемся после его обработки. lightsnab.ru");
+				$sms_result = send_sms([$_REQUEST["phone"]], "Заказ №".$zak_number." принят. Ожидайте звонка. Магазин lightsnab.ru");
 				wp_die(json_encode(array("send" => true, "sms_result" => $sms_result )));
 			}
 			else {
