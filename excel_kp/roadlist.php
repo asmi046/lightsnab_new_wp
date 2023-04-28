@@ -96,7 +96,7 @@ if (!empty($_REQUEST["rlid"])) {
             \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER
         );
 
-        $spreadsheet->getActiveSheet()->getRowDimension($cell_index, $key)->setRowHeight(40);
+        $spreadsheet->getActiveSheet()->getRowDimension($cell_index)->setRowHeight(40);
         $worksheet->setCellValue('A'.$cell_index, $element->adres . " (".$element->zak_numbet.")");
 
         $worksheet->insertNewRowBefore($cell_index+1);
@@ -107,7 +107,7 @@ if (!empty($_REQUEST["rlid"])) {
         ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
         ->getStartColor()
         ->setARGB('FFFFFF');
-        $spreadsheet->getActiveSheet()->getRowDimension($cell_index, $key)->setRowHeight(20);
+        $spreadsheet->getActiveSheet()->getRowDimension($cell_index)->setRowHeight(20);
 
         $worksheet->mergeCells('A'.$cell_index.':'.'I'.$cell_index);
         $worksheet->setCellValue('A'.$cell_index, "Клиент: ".$element->klient_name);
