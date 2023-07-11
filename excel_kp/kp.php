@@ -12,15 +12,23 @@ require_once("../../../../wp-config.php");
 require 'vendor/autoload.php';
 
 function load_file($lnk) {
-    $filename = "img/".basename($lnk);
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $lnk);
-    $fp = fopen($filename, 'w');
-    curl_setopt($ch, CURLOPT_FILE, $fp);
-    curl_exec ($ch);
-    curl_close ($ch);
-    fclose($fp);
-    return $filename;
+    $Headers = @get_headers($lnk);
+
+    if(strpos($Headers[0], '200' )) {
+        $filename = "img/".basename($lnk);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $lnk);
+        $fp = fopen($filename, 'w');
+        curl_setopt($ch, CURLOPT_FILE, $fp);
+        curl_exec ($ch);
+        curl_close ($ch);
+        fclose($fp);
+    
+        return $filename;
+    } else {
+        // echo $Headers[0];
+        return "";
+    }
 }
 
 function deleteFile($lnk) {
@@ -79,16 +87,17 @@ if (!empty($_REQUEST["number"])) {
         
         $fname = load_file($elem->img);
 
-        $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
-        $drawing->setName($elem->sku);
-        $drawing->setDescription($elem->sku);
-        $drawing->setOffsetX(10); 
-        $drawing->setOffsetY(10); 
-        $drawing->setPath($fname);
-        $drawing->setHeight(86);
-        $drawing->setCoordinates('C'.(13+$i));
-        $drawing->setWorksheet($spreadsheet->getActiveSheet());
-        
+        if (!empty($fname)) {
+            $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+            $drawing->setName($elem->sku);
+            $drawing->setDescription($elem->sku);
+            $drawing->setOffsetX(10); 
+            $drawing->setOffsetY(10); 
+            $drawing->setPath($fname);
+            $drawing->setHeight(86);
+            $drawing->setCoordinates('C'.(13+$i));
+            $drawing->setWorksheet($spreadsheet->getActiveSheet());
+        }
         
         $i++;
     }
