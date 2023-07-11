@@ -222,13 +222,20 @@
     
     </div>
   <? } else { ?>
+        <?if (!empty($base_price[0]->price_old)) { ?>
+          <div class="product-single__price">  
+            <span class = "old_price"><span class = "price_formator"><? echo $base_price[0]->price_old ?></span> P</span>
+          </div>
+        <?}?>
+
         <div class="product-single__price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-          <span data-real-price = "<? echo $mainPrice; ?>" class = "price_formator" id = "product_current_price" itemprop="price">
-          <?echo $mainPrice;  ?></span> P
+          <span data-real-price = "<? echo $mainPrice; ?>" class = "price_formator" id = "product_current_price" itemprop="price"> <?echo $mainPrice;  ?></span> P
 
           <span style = "display:none" itemprop="priceCurrency">RUB</span>
           <link style = "display:none" itemprop="availability" href="http://schema.org/InStock">
         </div>
+
+
         
         <a href="<? echo get_the_permalink(447); ?>" class="product-single__opt">Узнать оптовую цену</a>
 

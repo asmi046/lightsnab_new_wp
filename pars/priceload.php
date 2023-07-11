@@ -6,12 +6,12 @@ ini_set('max_execution_time', 9000);
 require_once("../../../../wp-config.php");
 
 
-$dir = "../../../../prices_all";
-$files = @scandir($dir,1);
+// $dir = "../../../../prices_all";
+// $files = @scandir($dir,1);
 
-global $wpdb;
+// global $wpdb;
 
-print_r($files);
+// print_r($files);
 
 global $wpdb;
 $wpdb->get_results("TRUNCATE `lshop_loadprice` ");
@@ -22,59 +22,85 @@ $wpdb->get_results("TRUNCATE `lshop_loadprice` ");
 
 // return;
 
-// for ($i = 0; $i<count($files); $i++)
-// if (($files[$i] !== ".")&&($files[$i] !== "..")&&(!empty($files[$i]))) {
+
+// $filename = "all_price.xml";
+
+// if (file_exists('xml/'.$filename)) {
+//     $xmlObject = simplexml_load_file('xml/'.$filename);
+
 //     $row = 0;
+//     foreach ($xmlObject->Worksheet->Table->Row as $key => $value) {
+//         if ($row === 0) {$row++; continue;}
 
-//     if (($handle = fopen($dir."/".$files[$i], "r")) !== FALSE) {
-//         echo  $files[$i]."\n\r"; 
-//         while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-//             if ($row == 0) {$row++; continue;}
-            
-//                 if (empty($data) || empty($data[0])) continue;
+//         $old_pricr = empty($value->Cell[3]->Data)?0:$value->Cell[3]->Data;
 
-//                 $sku = $data[0];
-//                 $count = $data[2];
-//                 $price = str_replace(",",".",$data[1]);
-                
-//                 if (empty($sku)) continue;
-                
-//                 $wpdb->insert('lshop_loadprice' , ["sku" => $sku, "price" =>$price, "count" => $count] );
-                
-//                 echo  $sku."\n\r"; 
-            
-//             $row++; 
-//         }
 
-//     fclose($handle);
-//     unlink($dir."/".$files[$i]); 
-//     }    
+//         $rez = $wpdb->insert('lshop_loadprice' , 
+//         [
+//             "sku" => (string)$value->Cell[0]->Data, 
+//             "price" => floatval($value->Cell[2]->Data), 
+//             "count" => intval($value->Cell[4]->Data)
+//         ] );
+
+//         echo  $row . ": " . $value->Cell[0]->Data ." - ".$rez."\n\r";
+
+//         // echo (string)$value->Cell[2]->Data ;
+//         $row++;
+//     }
 // }
 
-$filename = "all_price.xml";
+// $filename = "all_price.xml";
 
-if (file_exists('xml/'.$filename)) {
-    $xmlObject = simplexml_load_file('xml/'.$filename);
+// if (file_exists('xml/'.$filename)) {
+//     $xmlObject = simplexml_load_file('xml/'.$filename);
+
+//     var_dump(count($xmlObject->shop->offers->offer));
+
+//     $row = 0;
+//     foreach ($xmlObject->shop->offers->offer as $item) {
+        
+
+//         $rez = $wpdb->insert('lshop_loadprice' , 
+//         [
+//             "sku" => (string)$item->vendorCode, 
+//             "price" => floatval($item->price_retail), 
+//             "count" => intval($item->quantity)
+//         ] );
+
+//         echo  $row . ": " . $item->vendorCode ." - ".$item->price_retail."\n\r";
+
+//         // echo (string)$value->Cell[2]->Data ;
+//         $row++;
+//     }
+// }
+
+    $filename = "all_price.csv";
 
     $row = 0;
-    foreach ($xmlObject->Worksheet->Table->Row as $key => $value) {
-        if ($row === 0) {$row++; continue;}
 
-        $old_pricr = empty($value->Cell[3]->Data)?0:$value->Cell[3]->Data;
+    if (($handle = fopen('xml/'.$filename, "r")) !== FALSE) {
+        echo  $files[$i]."\n\r"; 
+        while (($data = fgetcsv($handle, 5000, ";")) !== FALSE) {
+            if ($row == 0) {$row++; continue;}
+            
+                if (empty($data) || empty($data[0])) continue;
 
-
-        $rez = $wpdb->insert('lshop_loadprice' , 
-        [
-            "sku" => (string)$value->Cell[0]->Data, 
-            "price" => floatval($value->Cell[2]->Data), 
-            "count" => intval($value->Cell[4]->Data)
-        ] );
-
-        echo  $row . ": " . $value->Cell[0]->Data ." - ".$rez."\n\r";
-
-        // echo (string)$value->Cell[2]->Data ;
-        $row++;
+                $sku = $data[4];
+                $count = $data[9];
+                $price = str_replace(",", ".", $data[6]);
+                $price_old = str_replace(",", ".", $data[7]);
+                
+                if (empty($sku)) continue;
+                
+                $wpdb->insert('lshop_loadprice' , ["sku" => $sku, "price" =>$price, "price_old" =>$price_old, "count" => $count] );
+                
+                echo  $sku." - ". $price . " - ". $price_old
+                 ."\n\r"; 
+            
+            $row++; 
+        }
     }
-}
+
+    fclose($handle);
 
 ?>

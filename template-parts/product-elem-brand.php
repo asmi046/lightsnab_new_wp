@@ -16,7 +16,12 @@
         <? if (empty($base_price[0]->count)) {?>
             <div class="products-loop__price">Цена по запросу</div>
         <?} else {?>
-            <div class="products-loop__price"><span class = "price_formator"><? echo $base_price[0]->price ?></span> P</div>
+            <div class="products-loop__price">
+                <span class = "price_formator"><? echo $base_price[0]->price ?></span> P
+                <?if (!empty($base_price[0]->price_old)) { ?>
+                    <span class = "old_price"><span class = "price_formator"><? echo $base_price[0]->price_old ?></span> P</span>
+                <?}?>
+            </div>
         <?}?>  
     </div>
     <div class="products-loop__btn">Подробнее...</div>

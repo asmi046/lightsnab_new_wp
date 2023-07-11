@@ -2561,6 +2561,7 @@ a {
 .products-loop__price {
     color: #d3820f;
     margin-bottom: 10px;
+    display: flex;
 }
 
 .products-loop__content {
@@ -4469,6 +4470,12 @@ hr {
     display: block;
 }
 
+.old_price {
+    text-decoration: line-through;
+    font-size: 14px;
+    color: #e1e1e1;
+    margin-left: auto;
+}
 
 @media screen and (max-width: 1500px) {
     .container {
