@@ -99,30 +99,30 @@ Container::make('theme_options', __('Настройки темы', 'crb'))
 Container::make('post_meta', 'light_product_cr', 'Характеристики товара')
 	->show_on_post_type(array('light'))
 	->add_fields(array(
-		Field::make('textarea', 'offer_smile_descr', 'Краткое описание')->set_width(100),
-		Field::make('text', 'offer_name', 'Название товара')->set_width(30),
-		Field::make('text', 'offer_label', 'Метка на товаре')->set_width(30),
-		Field::make('text', 'offer_allsearch', 'Все артикулы для поиска')->set_width(100),
-		Field::make('text', 'offer_siries', 'Серия (для сопутствующих)')->set_width(30),
+		Field::make('textarea', 'offer_smile_descr', 'Краткое описание')->set_visible_in_rest_api()->set_width(100),
+		Field::make('text', 'offer_name', 'Название товара')->set_visible_in_rest_api()->set_width(30),
+		Field::make('text', 'offer_label', 'Метка на товаре')->set_visible_in_rest_api()->set_width(30),
+		Field::make('text', 'offer_allsearch', 'Все артикулы для поиска')->set_visible_in_rest_api()->set_width(100),
+		Field::make('text', 'offer_siries', 'Серия (для сопутствующих)')->set_visible_in_rest_api()->set_width(30),
 		Field::make('select', 'offer_type', 'Тип светильника')->add_options(array(
 			'0' => 'Не задано',
 			'Светодиодный (LED)' => 'Светодиодный (LED)',
 			'Цокольный (Со сменными лампами)' => 'Цокольный (Со сменными лампами)'
-		))->set_width(100),
+		))->set_visible_in_rest_api()->set_width(100),
 
-		Field::make('text', 'offer_sku', 'Артикул (Базовый)')->set_width(50),
-		Field::make('text', 'offer_nal', 'Наличие на складе')->set_default_value('В наличии')->set_width(50),
+		Field::make('text', 'offer_sku', 'Артикул (Базовый)')->set_visible_in_rest_api()->set_width(50),
+		Field::make('text', 'offer_nal', 'Наличие на складе')->set_visible_in_rest_api()->set_default_value('В наличии')->set_width(50),
 
-		Field::make('complex', 'offer_cherecter', "Характеристики товара")
+		Field::make('complex', 'offer_cherecter', "Характеристики товара")->set_visible_in_rest_api()
 			->add_fields(array(
 				Field::make('text', 'c_name', 'Наименование параметра')->set_width(50),
 				Field::make('text', 'c_val',  'Значение')->set_width(50),
 			)),
 
-		Field::make('text', 'offer_price', 'Цена (Базовая)')->set_width(50),
-		Field::make('text', 'offer_old_price', 'Старая цена (Базовая)')->set_width(50),
+		Field::make('text', 'offer_price', 'Цена (Базовая)')->set_visible_in_rest_api()->set_width(50),
+		Field::make('text', 'offer_old_price', 'Старая цена (Базовая)')->set_visible_in_rest_api()->set_width(50),
 
-		Field::make('complex', 'offer_modification', "Модификация товара")
+		Field::make('complex', 'offer_modification', "Модификация товара")->set_visible_in_rest_api()
 			->add_fields(array(
 				Field::make('text', 'mod_name', 'Наименование модификации')->set_width(20),
 				Field::make('text', 'mod_sku', 'Артикул модификации')->set_width(20),
@@ -131,16 +131,16 @@ Container::make('post_meta', 'light_product_cr', 'Характеристики �
 				Field::make('text', 'mod_picture_id', 'Изображения модификации')->set_width(20),
 			)),
 
-		Field::make('complex', 'offer_picture', "Галерея товара")
+		Field::make('complex', 'offer_picture', "Галерея товара")->set_visible_in_rest_api()
 			->add_fields(array(
 				Field::make('image', 'gal_img', 'Изображение')->set_width(30),
 				Field::make('text', 'gal_img_sku', 'ID для модификации')->set_width(30),
 				Field::make('text', 'gal_img_alt', 'alt и title')->set_width(30)
 			)),
 
-		Field::make('rich_text', 'offer_fulltext', 'Полное описание (SEO)')->set_width(50),
+		Field::make('rich_text', 'offer_fulltext', 'Полное описание (SEO)')->set_visible_in_rest_api()->set_width(50),
 
-		Field::make('complex', 'offer_rev', "Отзывы о товаре")
+		Field::make('complex', 'offer_rev', "Отзывы о товаре")->set_visible_in_rest_api()
 			->add_fields(array(
 				Field::make('text', 'rev_name', 'Имя')->set_width(20),
 				Field::make('text', 'rev_mail', 'e-mail')->set_width(20),

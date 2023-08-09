@@ -568,6 +568,7 @@ function light_custom_init(){
 		'publicly_queryable' => true,
 		'show_ui'            => true,
 		'show_in_menu'       => true,
+		'show_in_rest'       => true,
 		'query_var'          => true,
 		'rewrite'            => true,
 		'capability_type'    => 'post',
@@ -652,6 +653,31 @@ function filter_wpseo_sitemap_urlimages( $images, $post_id ) {
   }
 
   add_filter( 'wpseo_sitemap_urlimages', 'filter_wpseo_sitemap_urlimages', 10, 2 );
+
+
+  add_action( 'rest_api_init', function(){
+	
+	register_meta( 
+		'post', 
+		'_yoast_wpseo_title', 
+		array(
+			'type' => 'string',
+			'single' => true,
+			'show_in_rest' => true
+		)
+	);
+	
+
+	register_meta( 
+		'post', 
+		'_yoast_wpseo_metadesc', 
+		array(
+			'type' => 'string',
+			'single' => true,
+			'show_in_rest' => true
+		)
+	);
+} );
 
 
   include "crm-rest.php";
