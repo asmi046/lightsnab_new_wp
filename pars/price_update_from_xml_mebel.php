@@ -52,9 +52,10 @@ if (file_exists('xml/'.$filename)) {
 
         $curPrice = carbon_get_post_meta($posts->posts[0]->ID,"offer_price");
 
-        echo $index."# ".$elem->name." - ".$elem->vendorCode." - ".$elem->price." - ".$curPrice;
+        echo $index."# ".$elem->name." - ".$elem->vendorCode." - ".$elem->price." - ".$curPrice." - ".$elem["quantity"] ;
     
         update_post_meta( $posts->posts[0]->ID, '_offer_price', (string)$elem->price);  
+        update_post_meta( $posts->posts[0]->ID, '_offer_nal', (int)$elem["quantity"]);  
 
         if (empty($posts->posts[0])) {
             $no_exist++;
