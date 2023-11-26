@@ -4477,6 +4477,18 @@ hr {
     margin-left: auto;
 }
 
+.ws_lnk {
+    background-color: #25d366;
+    width: 60px;
+    height: 60px;
+    border-radius: 40px;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    display: block;
+    background-image: url(img/icons/wtsup.svg);
+}
+
 @media screen and (max-width: 1500px) {
     .container {
         width: 100%;

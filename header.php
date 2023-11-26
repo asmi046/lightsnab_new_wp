@@ -23,6 +23,9 @@
   <meta name="yandex-verification" content="a34ce6fa3f7a1a6e" />
 </head> 
 <body class="body">
+
+  <a class="ws_lnk" target="_blank" href="https://wa.me/79673400003"></a>
+
   <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
